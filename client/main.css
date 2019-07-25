@@ -1,4 +1,75 @@
 body {
-  padding: 10px;
   font-family: sans-serif;
+}
+
+* {
+  margin: 0px;
+  --greyish-two: #b7b7b7;
+  --pale-orange: #ffa15f;
+  --dark-grey: #202124;
+}
+
+#header-wrap{ position:absolute;}
+
+.Navbar {
+  object-fit: contain;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08);
+  background-color: var(--white);
+  padding: 21px 130px 12px 130px;
+  position: relative;
+}
+
+.search-wrapper {
+  width: 181px;
+  height: 35px;
+  border-radius: 17px;
+  border: solid 1px var(--greyish-two);
+}
+
+input {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  border: none;
+  text-indent: 10px;
+}
+
+.Logo {
+  width: 96px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.login-btn {
+  width: 120px;
+  height: 35px;
+  border-radius: 100px;
+  border: solid 1px var(--pale-orange);
+  color: var(--pale-orange);
+}
+
+.signup-btn {
+  margin-right: 24px;
+  font-size: 14px;
+}
+
+.nav-group {
+  display: inline;
+  right: 130px;
+  position: absolute;
+}
+
+.title {
+  display: block;
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--dark-grey);
+}
+
+.form-group {
+  margin: 10px 80px 40px 80px;
+}
+
+.input-label {
+  margin-top: 25px;
 }
