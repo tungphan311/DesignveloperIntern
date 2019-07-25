@@ -55,6 +55,10 @@ class SignUpModal extends React.Component {
                                 { this.state.password.length > 0 && 
                                   <small className="form-text text-muted">Your passwords must be more than 6 characters</small>
                                 }
+
+                                <p className="term">
+                                    By creating an account you agree to the <a href="#" className="text-link">Terms of Service</a> and <a href="#" className="text-link">Privacy Policy</a>
+                                </p>
                             </form>
                         </div>
                     </div>

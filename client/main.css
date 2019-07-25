@@ -7,6 +7,7 @@ body {
   --greyish-two: #b7b7b7;
   --pale-orange: #ffa15f;
   --dark-grey: #202124;
+  --pumkin-orange: #ff7413;
 }
 
 #header-wrap{ position:absolute;}
@@ -67,9 +68,22 @@ input {
 }
 
 .form-group {
-  margin: 10px 80px 40px 80px;
+  margin: 10px 80px 60px 80px;
 }
 
 .input-label {
   margin-top: 25px;
+}
+
+.term {
+  margin: 20px 60px 50px 60px;
+  font-size: 14px;
+  line-height: 1.57;
+  color: var(--dark-grey);
+  text-align: center;
+}
+
+.temr .text-link {
+  font-weight: bold;
+  color: var(--pumkin-orange);
 }
