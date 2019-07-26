@@ -8,6 +8,9 @@ body {
   --pale-orange: #ffa15f;
   --dark-grey: #202124;
   --pumkin-orange: #ff7413;
+  --greyish-brown: #4d4d4d;
+  --strawberry: #f63f45;
+  --white-four: #d4d3d3;
 }
 
 #header-wrap{ position:absolute;}
@@ -51,6 +54,7 @@ input {
 .signup-btn {
   margin-right: 24px;
   font-size: 14px;
+  border: none;
 }
 
 .nav-group {
@@ -68,11 +72,11 @@ input {
 }
 
 .form-group {
-  margin: 10px 80px 60px 80px;
+  margin: 35px 80px 60px 80px;
 }
 
-.input-label {
-  margin-top: 25px;
+.margin-top-20 {
+  margin-top: 20px;
 }
 
 .term {
@@ -83,7 +87,96 @@ input {
   text-align: center;
 }
 
-.temr .text-link {
+.term .text-link {
   font-weight: bold;
   color: var(--pumkin-orange);
+  text-decoration: underline;
+}
+
+.modal-backdrop.in {
+	opacity: 0.5;
+}
+
+.btn-register {
+  width: -webkit-fill-available;
+  height: 45px;
+  color: white;
+  background: var(--pale-orange);
+}
+
+.btn-register:disabled {
+  width: -webkit-fill-available;
+  height: 45px;
+  color: white;
+  background-color: var(--white-four);
+}
+
+.btn-haveAccount {
+  font-size: 14px;
+  border: none;
+  color: var(--pumkin-orange);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.footer-text {
+  color: var(--greyish-brown);
+}
+
+.list-inline {
+  height: 30px;
+  line-height: 30px;
+}
+
+li.list-item-inline {
+  vertical-align: middle;
+}
+
+.checkbox-text {
+  margin-left: 6px;
+  line-height: 1.57;
+  color: var(--greyish-brown);
+}
+
+input[type="checkbox"] {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+li:last-child {
+  float: right;
+}
+
+.btn-forgotPass {
+  border: none;
+}
+
+.btn-login {
+  width: -webkit-fill-available;
+  height: 45px;
+  color: white;
+  background: var(--pale-orange);
+  margin-top: 45px;
+}
+
+.btn-login:disabled {
+  width: -webkit-fill-available;
+  height: 45px;
+  color: white;
+  background: var(--white-four);
+  margin-top: 45px;
+}
+
+.error-text {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--strawberry);
+  line-height: 2.2;
+}
+
+.text-muted {
+  font-size: 10px;
+  font-weight: 500;
+  color: #808080;
+  line-height: 2.2;
 }

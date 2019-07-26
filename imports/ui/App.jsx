@@ -1,27 +1,39 @@
 import React, { Component, useState } from 'react';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 import SignUpModal from './SignUp';
+import LoginModal from './Login';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showModal: false,
+      showRegisterModal: false,
+      showLoginModal: false,
     };
   }
 
-  open = () => {
+  openRegisterModal = () => {
     this.setState({
-      showModal: true,
+      showRegisterModal: true,
     });
   }
 
-  close = () => {
+  closeRegisterModal = () => {
     this.setState({
-      showModal: false,
+      showRegisterModal: false,
     });
+  }
+
+  openLoginModal = () => {
+    this.setState({
+      showLoginModal: true,
+    })
+  }
+
+  closeLoginModal = () => {
+    this.setState({
+      showLoginModal: false,
+    })
   }
 
   render() {
@@ -30,13 +42,12 @@ export default class App extends Component {
         <div className="Navbar inline">
           <input type="text" className="search-wrapper" placeholder="Search"/>
           <div className="nav-group">
-            <button className="signup-btn" onClick={this.open}>Register</button>
-            <button className="login-btn">
-              Login
-            </button>
+            <button className="signup-btn" onClick={this.openRegisterModal}>Register</button>
+            <button className="login-btn" onClick={this.openLoginModal}>Login</button>
           </div>
         </div>
-        <SignUpModal close={this.close} show={this.state.showModal} />
+        <SignUpModal close={this.closeRegisterModal} show={this.state.showRegisterModal} clear={this.state.clearForm}/>
+        <LoginModal show={this.state.showLoginModal} close={this.closeLoginModal} />
       </div>
     );
   }
