@@ -50,7 +50,7 @@ export default class LoginModal extends React.Component {
             }
         });
 
-        // location.reload();
+        this.props.close();
     }
 
     // đổi màu input khi invalid

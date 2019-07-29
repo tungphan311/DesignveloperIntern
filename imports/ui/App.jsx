@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LoginAndSignupModal from './Signup-Login-Modal';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
+// import logo from '../images/logo.png';
 
 class App extends Component {
   constructor(props) {
@@ -63,6 +64,7 @@ class App extends Component {
       <div>
         <div className="Navbar inline">
           <input type="text" className="search-wrapper" placeholder="Search"/>
+          {/* <img src={logo} /> */}
           <div className="nav-group">
             { !this.props.currentUser && 
               <button className="signup-btn" onClick={this.openRegisterModal}>Register</button>

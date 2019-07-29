@@ -144,12 +144,9 @@ class SignUpModal extends React.Component {
             }
             else {
                 console.log('success');
+                this.props.close();
             }
         });
-    }
-
-    login = (event) => {
-        event.preventDefault();
     }
 
     render() {
