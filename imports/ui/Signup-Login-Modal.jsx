@@ -7,7 +7,7 @@ export default class LoginAndSignupModal extends React.Component {
         let styles = this.props.show ? { display: "block" } : { display: "none" };
         return (
             <div id="modal" className="modal fade in" role="dialog" style={styles}>
-                <div className="modal-dialog">
+                <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                         { this.props.kind == 'login' && 
                             <LoginModal close={this.props.close} register={this.props.change} /> 
