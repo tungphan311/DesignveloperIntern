@@ -11,6 +11,7 @@ body {
   --greyish-brown: #4d4d4d;
   --strawberry: #f63f45;
   --white-four: #d4d3d3;
+  --white-two: #f6f6f6;
 }
 
 #header-wrap{ position:absolute;}
@@ -179,4 +180,16 @@ li:last-child {
   font-weight: 500;
   color: #808080;
   line-height: 2.2;
+}
+
+.form-control {
+  background-color: var(--white-two) !important;
+  border: 1px solid var(--greyish-two) !important;
+}
+
+.login-error {
+  font-size: 12px;
+  line-height: 1.83;
+  font-weight: 500;
+  color: var(--strawberry);
 }

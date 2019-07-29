@@ -1,54 +1,90 @@
-import React, { Component, useState } from 'react';
-import SignUpModal from './SignUp';
-import LoginModal from './Login';
+import React, { Component } from 'react';
+import LoginAndSignupModal from './Signup-Login-Modal';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showRegisterModal: false,
-      showLoginModal: false,
+      showModal: false,
+      kindModal: '',
     };
   }
 
   openRegisterModal = () => {
     this.setState({
-      showRegisterModal: true,
+      showModal: true,
+      kindModal: 'register',
     });
   }
 
-  closeRegisterModal = () => {
+  closeModal = () => {
     this.setState({
-      showRegisterModal: false,
+      showModal: false,
+      kindModal: '',
     });
   }
 
   openLoginModal = () => {
     this.setState({
-      showLoginModal: true,
+      showModal: true,
+      kindModal: 'login',
     })
   }
 
-  closeLoginModal = () => {
-    this.setState({
-      showLoginModal: false,
+  changeModal = () => {
+    console.log('change modal');
+    if (this.state.kindModal == 'login') {
+      this.setState({
+        kindModal: 'register',
+      })
+    } else {
+      this.setState({
+        kindModal: 'login',
+      })
+    }
+  }
+
+  logout = () => {
+    Meteor.logout((error) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('logged out');
+      }
     })
   }
 
   render() {
+    console.log(this.props.currentUser);
     return(
       <div>
         <div className="Navbar inline">
           <input type="text" className="search-wrapper" placeholder="Search"/>
           <div className="nav-group">
-            <button className="signup-btn" onClick={this.openRegisterModal}>Register</button>
-            <button className="login-btn" onClick={this.openLoginModal}>Login</button>
+            { !this.props.currentUser && 
+              <button className="signup-btn" onClick={this.openRegisterModal}>Register</button>
+            }
+            { !this.props.currentUser && 
+              <button className="login-btn" onClick={this.openLoginModal}>Login</button>
+            }
+            {  this.props.currentUser && 
+              <button onClick={this.logout}>Logout</button>
+            }
           </div>
         </div>
-        <SignUpModal close={this.closeRegisterModal} show={this.state.showRegisterModal} clear={this.state.clearForm}/>
-        <LoginModal show={this.state.showLoginModal} close={this.closeLoginModal} />
+
+        <LoginAndSignupModal show={this.state.showModal} kind={this.state.kindModal} close={this.closeModal} 
+          change={this.changeModal} />
       </div>
     );
   }
 }
+
+export default withTracker(() => {
+  return {
+    currentUser: Meteor.user(),
+  };
+})(App);

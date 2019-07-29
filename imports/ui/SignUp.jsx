@@ -9,10 +9,11 @@ class SignUpModal extends React.Component {
             name: '',
             email: '',
             password: '',
-            register: false,
+            register: false,    // lưu trạng thái khi bấm register
         }
     }
 
+    // xử lý khi nhập vào input
     textChange = (event) => {
         const target = event.target;
         const value = target.value;
@@ -20,10 +21,14 @@ class SignUpModal extends React.Component {
 
         this.setState({
             [name]: value,
-            register: false,
+            register: false,    // set register về false để ẩn các error 
         });
+
+        // chuyển input về lại dạng bình thường
+        this.normalInput();
     }
 
+    // kiểm tra name input 
     nameValidation = () => {
         const name = this.state.name;
 
@@ -39,6 +44,7 @@ class SignUpModal extends React.Component {
         return true;
     }
 
+    // kiểm tra email input
     emailValidation = () => {
         const email = this.state.email;
 
@@ -58,6 +64,7 @@ class SignUpModal extends React.Component {
         return true;
     }
 
+    // kiểm tra password input
     passwordValidation = () => {
         const password = this.state.password;
 
@@ -67,10 +74,50 @@ class SignUpModal extends React.Component {
         return true;
     }
 
+    // kiểm tra valid của form
     validation = () => {
         return this.nameValidation() && this.emailValidation() && this.passwordValidation();
     }
 
+    // disabled button khi chưa hoàn thành form
+    disabled = () => {
+        return this.state.name.length == 0 || this.state.email.length == 0 || this.state.password.length < 6;
+    }
+
+    // đổi màu input khi invalid
+    inputInvalid = () => {
+        if (!this.nameValidation()) {
+            document.getElementById('nameInput').style.backgroundColor = "rgba(246, 63, 69, 0.04)";
+            document.getElementById('nameInput').style.borderColor = "#f63f45";
+        }
+
+        if (!this.emailValidation()) {
+            document.getElementById('emailInput').style.backgroundColor = "rgba(246, 63, 69, 0.04)";
+            document.getElementById('emailInput').style.borderColor = "#f63f45";
+        }
+
+        if (!this.passwordValidation()) {
+            document.getElementById('passwordInput').style.backgroundColor = "rgba(246, 63, 69, 0.04)";
+            document.getElementById('passwordInput').style.borderColor = "#f63f45";
+        }
+    }
+
+    // hàm chuyển input về lại bình thường
+    normalInput = () => {
+        document.getElementById('nameInput').style.backgroundColor = "#f6f6f6";
+        // document.getElementById('nameInput').style.borderColor = "#b7b7b7";
+        // document.getElementById('nameInput').style.borderStyle = "solid";
+        // document.getElementById('nameInput').style.borderWidth = "1px";
+        document.getElementById('nameInput').style.border = "solid 1px #b7b7b7";
+
+        document.getElementById('emailInput').style.backgroundColor = "#f6f6f6";
+        document.getElementById('emailInput').style.border = "solid 1px #b7b7b7";
+
+        document.getElementById('passwordInput').style.backgroundColor = "#f6f6f6";
+        document.getElementById('passwordInput').style.border = "solid 1px #b7b7b7";
+    }
+
+    // xử lý khi nhấn register
     register = (event) => {
         event.preventDefault();
         console.log('register');
@@ -80,6 +127,8 @@ class SignUpModal extends React.Component {
         })
 
         if (this.validation() == false) {
+            this.setState({error: true});
+            this.inputInvalid();
             return;
         }
 
@@ -137,49 +186,45 @@ class SignUpModal extends React.Component {
             }
         }
         return (
-            <div id="signUp" className="modal fade in" role="dialog" style={styles}>
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-body">
-                            <button className="close" onClick={this.props.close}>
-                                &times;
-                            </button> 
-                            <br />
-                            <label className="title">Register</label>
-                            
-                            <form className="form-group">
-                                <label className="input-label">NAME</label>
-                                <input type="text" name="name" placeholder="Enter your name..." 
-                                    className="form-control" onChange={this.textChange}/>
-                                { nameErrors }
+            <div>
+                <div className="modal-body">
+                    <button className="close" onClick={this.props.close}>
+                        &times;
+                    </button> 
+                    <br />
+                    <label className="title">Register</label>
+                    
+                    <form className="form-group">
+                        <label className="input-label">NAME</label>
+                        <input type="text" name="name" placeholder="Enter your name..." id="nameInput"
+                            className="form-control" onChange={this.textChange}/>
+                        { nameErrors }
 
-                                <br />
-                                <label className="input-label">E-MAIL</label>
-                                <input type="email" name="email" placeholder="Enter your email..." 
-                                    className="form-control" onChange={this.textChange}/>
-                                { emailErrors }
+                        <br />
+                        <label className="input-label">E-MAIL</label>
+                        <input type="email" name="email" placeholder="Enter your email..." id="emailInput"
+                            className="form-control" onChange={this.textChange}/>
+                        { emailErrors }
 
-                                <br />
-                                <label className="input-label">PASSWORD</label>
-                                <input type="password" name="password" placeholder="Enter your password..." 
-                                    className="form-control" onChange={this.textChange}/>
-                                { passwordInfo }
-                                { passwordErrors }
+                        <br />
+                        <label className="input-label">PASSWORD</label>
+                        <input type="password" name="password" placeholder="Enter your password..." id="passwordInput"
+                            className="form-control" onChange={this.textChange}/>
+                        { passwordInfo }
+                        { passwordErrors }
 
-                                <p className="term">
-                                    By creating an account you agree to the <a href="#" className="text-link">Terms of Service</a> and <a href="#" className="text-link">Privacy Policy</a>
-                                </p>
+                        <p className="term">
+                            By creating an account you agree to the <a href="#" className="text-link">Terms of Service</a> and <a href="#" className="text-link">Privacy Policy</a>
+                        </p>
 
-                                <button disabled={!this.validation()} className="btn-register" onClick={this.register}>Register</button>
-                            </form>
-                        </div>
-                        <div className="modal-footer">
-                            <ul className="list-inline text-center">
-                                <span className="footer-text">Do you have an account?</span>
-                                <button className="btn-haveAccount" onClick={this.login}>Login</button>
-                            </ul>
-                        </div>
-                    </div>
+                        <button disabled={this.disabled()} className="btn-register" onClick={this.register}>Register</button>
+                    </form>
+                </div>
+                <div className="modal-footer">
+                    <ul className="list-inline text-center">
+                        <span className="footer-text">Do you have an account?</span>
+                        <button className="btn-haveAccount" onClick={this.props.login}>Login</button>
+                    </ul>
                 </div>
             </div>
         );
