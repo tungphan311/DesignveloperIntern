@@ -4,15 +4,24 @@ import { Meteor } from 'meteor/meteor';
 import AppHeader from '../nav/AppHeader';
 import AppFooter from './AppFooter';
 import { Menus } from '../../api/menus';
+import { Router, Route, Switch } from 'react-router-dom';
+import MenProductList from '../men/MenProductList';
+import LadiesProductList from '../ladies/LadiesProductList';
+import Home from '../home/Home';
 
 class App extends Component {
 
   render() {
-    console.log(this.props.currentUser);
     return(
       <div>
         <AppHeader currentUser={this.props.currentUser} menus={this.props.menus} />
-        { this.props.children }
+        <div className="content">
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/men" component={MenProductList} />
+            <Route exact path="/ladies" component={LadiesProductList} />
+          </Switch> 
+        </div>
         <AppFooter />
       </div>
     );

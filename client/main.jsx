@@ -2,15 +2,17 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
 import App from '/imports/ui/app/App';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
-// const routes = (
-//   <Router history={browserHistory}>
-//     <Route path="/" component={App}>
-//     </Route>
-//   </Router>
-// );
+const history = createBrowserHistory()
+
+const routes = (
+  <Router history={history}>
+    <Route path="/" component={App} />
+  </Router>
+);
 
 Meteor.startup(() => {
-  render(<App />, document.getElementById('react-target'));
+  render(routes, document.getElementById('react-target'));
 });
