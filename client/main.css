@@ -20,7 +20,7 @@ body {
   object-fit: contain;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.08);
   background-color: var(--white);
-  padding: 21px 130px 12px 130px;
+  padding: 21px 0px 15px 0px;
   position: relative;
 }
 
@@ -28,6 +28,7 @@ body {
   width: 181px;
   height: 35px;
   border-radius: 17px;
+  margin-left: 130px;
   border: solid 1px var(--greyish-two);
 }
 
@@ -208,7 +209,7 @@ li:last-child.forgot-pass{
   right: 0;
   left: 0;
   bottom: 0;
-  padding: 52px 130px 21px 130px;
+  padding: 40px 130px 21px 130px;
   background-color: #fff;
   box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.08), 0 -1px 4px 0 rgba(0, 0, 0, 0.08);
 }
@@ -237,4 +238,33 @@ li:last-child.forgot-pass{
 
 .line {
   margin: 45px 0px 20px 0px;
+}
+
+.top-line {
+  margin: 13px 0px 10px 0px;
+  height: 1px;
+  background-color: #ececec;
+}
+
+.menu-item {
+  border: none;
+  font-size: 14px;
+  color: var(--dark-grey);
+  font-weight: 500;
+  line-height: 1.57;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.right-icon {
+  padding-left: 4px;
+}
+
+.dropdown {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  top: 20px;
+
+  z-index: 100;
 }
