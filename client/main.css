@@ -261,10 +261,20 @@ li:last-child.forgot-pass{
 }
 
 .dropdown {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  top: 20px;
+  top: 40px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+  border: solid 0.5px #eaeaea;
+  background-color: #fbfbfb;
+  position: absolute !important;
+  left: 50%;
+  transform: translate(-50%);
+}
 
-  z-index: 100;
+button:focus {
+  outline: none;
+}
+
+.menu {
+  position: relative;
+  text-align: center;
 }

@@ -34,7 +34,7 @@ class NavBar extends Component {
 
     render() {
         return (
-            <div>
+            <div className="menu">
                 <ul className="list-inline text-center">
                     {this.renderNavbar()}
                 </ul>

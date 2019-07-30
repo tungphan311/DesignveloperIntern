@@ -11,15 +11,17 @@ class NavBarItem extends Component {
 
     renderDropdown = () => {
         return this.props.item.map(child => (
-            <li key={child}>{child}</li>
+            <li key={child}>
+                <div>{child}</div>
+            </li>
         ));
     }
 
     render() {
         return (
-            <div>
+            <div className="dropdown">
                 { this.props.show &&
-                    <ul className="list-inline text-center dropdown">
+                    <ul className="list-inline">
                         {this.renderDropdown()}
                     </ul>
                 }
