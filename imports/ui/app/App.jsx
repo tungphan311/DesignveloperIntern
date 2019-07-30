@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
-import AppHeader from './AppHeader';
+import AppHeader from '../nav/AppHeader';
 import AppFooter from './AppFooter';
-import { Menus } from '../api/menus';
+import { Menus } from '../../api/menus';
 
 class App extends Component {
 
