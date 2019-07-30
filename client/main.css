@@ -127,10 +127,19 @@ input {
 .list-inline {
   height: 30px;
   line-height: 30px;
+  margin-bottom: 0px;
 }
 
-li.list-item-inline {
+li.list-inline-item {
   vertical-align: middle;
+}
+
+.list-inline-item.right-text {
+  float: right;
+}
+
+.margin-right-20 {
+  margin-right: 20px !important;
 }
 
 .checkbox-text {
@@ -144,7 +153,7 @@ input[type="checkbox"] {
   height: 24px !important;
 }
 
-li:last-child {
+li:last-child.forgot-pass{
   float: right;
 }
 
@@ -192,4 +201,40 @@ li:last-child {
   line-height: 1.83;
   font-weight: 500;
   color: var(--strawberry);
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  padding: 52px 130px 21px 130px;
+  background-color: #fff;
+  box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.08), 0 -1px 4px 0 rgba(0, 0, 0, 0.08);
+}
+
+.big-footer-text {
+  font-size: 14px;
+  color: var(--greyish-two);
+  line-height: 1.57;
+  font-weight: normal;
+}
+
+.small-footer-text {
+  font-size: 12px;
+  color: var(--greyish-two);
+  line-height: 1.83;
+  font-weight: 500;
+}
+
+.margin-left-40 {
+  margin-left: 40px;
+}
+
+.margin-left-20 {
+  margin-left: 20px;
+}
+
+.line {
+  margin: 45px 0px 20px 0px;
 }

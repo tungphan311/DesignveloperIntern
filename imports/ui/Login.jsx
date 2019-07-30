@@ -94,13 +94,13 @@ export default class LoginModal extends React.Component {
                             className="form-control" onChange={this.textChange}/>
 
                         <ul className="list-inline">
-                            <li className="list-item-inline">
+                            <li className="list-inline-item">
                                 <input type="checkbox" />
                             </li>
-                            <li className="list-item-inline">
+                            <li className="list-inline-item">
                                 <span className="checkbox-text">Remember password</span>
                             </li>
-                            <li className="list-item-inline">
+                            <li className="list-inline-item forgot-pass">
                                 <button className="btn-forgotPass" onClick={this.resetPassword}>Forgot your password?</button>  
                             </li>
                         </ul>
