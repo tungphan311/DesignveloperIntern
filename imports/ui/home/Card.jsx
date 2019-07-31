@@ -10,7 +10,7 @@ class Card extends Component {
         }
         return (
             <div className="card" style={styles.background}>
-                
+                <button className="card-btn">Show me</button>
             </div>
         );
     }

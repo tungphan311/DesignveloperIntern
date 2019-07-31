@@ -50,6 +50,17 @@
     height: calc(0.35 * (100vw - 320px));
     margin-left: 20px;
     background-size: cover;
+    position: relative;
+}
+
+.card-btn {
+    padding: 0.625vw 1.875vw;
+    background-color: #ffa15f;
+    color: white;
+    position: absolute;
+    bottom: 1.6vw;
+    width: calc(15vw - 80px);
+    left: 5vw;
 }
 
 
