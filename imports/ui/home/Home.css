@@ -1,0 +1,55 @@
+.home-page {
+    padding: 40px 130px;
+}
+
+.outfit {
+    position: relative;
+    margin-top: 0;
+    width: 100%;
+    height: calc(0.4 * (100vw - 260px));
+    background: white url("./outfit.png") no-repeat;
+    background-size: contain;
+}
+
+.outfit-label {
+    position: absolute;
+    font-weight: bold;
+    color: white;
+    font-size: 4vw;
+    line-height: 0.94;
+    right: 6vw;
+    top: 6vw;
+}
+
+.outfit-btn {
+    padding: 1.3vw 4vw;
+    background-color: #ffa15f;
+    color: white;
+    font-size: 1.3vw;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.outfit-btn-div {
+    position: absolute;
+    right: 6vw;
+    bottom: 5vw;
+    width: 15vw ;
+    height: 4vw ;
+}
+
+.product-type {
+    margin-top: 20px;
+    margin-left: -20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.card {
+    flex-grow: 1;
+    height: calc(0.35 * (100vw - 320px));
+    margin-left: 20px;
+    background-size: cover;
+}
+
+

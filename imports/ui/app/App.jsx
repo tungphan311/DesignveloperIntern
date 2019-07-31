@@ -13,7 +13,7 @@ class App extends Component {
 
   render() {
     return(
-      <div>
+      <div className="app">
         <AppHeader currentUser={this.props.currentUser} menus={this.props.menus} history={this.props.history} />
         <div className="content">
           <Switch>

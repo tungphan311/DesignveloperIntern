@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  overflow: scroll;
 }
 
 * {
@@ -12,6 +13,16 @@ body {
   --strawberry: #f63f45;
   --white-four: #d4d3d3;
   --white-two: #f6f6f6;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex-grow: 1;
 }
 
 #header-wrap{ position:absolute;}
@@ -224,7 +235,7 @@ li:last-child.forgot-pass{
 }
 
 .footer {
-  position: absolute;
+  position: relative;
   right: 0;
   left: 0;
   bottom: 0;
