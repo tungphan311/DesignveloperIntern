@@ -11,9 +11,9 @@ class NavBarItem extends Component {
 
     renderDropdown = () => {
         return this.props.item.map(child => (
-            <li key={child}>
-                <div>{child}</div>
-            </li>
+            <div key={child}>
+                <button className="btn-group-item">{child}</button>
+            </div>
         ));
     }
 
@@ -21,9 +21,9 @@ class NavBarItem extends Component {
         return (
             <div className="dropdown">
                 { this.props.show &&
-                    <ul className="list-inline">
+                    <div className="btn-group" role="group">
                         {this.renderDropdown()}
-                    </ul>
+                    </div>
                 }
             </div>
         );

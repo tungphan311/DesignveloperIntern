@@ -26,10 +26,24 @@ class NavBar extends Component {
     showDropdown = (event, lists) => {
         event.preventDefault();
 
-        this.setState({
-            show: true,
-            lists: lists
-        });
+        if (!this.state.show) {
+            this.setState({
+                show: true,
+                lists: lists,
+            });
+        } else {
+            if (lists == this.state.lists) {
+                this.setState({
+                    show: false,
+                    lists: [],
+                });
+            } else {
+                this.setState({
+                    show: true,
+                    lists: lists,
+                })
+            }
+        }  
     }
 
     render() {

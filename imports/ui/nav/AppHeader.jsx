@@ -57,11 +57,17 @@ export default class AppHeader extends Component {
         });
     }
 
+    logoClicked = () => {
+        console.log('logo clicked');
+        this.props.history.push('/');
+    }
+
     render() {
         return (
             <div>
                 <div className="Navbar">
                     <input type="text" className="search-wrapper" placeholder="Search"/>
+                    <img className="Logo" src="./logo@3x.png" alt="Logo" onClick={this.logoClicked} />
                     <div className="nav-group">
                         { !this.props.currentUser && 
                         <button className="signup-btn" onClick={this.openRegisterModal}>Register</button>

@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     return(
       <div>
-        <AppHeader currentUser={this.props.currentUser} menus={this.props.menus} />
+        <AppHeader currentUser={this.props.currentUser} menus={this.props.menus} history={this.props.history} />
         <div className="content">
           <Switch>
             <Route exact path="/" component={Home} />
@@ -22,7 +22,7 @@ class App extends Component {
             <Route exact path="/ladies" component={LadiesProductList} />
           </Switch> 
         </div>
-        <AppFooter />
+        <AppFooter history={this.props.history} />
       </div>
     );
   }

@@ -40,9 +40,13 @@ input {
 }
 
 .Logo {
+  object-fit: contain;
+  vertical-align: super !important;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
   width: 96px;
   height: 20px;
-  object-fit: contain;
 }
 
 .login-btn {
@@ -133,6 +137,21 @@ input {
 
 li.list-inline-item {
   vertical-align: middle;
+}
+
+.img-first {
+  float: left !important;
+  width: 96px;
+  height: 20px;
+  left: 0;
+}
+
+li img {
+  width: inherit;
+}
+
+img:hover {
+  cursor: pointer;
 }
 
 .list-inline-item.right-text {
@@ -277,4 +296,15 @@ button:focus {
 .menu {
   position: relative;
   text-align: center;
+}
+
+.btn-group {
+  display: flex !important;
+}
+
+.btn-group-item {
+  width: auto;
+  padding: 14px;
+  background-color: #fbfbfb;
+  border: none;
 }
