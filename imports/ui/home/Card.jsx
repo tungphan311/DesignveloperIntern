@@ -3,7 +3,7 @@ import './Home.css';
 
 class Card extends Component {
     cardChoosen = (event) => {
-        event.preventDefault();
+        // event.preventDefault();
 
         this.props.history.push(this.props.type.route);
     }

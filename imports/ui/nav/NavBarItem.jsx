@@ -3,10 +3,16 @@ import React, { Component } from 'react';
 class NavBarItem extends Component {
     constructor(props) {
         super(props);
+        this.wrapperRef = React.createRef()
+    }
 
-        this.state = {
-            show: false,
-        }
+    componentDidMount() {
+        document.addEventListener('click', this.handleClick)
+    }
+    
+    componentWillUnmount() {
+        // important
+        document.removeEventListener('click', this.handleClick)
     }
 
     renderDropdown = () => {
@@ -17,9 +23,17 @@ class NavBarItem extends Component {
         ));
     }
 
+    handleClick = (event) => {
+        const { target } = event;
+
+        if (!this.wrapperRef.current.contains(target) && this.props.show) {
+            console.log('click outside');
+        }
+    }
+
     render() {
         return (
-            <div className="dropdown">
+            <div className="dropdown" ref={this.wrapperRef}>
                 { this.props.show &&
                     <div className="btn-group" role="group">
                         {this.renderDropdown()}

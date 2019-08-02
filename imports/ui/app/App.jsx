@@ -30,6 +30,7 @@ class App extends Component {
 }
 
 export default withTracker(() => {
+  Meteor.subscribe('menus');
   return {
     currentUser: Meteor.user(),
     menus: Menus.find({}).fetch(),

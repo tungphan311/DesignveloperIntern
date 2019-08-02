@@ -12,6 +12,7 @@ class NavBar extends Component {
             lists: [],
         }
     }
+    
     renderNavbar = () => {
         return this.props.menus.map((item) => (
             <li key={item._id} className="list-inline-item">
