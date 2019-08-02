@@ -82,7 +82,7 @@ export default class AppHeader extends Component {
                     
                     <hr className="top-line" />
 
-                    <NavBar menus={this.props.menus} />
+                    <NavBar subjects={this.props.subjects} kinds={this.props.kinds} />
                 </div>
 
                 <LoginAndSignupModal show={this.state.showModal} kind={this.state.kindModal} close={this.closeModal} 

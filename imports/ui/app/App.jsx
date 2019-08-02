@@ -3,22 +3,22 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import AppHeader from '../nav/AppHeader';
 import AppFooter from './AppFooter';
-import { Menus } from '../../api/menus';
 import { Router, Route, Switch } from 'react-router-dom';
 import MenProductList from '../men/MenProductList';
 import LadiesProductList from '../ladies/LadiesProductList';
 import Home from '../home/Home';
+import { Subjects } from '../../api/subjects';
+import { KindOfClothes } from '../../api/kind-of-clothes';
 
 class App extends Component {
 
   render() {
-    console.log(this.props.menus);
     return(
       <div className="app">
-        <AppHeader currentUser={this.props.currentUser} menus={this.props.menus} history={this.props.history} />
+        <AppHeader currentUser={this.props.currentUser} subjects={this.props.subjects} kinds={this.props.kindOfClothes} history={this.props.history} />
         <div className="content">
           <Switch>
-            <Route exact path="/" component={() => <Home menus={this.props.menus} history={this.props.history} />} />
+            <Route exact path="/" component={() => <Home menus={this.props.subjects} history={this.props.history} />} />
             <Route exact path="/men" component={MenProductList} />
             <Route exact path="/ladies" component={LadiesProductList} />
           </Switch> 
@@ -30,9 +30,12 @@ class App extends Component {
 }
 
 export default withTracker(() => {
-  Meteor.subscribe('menus');
+  Meteor.subscribe('subjects');
+  Meteor.subscribe('kindOfClothes');
+
   return {
     currentUser: Meteor.user(),
-    menus: Menus.find({}).fetch(),
+    subjects: Subjects.find({}).fetch(),
+    kindOfClothes: KindOfClothes.find({}).fetch()
   };
 })(App);

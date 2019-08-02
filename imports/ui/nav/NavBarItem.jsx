@@ -17,8 +17,8 @@ class NavBarItem extends Component {
 
     renderDropdown = () => {
         return this.props.item.map(child => (
-            <div key={child}>
-                <button className="btn-group-item">{child}</button>
+            <div key={child._id}>
+                <button className="btn-group-item">{child.name}</button>
             </div>
         ));
     }

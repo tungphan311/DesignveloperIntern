@@ -344,6 +344,7 @@ button:focus {
 
 .btn-group {
   display: flex !important;
+  z-index: 100;
 }
 
 .btn-group-item {

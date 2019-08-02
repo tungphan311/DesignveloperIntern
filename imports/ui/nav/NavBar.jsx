@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import NavBarItem from './NavBarItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { Meteor } from 'meteor/meteor';
+import { KindOfClothes } from '../../api/kind-of-clothes';
 
 class NavBar extends Component {
     constructor(props) {
@@ -10,13 +12,14 @@ class NavBar extends Component {
         this.state = {
             show: false,
             lists: [],
+            choosedSubject: 0,
         }
     }
     
     renderNavbar = () => {
-        return this.props.menus.map((item) => (
+        return this.props.subjects.map((item) => (
             <li key={item._id} className="list-inline-item">
-                <button id={item._id} className="menu-item" onClick={(e) => this.showDropdown(e, item.children)}>
+                <button id={item.id} className="menu-item" onClick={this.showDropdown}>
                     {item.name}
                     <FontAwesomeIcon icon={faChevronDown} className="right-icon" />
                 </button>
@@ -24,23 +27,30 @@ class NavBar extends Component {
         )); 
     }
 
-    showDropdown = (event, lists) => {
+    showDropdown = (event) => {
         event.preventDefault();
 
+        const subjectId = event.target.id;
+
+        const lists = this.props.kinds.filter((kind) => kind.subjectId == subjectId );
+        
         if (!this.state.show) {
             this.setState({
                 show: true,
+                choosedSubject: subjectId,
                 lists: lists,
             });
         } else {
-            if (lists == this.state.lists) {
+            if (subjectId == this.state.choosedSubject) {
                 this.setState({
                     show: false,
+                    choosedSubject: 0,
                     lists: [],
                 });
             } else {
                 this.setState({
                     show: true,
+                    choosedSubject: subjectId,
                     lists: lists,
                 })
             }
