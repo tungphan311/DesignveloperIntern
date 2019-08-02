@@ -2,15 +2,22 @@ import React, { Component } from 'react';
 import './Home.css';
 
 class Card extends Component {
+    cardChoosen = (event) => {
+        event.preventDefault();
+
+        this.props.history.push(this.props.type.route);
+    }
     render() {
         const styles = {
             background: {
-                backgroundImage: `url(${this.props.type.img})`,
+                backgroundImage: `url(${"./" + this.props.type.name.toLowerCase() + ".png"})`,
             }
         }
         return (
             <div className="card" style={styles.background}>
-                <button className="card-btn">Show me</button>
+                <label className="card-title">{this.props.type.name}</label>
+                <hr className="card-line" />
+                <button className="card-btn" onClick={this.cardChoosen}>Show me</button>
             </div>
         );
     }

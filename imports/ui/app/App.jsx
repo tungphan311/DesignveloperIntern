@@ -12,12 +12,13 @@ import Home from '../home/Home';
 class App extends Component {
 
   render() {
+    console.log(this.props.menus);
     return(
       <div className="app">
         <AppHeader currentUser={this.props.currentUser} menus={this.props.menus} history={this.props.history} />
         <div className="content">
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={() => <Home menus={this.props.menus} history={this.props.history} />} />
             <Route exact path="/men" component={MenProductList} />
             <Route exact path="/ladies" component={LadiesProductList} />
           </Switch> 

@@ -19,6 +19,7 @@
     line-height: 0.94;
     right: 6vw;
     top: 6vw;
+    font-family: 'Domine', sans-serif;
 }
 
 .outfit-btn {
@@ -28,6 +29,7 @@
     font-size: 1.3vw;
     font-weight: bold;
     line-height: 1.5;
+    font-family: 'Montserrat' sans-serif;
 }
 
 .outfit-btn-div {
@@ -61,6 +63,27 @@
     bottom: 1.6vw;
     width: calc(15vw - 80px);
     left: 5vw;
+    font-size: 0.9vw;
+    font-weight: 600;
+    font-family: 'Montserrat' sans-serif;
 }
 
+.card-line {
+    position: absolute;
+    width: calc(20.6vw - 80px);
+    bottom: 5.4vw;
+    margin: 0;
+    left: 2.2vw;
+    border: solid 1px #eaeaea;
+}
 
+.card-title {
+    font-size: 1.7vw;
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 5.8vw;
+    font-family: 'Domine', sans-serif;
+}

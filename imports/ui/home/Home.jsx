@@ -3,30 +3,15 @@ import './Home.css';
 import Card from './Card';
 
 class Home extends Component {
-    getTypes = () => {
-        return [
-            {
-                name: 'Men',
-                img: './men.png',
-            }, 
-            {
-                name: 'Ladies',
-                img: './ladies.png',
-            },
-            {
-                name: 'Boys',
-                img: './boy.png',
-            },
-            {
-                name: 'Girls',
-                img: './girls.png',
-            }
-        ];
+    constructor(props) {
+        super(props);
+
+        console.log(props);
     }
 
     renderCard = () => {
-        return this.getTypes().map((type) => (
-            <Card key={type.name} type={type} background={type.img} />
+        return this.props.menus.map((type) => (
+            <Card key={type._id} type={type} history={this.props.history} />
         ));
     }
 
