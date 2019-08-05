@@ -4,11 +4,10 @@ import { Meteor } from 'meteor/meteor';
 import AppHeader from '../nav/AppHeader';
 import AppFooter from './AppFooter';
 import { Router, Route, Switch } from 'react-router-dom';
-import MenProductList from '../men/MenProductList';
-import LadiesProductList from '../ladies/LadiesProductList';
 import Home from '../home/Home';
 import { Subjects } from '../../api/subjects';
 import { KindOfClothes } from '../../api/kind-of-clothes';
+import ProductList from '../products/ProductList';
 
 class App extends Component {
 
@@ -18,9 +17,9 @@ class App extends Component {
         <AppHeader currentUser={this.props.currentUser} subjects={this.props.subjects} kinds={this.props.kindOfClothes} history={this.props.history} />
         <div className="content">
           <Switch>
-            <Route exact path="/" component={() => <Home menus={this.props.subjects} history={this.props.history} />} />
-            <Route exact path="/men" component={MenProductList} />
-            <Route exact path="/ladies" component={LadiesProductList} />
+            <Route exact path="/" component={() => <Home subjects={this.props.subjects} history={this.props.history} />} />
+            <Route path={["/men", "/ladies", "/boys", "/girls"]} component={() => 
+              <ProductList subjects={this.props.subjects} kindOfClothes={this.props.kindOfClothes} />} />
           </Switch> 
         </div>
         <AppFooter history={this.props.history} />

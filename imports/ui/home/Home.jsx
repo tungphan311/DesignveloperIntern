@@ -5,10 +5,14 @@ import Card from './Card';
 class Home extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            reload: true,
+        }
     }
 
     renderCard = () => {
-        return this.props.menus.map((type) => (
+        return this.props.subjects.map((type) => (
             <Card key={type._id} type={type} history={this.props.history} />
         ));
     }

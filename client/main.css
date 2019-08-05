@@ -1,5 +1,5 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif !important;
   overflow: scroll;
 }
 
@@ -23,6 +23,7 @@ body {
 
 .content {
   flex-grow: 1;
+  padding: 40px 130px;
 }
 
 #header-wrap{ position:absolute;}

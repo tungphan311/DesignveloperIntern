@@ -10,7 +10,8 @@ class Card extends Component {
     render() {
         const styles = {
             background: {
-                backgroundImage: `url(${"./" + this.props.type.name.toLowerCase() + ".png"})`,
+                // backgroundImage: `url(${"./" + this.props.type.name.toLowerCase() + ".png"})`,
+                backgroundImage: `url(${this.props.type.img})`
             }
         }
         return (
