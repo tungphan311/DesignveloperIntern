@@ -2,6 +2,8 @@ import React from 'react';
 import './Product.css';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Categories } from '../../api/kind-of-clothes';
+import Category from './Category';
+import Filter from './Filter';
 
 class ProductList extends React.Component {
     constructor(props) {
@@ -12,6 +14,13 @@ class ProductList extends React.Component {
             listCategories: [],
             category: 0,
             listProducts: [],
+            filter: {
+                size: '',
+                color: '',
+                brand: '',
+                price: 0,
+                available: '',
+            }
         }
     }
 
@@ -61,20 +70,27 @@ class ProductList extends React.Component {
         });
     }
 
+    categoryClick = (id) => {
+        this.setState({category: id});
+    }
+
+    chooseSize = (size) => {
+        this.setState({
+            filter: {
+                size: size,
+            }
+        });
+    }
+
     render() {
         return (
             <div className="product-list">
                 <label className="router">{this.customPathName()}</label>
                 <div className="left-side">
-                    <label className="category-label">Category</label>
-                    <div>
-                        <button className="category-btn">All category</button>
-                    </div>
-                    {this.state.listCategories.map(cat => (
-                        <div key={cat._id}>
-                            <button className="category-btn">{cat.name}</button>
-                        </div>
-                    ))}
+                    <Category kindOfClothes={this.state.kindOfClothes} category={this.state.category} 
+                        listCategories={this.state.listCategories} onClick={this.categoryClick} />
+
+                    <Filter onSizeClick={this.chooseSize} size={this.state.filter.size} />
                 </div>     
             </div>
         );

@@ -19,7 +19,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={() => <Home subjects={this.props.subjects} history={this.props.history} />} />
             <Route path={["/men", "/ladies", "/boys", "/girls"]} component={() => 
-              <ProductList subjects={this.props.subjects} kindOfClothes={this.props.kindOfClothes} />} />
+              <ProductList subjects={this.props.subjects} kindOfClothes={this.props.kindOfClothes} history={this.props.history} />} />
           </Switch> 
         </div>
         <AppFooter history={this.props.history} />

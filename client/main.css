@@ -13,6 +13,7 @@ body {
   --strawberry: #f63f45;
   --white-four: #d4d3d3;
   --white-two: #f6f6f6;
+  --charcoal-grey: #3d3d3f;
 }
 
 .app {
@@ -36,6 +37,11 @@ body {
   position: relative;
 }
 
+.search-bar {
+  position: relative;
+  display: inline;
+}
+
 .search-wrapper {
   width: 181px;
   height: 35px;
@@ -43,6 +49,16 @@ body {
   margin-left: 130px;
   border: solid 1px var(--greyish-two);
   font-family: 'Montserrat', sans-serif;
+  padding-right: 35px;
+}
+
+.right-input-icon {
+  position: absolute;
+  width: 20px !important;
+  height: 20px;
+  right: 5px;
+  margin: 7.5px;
+  opacity: 0.6;
 }
 
 input {

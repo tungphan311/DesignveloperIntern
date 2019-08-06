@@ -1,5 +1,8 @@
 * {
     --dark-grey: #202124;
+    --bright-orange: #ff6900;
+    --greyish-brown: #4d4d4d;
+    --pinkish-grey: #ccc;
 }
 
 .router {
@@ -7,31 +10,88 @@
     font-weight: 400;
     color: var(--dark-grey);
     display: block;
-    margin-bottom: 40px;
+    margin-bottom: calc(400vw/144);
     line-height: 1.57;
 }
 
 .left-side {
     float: left;
-    width: 20%;
+    width: 12.5vw;
     margin-right: 20px;
-    overflow-y: auto;
 }
 
 .right-side {
-    width: 80%;
-    position: fixed;
-    overflow-y: auto;
+    width: calc(87.5vw - 280px);
 }
 
 .category-label {
-    font-size: 16px;
+    font-size: calc(1600vw/1440);
     line-height: 1.5;
     color: var(--dark-grey);
-    margin-bottom: 20px;
+    margin-bottom: calc(2000vw/1440);
 }
 
 .category-btn {
     border: none;
     padding: 9px 0px;
+    color: var(--greyish-brown);
+    font-weight: normal;
+    line-height: 1.57;
+    letter-spacing: -0.1px;
+    font-size: calc(1400vw/1440);
+}
+
+.category-line {
+    border: solid 0.5px #979797;
+    width: 10%;
+    margin: 0;
+    padding: 0;
+}
+
+.split-line {
+    border: solid 0.5px #979797;
+    height: 0.1px;
+    width: 50%;
+    margin: 3.125vw 0px;
+}
+
+.filter-label {
+    font-size: calc(1600vw/1440);
+    line-height: 1.5;
+    color: var(--dark-grey);
+    margin-bottom: calc(3000vw/1440);
+}
+
+button.filter-btn {
+    width: -webkit-fill-available;
+    text-align: left;
+    border: none;
+    padding: 8px 0px;
+    font-size: calc(1400vw/1440);
+}
+
+.right-icon-btn {
+    float: right;
+    opacity: 0.6;
+    /* transform: rotate(180deg); */
+}
+
+hr.filter-line {
+    margin: 0;
+    border: solid 0.5px var(--pinkish-grey);
+}
+
+hr.filter-btn-line {
+    margin: 0;
+    border: dashed 0.5px var(--pinkish-grey);
+}
+
+.size-group {
+    text-align: center;
+}
+
+.size-btn {
+    width: calc(4000vw/1440);
+    height: calc(4000vw/1440);
+    margin: 1vw calc(800vw/1440) 1.4vw calc(800vw/1440);
 }

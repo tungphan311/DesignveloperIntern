@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import LoginAndSignupModal from './Signup-Login-Modal';
 import NavBar from './NavBar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 export default class AppHeader extends Component {
     constructor(props) {
@@ -66,7 +68,10 @@ export default class AppHeader extends Component {
         return (
             <div>
                 <div className="Navbar">
-                    <input type="text" className="search-wrapper" placeholder="Search"/>
+                    <div className="search-bar">
+                        <input type="text" className="search-wrapper" placeholder="Search" />
+                        <FontAwesomeIcon icon={faSearch} className="right-input-icon" />
+                    </div>
                     <img className="Logo" src="./logo@3x.png" alt="Logo" onClick={this.logoClicked} />
                     <div className="nav-group">
                         { !this.props.currentUser && 
