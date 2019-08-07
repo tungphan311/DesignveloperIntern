@@ -4,6 +4,9 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Categories } from '../../api/kind-of-clothes';
 import Category from './Category';
 import Filter from './Filter';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import ProductCard from './ProductCard';
 
 class ProductList extends React.Component {
     constructor(props) {
@@ -19,12 +22,15 @@ class ProductList extends React.Component {
                 brand: '',
                 price: 0,
                 available: '',
-            }
+            },
+            sort: 4,
+            showDropdown: false,
+            page: 1,
         }
     }
 
     componentDidMount = () => {
-        // this.getListProduct();
+        this.getListProduct();
     }
 
     getPathName = () => {
@@ -61,11 +67,8 @@ class ProductList extends React.Component {
             return obj.name === afterSplash;
         });
 
-        const newList = this.props.categories.filter((cat) => cat.kindOfClothesId === koc.id);
-
         this.setState({
             kindOfClothes: koc,
-            listCategories: newList
         });
     }
 
@@ -81,8 +84,27 @@ class ProductList extends React.Component {
         });
     }
 
+    changeSort = (event) => {
+        const value = event.target.id;
+
+        this.setState({
+            sort: value,
+            showDropdown: false,
+        });
+    }
+
+    showDropdown = () => {
+        this.setState({showDropdown: !this.state.showDropdown});
+    }
+
     render() {
-        console.log(this.props.categories);
+        const sort = {
+            1: { value: 'Popularity'},
+            2: { value: 'Name: A - Z' },
+            3: { value: 'Price: lowest to heightest' },
+            4: { value: 'Price: heightest to lowest' }
+        };
+        let selectSort = this.state.sort;
         return (
             <div className="product-list">
                 <label className="router">{this.customPathName()}</label>
@@ -94,7 +116,41 @@ class ProductList extends React.Component {
                 </div>     
                 
                 <div className="right-side">
-                    asd
+                    <div className="top-bar">
+                        <button className="sort-btn" onClick={this.showDropdown}>
+                            <span className="sort-btn-label">Sort by: </span>
+                            <span className="sort-btn-value">{sort[selectSort].value}</span>
+                            <FontAwesomeIcon icon={faChevronDown} className="sort-btn-icon" />
+                        </button>
+                        
+                        { this.state.showDropdown && 
+                            <div className="sort-dropdown">
+                                <button id="1" className="dropdown-btn" onClick={this.changeSort}>{sort[1].value}</button>
+                                <button id="2" className="dropdown-btn" onClick={this.changeSort}>{sort[2].value}</button>
+                                <button id="3" className="dropdown-btn" onClick={this.changeSort}>{sort[3].value}</button>
+                                <button id="4" className="dropdown-btn" onClick={this.changeSort}>{sort[4].value}</button>
+                            </div>
+                        }
+
+                        <div className="paginator">
+                            <button className="btn-page">
+                                <FontAwesomeIcon icon={faChevronLeft} />
+                            </button>
+                            <span>{ this.state.page + "/10"}</span>
+                            <button className="btn-page">
+                                <FontAwesomeIcon icon={faChevronRight} />
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div className="product-list">
+                        <ProductCard avatar={"/ladies.png"} />
+                        <ProductCard avatar={"/ladies.png"} />
+                        <ProductCard avatar={"/ladies.png"} />
+                        <ProductCard avatar={"/ladies.png"} />
+                        <ProductCard avatar={"/ladies.png"} />
+                        <ProductCard avatar={"/ladies.png"} />
+                    </div>
                 </div>
             </div>
         );

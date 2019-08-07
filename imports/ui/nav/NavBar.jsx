@@ -28,7 +28,7 @@ class NavBar extends Component {
     }
 
     showDropdown = (event) => {
-        event.preventDefault();
+        // event.preventDefault();
 
         const subjectId = event.target.id;
 

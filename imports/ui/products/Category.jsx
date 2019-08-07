@@ -25,7 +25,7 @@ export default class Category extends React.Component {
             <div>
                 <label className="category-label">Category</label>
                 <div>
-                    { this.props.kindOfClothes != undefined && 
+                    { this.props.kindOfClothes !== undefined && 
                         <button className="category-btn" onClick={() => this.categoryClick(0)}
                             style={this.props.category == 0 ? styles.choosedBtn : styles.normalBtn}>
                             {"All " + this.props.kindOfClothes.name}

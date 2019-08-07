@@ -3,6 +3,7 @@
     --bright-orange: #ff6900;
     --greyish-brown: #4d4d4d;
     --pinkish-grey: #ccc;
+    --white-four: #d4d3d3;
 }
 
 .router {
@@ -17,11 +18,10 @@
 .left-side {
     float: left;
     width: 12.5vw;
-    margin-right: 20px;
 }
 
 .right-side {
-    width: calc(87.5vw - 280px);
+    width: calc(87.5vw - 260px);
     float: right;
 }
 
@@ -95,4 +95,104 @@ hr.filter-btn-line {
     width: calc(4000vw/1440);
     height: calc(4000vw/1440);
     margin: 1vw calc(800vw/1440) 1.4vw calc(800vw/1440);
+}
+
+.sort-btn {
+    border: solid 1px var(--white-four);
+    height: calc(3200vw/1440);
+    width: 17.5vw;
+    padding: 0;
+}
+
+.sort-btn-label {
+    font-size: calc(1200vw/1440);
+    font-weight: 500;
+    line-height: 1.83;
+    color: var(--greyish-brown);
+    float: left;
+    margin-left: calc(1000vw/1440);
+}
+
+.sort-btn-value {
+    font-size: calc(1200vw/1440);
+    font-weight: bold;
+    line-height: 1.5;
+    color: var(--dark-grey);
+}
+
+.sort-btn-icon {
+    margin: calc(500vw/1440);
+    float: right;
+}
+
+.top-bar {
+    position: relative;
+    margin-left: calc(2000vw/1440);
+}
+
+.sort-dropdown {
+    position: absolute;
+    display: grid;
+    width: 17.5vw;
+    box-shadow: 0 14px 30px 0 rgba(0, 0, 0, 0.14);
+    z-index: 100;
+}
+
+.dropdown-btn {
+    border: solid 0.5px #eaeaea;
+    border-bottom: none;
+    text-align: left;
+    background-color: #fbfbfb;
+    font-size: calc(1200vw/1440);
+    font-weight: 500;
+    line-height: 1.83;
+    color: var(--greyish-brown);
+    padding: 7px 0px 7px 13px;
+}
+
+.dropdown-btn:hover {
+    color: var(--bright-orange);
+}
+
+.paginator {
+    float: right;
+    display: inline;
+}
+
+.btn-page {
+    border: none;
+}
+
+.product-card {
+    width: calc(20% - 2000vw/1440); 
+    margin-left: calc(2000vw/1440);
+    margin-top: calc(2000vw/1440);
+    height: calc(1.5*(17.5vw - 3000vw/1440));
+    display: -webkit-inline-box;
+    position: relative;
+}
+
+.avatar {
+    width: 100%;
+    height: calc(1.5*(17.5vw - 7200vw/1440));
+}
+
+.product-name {
+    position: absolute;
+    left: 0;
+    bottom: calc(2000vw/1440);
+    font-size: 1vw;
+    font-weight: 500;
+    line-height: 1.43;
+    color: var(--dark-grey);
+}
+
+.product-price {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: calc(1200vw/1440);
+    font-weight: normal;
+    line-height: 1.83;
+    color: var(--greyish-brown);
 }
