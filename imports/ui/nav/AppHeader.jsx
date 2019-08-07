@@ -72,7 +72,7 @@ export default class AppHeader extends Component {
                         <input type="text" className="search-wrapper" placeholder="Search" />
                         <FontAwesomeIcon icon={faSearch} className="right-input-icon" />
                     </div>
-                    <img className="Logo" src="./logo@3x.png" alt="Logo" onClick={this.logoClicked} />
+                    <img className="Logo" src="/logo@3x.png" alt="Logo" onClick={this.logoClicked} />
                     <div className="nav-group">
                         { !this.props.currentUser && 
                         <button className="signup-btn" onClick={this.openRegisterModal}>Register</button>

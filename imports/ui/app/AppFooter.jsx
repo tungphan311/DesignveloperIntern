@@ -11,7 +11,7 @@ class AppFooter extends Component {
             <div className="footer">
                 <ul className="text-center list-inline">
                     <li className="list-inline-item img-first">
-                        <img src="./logo@3x.png" alt="logo" onClick={this.logoClicked} />
+                        <img src="/logo@3x.png" alt="logo" onClick={this.logoClicked} />
                     </li>
                     <li className="list-inline-item">
                         <a className="big-footer-text" href="/">Home</a>
@@ -33,17 +33,17 @@ class AppFooter extends Component {
                     </li>
                     <li className="list-inline-item right-text">
                         <a href="https://instagram.com" target="_blank">
-                            <img src="./instagram-6-icon.png" alt="instagram" />
+                            <img src="/instagram-6-icon.png" alt="instagram" />
                         </a>
                     </li>
                     <li className="list-inline-item right-text">
                         <a href="https://facebook.com" target="_blank">
-                            <img src="./facebook-icon.png" alt="facebook" />
+                            <img src="/facebook-icon.png" alt="facebook" />
                         </a>
                     </li>
                     <li className="list-inline-item right-text">
                         <a href="https://twitter.com" target="_blank">
-                            <img src="./twitter-icon.png" alt="twitter" />
+                            <img src="/twitter-icon.png" alt="twitter" />
                         </a>
                     </li>
                 </ul>

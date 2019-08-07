@@ -11,7 +11,6 @@ class ProductList extends React.Component {
 
         this.state = {
             kindOfClothes: {},
-            listCategories: [],
             category: 0,
             listProducts: [],
             filter: {
@@ -25,7 +24,7 @@ class ProductList extends React.Component {
     }
 
     componentDidMount = () => {
-        this.getListProduct();
+        // this.getListProduct();
     }
 
     getPathName = () => {
@@ -83,22 +82,38 @@ class ProductList extends React.Component {
     }
 
     render() {
+        console.log(this.props.categories);
         return (
             <div className="product-list">
                 <label className="router">{this.customPathName()}</label>
                 <div className="left-side">
                     <Category kindOfClothes={this.state.kindOfClothes} category={this.state.category} 
-                        listCategories={this.state.listCategories} onClick={this.categoryClick} />
+                        listCategories={this.props.categories} onClick={this.categoryClick} />
 
                     <Filter onSizeClick={this.chooseSize} size={this.state.filter.size} />
                 </div>     
+                
+                <div className="right-side">
+                    asd
+                </div>
             </div>
         );
     }
 }
 
-export default withTracker(() => {
-    Meteor.subscribe('categories');
+export default withTracker((props) => {
+    const location = props.history.location.pathname;
+    let lastSplash = location.lastIndexOf('/');
+    const detail = location.substring(lastSplash + 1);
+    const afterSplash = detail.charAt(0).toUpperCase() + detail.slice(1);
+    const kindOfClothes = props.kindOfClothes;
+    const koc = kindOfClothes.find(obj => {
+        return obj.name === afterSplash;
+    });
+    
+    if (koc != undefined) {
+        Meteor.subscribe('categories', koc.id);
+    }
   
     return {
       categories: Categories.find({}).fetch(),

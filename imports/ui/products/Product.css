@@ -22,6 +22,7 @@
 
 .right-side {
     width: calc(87.5vw - 280px);
+    float: right;
 }
 
 .category-label {

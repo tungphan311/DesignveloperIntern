@@ -3,7 +3,7 @@
     margin-top: 0;
     width: 100%;
     height: calc(0.4 * (100vw - 260px));
-    background: white url("./outfit.png") no-repeat;
+    background: white url("/outfit.png") no-repeat;
     background-size: contain;
 }
 

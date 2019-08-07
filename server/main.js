@@ -7,10 +7,10 @@ Meteor.startup(() => {
 
     getSubjects = () => {
         return [
-            { id: 1, name: "Men", route: "/men", img: "./men.png" },
-            { id: 2, name: "Ladies", route: "/ladies/dresses", img: "./ladies.png" },
-            { id: 3, name: "Girls", route: "/girls", img: "./girls.png" },
-            { id: 4, name: "Boys", route: "/boys", img: "./boys.png" }
+            { id: 1, name: "Men", route: "/men", img: "/men.png" },
+            { id: 2, name: "Ladies", route: "/ladies/dresses", img: "/ladies.png" },
+            { id: 3, name: "Girls", route: "/girls", img: "/girls.png" },
+            { id: 4, name: "Boys", route: "/boys", img: "/boys.png" }
         ];
     }
 
@@ -51,6 +51,7 @@ Meteor.startup(() => {
             { id: 5, name: "Mini dresses", kindOfClothesId: 9 },
             { id: 6, name: "Maxi/Midi dresses", kindOfClothesId: 9 },
             { id: 7, name: "Sets", kindOfClothesId: 9 },
+            { id: 8, name: "Casual T-Shirts", kindOfClothesId: 1 },
         ];
     }
 
@@ -87,15 +88,15 @@ Meteor.startup(() => {
         });
     }
 
-    Meteor.publish('subjects', function menuPublishcation() {
+    Meteor.publish('subjects', function () {
         return Subjects.find({});
     });
 
-    Meteor.publish('kindOfClothes', function kindOfClothesPubliscation() {
+    Meteor.publish('kindOfClothes', function () {
         return KindOfClothes.find({});
     });
 
-    Meteor.publish('categories', function categoryPublishcation() {
-        return Categories.find({});
+    Meteor.publish('categories', function (id) {
+        return Categories.find({ kindOfClothesId: id });
     });
 });

@@ -8,12 +8,18 @@ export default class Filter extends React.Component {
 
         this.state = {
             sizeClick: false,
-            size: ''
+            size: '',
+            colorClick: false,
+            color: '',
         }
     }
 
-    btnSizeClick = () => {
+    btnSizeClick = (event) => {
         this.setState({sizeClick: !this.state.sizeClick});
+    }
+
+    btnColorClick = (event) => {
+        this.setState({colorClick: !this.state.colorClick});
     }
 
     chooseSize = (event) => {
@@ -35,8 +41,12 @@ export default class Filter extends React.Component {
                 color: "#202124",
                 backgroundColor: "white",
                 border: "solid 1px #808080",
+            },
+            iconTransform: {
+                transform: "rotate(180deg)",
             }
-        }
+        };
+        let iconStyle = this.state.sizeClick ? styles.iconTransform : '';
         return (
             <div>
                 <label className="filter-label">Filter</label>
@@ -44,7 +54,7 @@ export default class Filter extends React.Component {
                 <div>
                     <button className="filter-btn" onClick={this.btnSizeClick}>
                         Size
-                        <FontAwesomeIcon icon={faChevronDown} className="right-icon-btn" />
+                        <FontAwesomeIcon icon={faChevronDown} style={iconStyle} className="right-icon-btn" />
                     </button>
 
                     { this.state.sizeClick && 
@@ -58,6 +68,15 @@ export default class Filter extends React.Component {
                                 style={ this.state.size === "L" ? styles.selectBtn : styles.unselectBtn }>L</button>
                         </div>
                     }
+
+                    <hr className="filter-line" />
+                </div>
+
+                <div>
+                    <button className="filter-btn" onClick={this.btnColorClick}>
+                        Color
+                        <FontAwesomeIcon icon={faChevronDown} className="right-icon-btn" />
+                    </button>
 
                     <hr className="filter-line" />
                 </div>
