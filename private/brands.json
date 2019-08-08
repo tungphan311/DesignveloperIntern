@@ -1,0 +1,22 @@
+[
+    { 
+        "id": 1,
+        "name": "Zara"
+    },
+    { 
+        "id": 2,
+        "name": "H&M"
+    },
+    { 
+        "id": 3,
+        "name": "Pull&Bear"
+    },
+    { 
+        "id": 4,
+        "name": "Dior"
+    },
+    { 
+        "id": 5,
+        "name": "Channel"
+    }
+]

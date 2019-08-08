@@ -1,0 +1,384 @@
+[
+    {
+        "id": 1,
+        "name": "Collete Stretch Linen Minidress",
+        "price": 69.00,
+        "images": [
+            "/print-jacquard-midi-dress.png", 
+            "/print-jacquard-midi-dress-1.png", 
+            "/print-jacquard-midi-dress-2.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-4.png"
+        ],
+        "brandId": 1,
+        "categoryId": 5,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 2,
+        "name": "Button-Down Denim Mini Dress",
+        "price": 69.00,
+        "images": [
+            "/blue-wool-dress.png", 
+            "/dark-gray-dress.png", 
+            "/classic-mature-dress.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-5.png"
+        ],
+        "brandId": 2,
+        "categoryId": 8,
+        "kindOfClothesId": 1
+    },
+    {
+        "id": 3,
+        "name": "Plunge V-neck Denim Mini Dress",
+        "price": 89.00,
+        "images": [
+            "/dark-warm-dress.png", 
+            "/dark-gray-dress.png", 
+            "/blue-wool-dress.png",
+            "/print-jacquard-midi-dress-1.png",
+            "/print-jacquard-midi-dress-2.png"
+        ],
+        "brandId": 1,
+        "categoryId": 5,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 4,
+        "name": "Surplice Gingham Jumpsuit",
+        "price": 49.00,
+        "images": [
+            "/dark-gray-dress.png", 
+            "/print-jacquard-midi-dress-1.png", 
+            "/print-jacquard-midi-dress-2.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-4.png"
+        ],
+        "brandId": 3,
+        "categoryId": 1,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 5,
+        "name": "Hermosa Ladder Lace Midi Dress",
+        "price": 29.00,
+        "images": [
+            "/classic-mature-dress.png", 
+            "/print-jacquard-midi-dress-1.png", 
+            "/print-jacquard-midi-dress-2.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-4.png",
+            "/print-jacquard-midi-dress-5.png"
+        ],
+        "brandId": 4,
+        "categoryId": 6,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 6,
+        "name": "Arabella Textured Maxi Skirt",
+        "price": 109.00,
+        "images": [
+            "/dark-gray-dress.png", 
+            "/print-jacquard-midi-dress-1.png", 
+            "/print-jacquard-midi-dress-2.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-4.png"
+        ],
+        "brandId": 2,
+        "categoryId": 6,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 7,
+        "name": "Pippa Halter Mini Dress",
+        "price": 60.00,
+        "images": [
+            "/long-sleeves-dress.png", 
+            "/dark-gray-dress.png", 
+            "/classic-mature-dress.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-5.png"
+        ],
+        "brandId": 5,
+        "categoryId": 5,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 8,
+        "name": "Lace-Trim Surplice Mini Dress",
+        "price": 59.00,
+        "images": [
+            "/dark-warm-dress.png", 
+            "/dark-gray-dress.png", 
+            "/blue-wool-dress.png",
+            "/print-jacquard-midi-dress-1.png",
+            "/print-jacquard-midi-dress-2.png"
+        ],
+        "brandId": 3,
+        "categoryId": 5,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 9,
+        "name": "Betsey Linen Halter Midi Dress",
+        "price": 49.00,
+        "images": [
+            "/marron printed dress.png", 
+            "/print-jacquard-midi-dress-1.png", 
+            "/print-jacquard-midi-dress-2.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-4.png"
+        ],
+        "brandId": 4,
+        "categoryId": 2,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 10,
+        "name": "Collete Stretch Linen Minidress",
+        "price": 50.00,
+        "images": [
+            "/midi-dress.png", 
+            "/print-jacquard-midi-dress-1.png", 
+            "/print-jacquard-midi-dress-2.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-4.png",
+            "/print-jacquard-midi-dress-5.png"
+        ],
+        "brandId": 4,
+        "categoryId": 3,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 11,
+        "name": "Hattie High-Neck Linen Jumpsuit",
+        "price": 44.50,
+        "images": [
+            "/navy-floral-print-dress.png", 
+            "/print-jacquard-midi-dress-1.png", 
+            "/print-jacquard-midi-dress-2.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-4.png"
+        ],
+        "brandId": 2,
+        "categoryId": 1,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 12,
+        "name": "Collete Stretch Linen Minidress",
+        "price": 99.00,
+        "images": [
+            "/print-jacquard-midi-dress-2.png", 
+            "/dark-gray-dress.png", 
+            "/classic-mature-dress.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-5.png"
+        ],
+        "brandId": 4,
+        "categoryId": 5,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 13,
+        "name": "Amber Button-Down Linen Midi Dress",
+        "price": 59.00,
+        "images": [
+            "/print-jacquard-midi-dress-1.png", 
+            "/dark-gray-dress.png", 
+            "/blue-wool-dress.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-2.png"
+        ],
+        "brandId": 1,
+        "categoryId": 7,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 14,
+        "name": "Collete Stretch Linen Minidress",
+        "price": 49.00,
+        "images": [
+            "/print-jacquard-midi-dress-3.png", 
+            "/print-jacquard-midi-dress-1.png", 
+            "/print-jacquard-midi-dress-2.png",
+            "/print-jacquard-midi-dress-5.png",
+            "/print-jacquard-midi-dress-4.png"
+        ],
+        "brandId": 2,
+        "categoryId": 2,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 15,
+        "name": "Catalina Printed Halter Dress",
+        "price": 29.00,
+        "images": [
+            "/print-jacquard-midi-dress-4.png", 
+            "/print-jacquard-midi-dress-1.png", 
+            "/print-jacquard-midi-dress-2.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-5.png"
+        ],
+        "brandId": 4,
+        "categoryId": 6,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 16,
+        "name": "Collete Stretch Linen Minidress",
+        "price": 39.00,
+        "images": [
+            "/print-jacquard-midi-dress-5.png", 
+            "/print-jacquard-midi-dress-1.png", 
+            "/print-jacquard-midi-dress-2.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-4.png"
+        ],
+        "brandId": 2,
+        "categoryId": 6,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 17,
+        "name": "Collete Stretch Linen Minidress",
+        "price": 60.00,
+        "images": [
+            "/shirt-dress.png", 
+            "/dark-gray-dress.png", 
+            "/classic-mature-dress.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-5.png"
+        ],
+        "brandId": 5,
+        "categoryId": 5,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 18,
+        "name": "Collete Stretch Linen Minidress",
+        "price": 59.00,
+        "images": [
+            "/rectangle-copy-54@3x.png", 
+            "/dark-gray-dress.png", 
+            "/blue-wool-dress.png",
+            "/print-jacquard-midi-dress-1.png",
+            "/print-jacquard-midi-dress-2.png"
+        ],
+        "brandId": 3,
+        "categoryId": 5,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 19,
+        "name": "Moonstruck Surplice Romper",
+        "price": 49.00,
+        "images": [
+            "/classic-mature-dress.png", 
+            "/print-jacquard-midi-dress-1.png", 
+            "/print-jacquard-midi-dress-2.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-4.png"
+        ],
+        "brandId": 4,
+        "categoryId": 2,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 20,
+        "name": "Collete Stretch Linen Minidress",
+        "price": 50.00,
+        "images": [
+            "/midi-dress.png", 
+            "/print-jacquard-midi-dress-1.png", 
+            "/print-jacquard-midi-dress-2.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-4.png",
+            "/print-jacquard-midi-dress-5.png"
+        ],
+        "brandId": 5,
+        "categoryId": 2,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 21,
+        "name": "Collete Stretch Minidress",
+        "price": 60.00,
+        "images": [
+            "/blue-wool-dress.png", 
+            "/print-jacquard-midi-dress-1.png", 
+            "/print-jacquard-midi-dress-2.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-4.png",
+            "/print-jacquard-midi-dress-5.png"
+        ],
+        "brandId": 1,
+        "categoryId": 1,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 22,
+        "name": "Lace Midi Dress",
+        "price": 30.00,
+        "images": [
+            "/long-sleeves-dress.png", 
+            "/print-jacquard-midi-dress-1.png", 
+            "/print-jacquard-midi-dress-2.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-4.png",
+            "/print-jacquard-midi-dress-5.png"
+        ],
+        "brandId": 3,
+        "categoryId": 4,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 23,
+        "name": "Linen Minidress",
+        "price": 70.00,
+        "images": [
+            "/midi-dress.png", 
+            "/print-jacquard-midi-dress-1.png", 
+            "/print-jacquard-midi-dress-2.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-4.png",
+            "/print-jacquard-midi-dress-5.png"
+        ],
+        "brandId": 2,
+        "categoryId": 7,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 24,
+        "name": "Collete Stretch Linen Minidress",
+        "price": 50.00,
+        "images": [
+            "/shirt-dress.png", 
+            "/print-jacquard-midi-dress-1.png", 
+            "/print-jacquard-midi-dress-2.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-4.png",
+            "/print-jacquard-midi-dress-5.png"
+        ],
+        "brandId": 1,
+        "categoryId": 2,
+        "kindOfClothesId": 9
+    },
+    {
+        "id": 25,
+        "name": "Button-Down Denim Mini Dress",
+        "price": 69.00,
+        "images": [
+            "/blue-wool-dress.png", 
+            "/dark-gray-dress.png", 
+            "/classic-mature-dress.png",
+            "/print-jacquard-midi-dress-3.png",
+            "/print-jacquard-midi-dress-5.png"
+        ],
+        "brandId": 2,
+        "categoryId": 5,
+        "kindOfClothesId": 9
+    }
+]

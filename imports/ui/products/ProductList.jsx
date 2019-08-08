@@ -2,6 +2,7 @@ import React from 'react';
 import './Product.css';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Categories } from '../../api/kind-of-clothes';
+import { Products } from '../../api/products';
 import Category from './Category';
 import Filter from './Filter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,13 +18,14 @@ class ProductList extends React.Component {
             category: 0,
             listProducts: [],
             filter: {
-                size: '',
-                color: '',
-                brand: '',
+                kindOfClothesId: 0,
+                size: {},
+                color: {},
+                brand: {},
                 price: 0,
                 available: '',
             },
-            sort: 4,
+            sort: 1,
             showDropdown: false,
             page: 1,
         }
@@ -31,6 +33,10 @@ class ProductList extends React.Component {
 
     componentDidMount = () => {
         this.getListProduct();
+    }
+
+    componentDidUpdate = () => {
+        // Meteor.subscribe('products', this.state.filter);
     }
 
     getPathName = () => {
@@ -67,9 +73,14 @@ class ProductList extends React.Component {
             return obj.name === afterSplash;
         });
 
-        this.setState({
-            kindOfClothes: koc,
-        });
+        if(koc) {
+            this.setState({
+                kindOfClothes: koc,
+                filter: {
+                    kindOfClothesId: koc.id,
+                }
+            });
+        }    
     }
 
     categoryClick = (id) => {
@@ -95,6 +106,12 @@ class ProductList extends React.Component {
 
     showDropdown = () => {
         this.setState({showDropdown: !this.state.showDropdown});
+    }
+
+    renderProductCard = () => {
+        return this.props.products.map(product => (
+            <ProductCard key={product._id} product={product} />
+        ));
     }
 
     render() {
@@ -144,12 +161,7 @@ class ProductList extends React.Component {
                     </div>
                     
                     <div className="product-list">
-                        <ProductCard avatar={"/ladies.png"} />
-                        <ProductCard avatar={"/ladies.png"} />
-                        <ProductCard avatar={"/ladies.png"} />
-                        <ProductCard avatar={"/ladies.png"} />
-                        <ProductCard avatar={"/ladies.png"} />
-                        <ProductCard avatar={"/ladies.png"} />
+                        {this.renderProductCard()}
                     </div>
                 </div>
             </div>
@@ -170,8 +182,11 @@ export default withTracker((props) => {
     if (koc != undefined) {
         Meteor.subscribe('categories', koc.id);
     }
+
+    console.log(props);
   
     return {
       categories: Categories.find({}).fetch(),
+      products: Products.find({}).fetch()
     };
   })(ProductList);

@@ -4,6 +4,7 @@
     --greyish-brown: #4d4d4d;
     --pinkish-grey: #ccc;
     --white-four: #d4d3d3;
+    --pale-orange: #ffa15f;
 }
 
 .router {
@@ -195,4 +196,30 @@ hr.filter-btn-line {
     font-weight: normal;
     line-height: 1.83;
     color: var(--greyish-brown);
+}
+
+.avatar-wrapper {
+    position: relative;
+}
+
+.avatar-wrapper:hover .product-card-btn{
+    opacity: 1;
+}
+
+.animate {
+    transition: all 0.3s ease-in-out;
+}
+
+.product-card-btn {
+    position: absolute;
+    bottom: calc(1.5*4200vw/1440);
+    left: 0;
+    width: -webkit-fill-available;
+    height: 3.75vw;
+    background-color: var(--pale-orange);
+    font-size: 1vw;
+    font-weight: 500;
+    line-height: 1.57;
+    color: white;
+    opacity: 0;
 }

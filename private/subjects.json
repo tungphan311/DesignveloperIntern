@@ -1,0 +1,6 @@
+[
+    { "id": 1, "name": "Men", "route": "/men", "img": "/men.png" },
+    { "id": 2, "name": "Ladies", "route": "/ladies/dresses", "img": "/ladies.png" },
+    { "id": 3, "name": "Girls", "route": "/girls", "img": "/girls.png" },
+    { "id": 4, "name": "Boys", "route": "/boys", "img": "/boys.png" }
+]
