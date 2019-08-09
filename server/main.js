@@ -82,9 +82,9 @@ Meteor.startup(() => {
     });
 
     Meteor.publish('products', function (filter) {
-        console.log(filter);
         return Products.find({ 
-            kindOfClothesId: filter.kindOfClothesId
+            kindOfClothesId: filter.kindOfClothesId,
+            categoryId: filter.categoryId
         }, { limit: 20 });
     });
 

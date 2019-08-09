@@ -19,6 +19,7 @@ class ProductList extends React.Component {
             listProducts: [],
             filter: {
                 kindOfClothesId: 0,
+                categoryId: 0,
                 size: {},
                 color: {},
                 brand: {},
@@ -33,10 +34,6 @@ class ProductList extends React.Component {
 
     componentDidMount = () => {
         this.getListProduct();
-    }
-
-    componentDidUpdate = () => {
-        // Meteor.subscribe('products', this.state.filter);
     }
 
     getPathName = () => {
@@ -63,6 +60,7 @@ class ProductList extends React.Component {
     }
 
     getListProduct = () => {
+        console.log(this.props);
         const location = window.location.pathname;
         let lastSplash = location.lastIndexOf('/');
 
@@ -77,14 +75,24 @@ class ProductList extends React.Component {
             this.setState({
                 kindOfClothes: koc,
                 filter: {
-                    kindOfClothesId: koc.id,
+                    ...this.state.filter,
+                    kindOfClothesId: koc.id
                 }
             });
         }    
     }
 
     categoryClick = (id) => {
-        this.setState({category: id});
+        this.setState({
+            ...this.state,
+            category: id,
+            filter: {
+                ...this.state.filter,
+                categoryId: id
+            }
+        });
+        
+        this.props.history.push('category', id);
     }
 
     chooseSize = (size) => {
@@ -110,7 +118,7 @@ class ProductList extends React.Component {
 
     renderProductCard = () => {
         return this.props.products.map(product => (
-            <ProductCard key={product._id} product={product} />
+            <ProductCard key={product._id} product={product} history={this.props.history} />
         ));
     }
 
@@ -181,12 +189,13 @@ export default withTracker((props) => {
     
     if (koc != undefined) {
         Meteor.subscribe('categories', koc.id);
+        Meteor.subscribe('products', {
+            kindOfClothesId: koc.id, 
+        });        
     }
-
-    console.log(props);
   
     return {
       categories: Categories.find({}).fetch(),
-      products: Products.find({}).fetch()
+      products: Products.find({}, { limit: 20 }).fetch()
     };
   })(ProductList);

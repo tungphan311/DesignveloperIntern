@@ -223,3 +223,46 @@ hr.filter-btn-line {
     color: white;
     opacity: 0;
 }
+
+.product-detail {
+    height: 35vw;
+    display: -webkit-box;
+}
+
+.small-image {
+    height: 8vw;
+    width: calc(8vw/1.4);
+    margin-bottom: 1vw;
+}
+
+.main-img {
+    margin-left: 1.5vw;
+    width: 25vw;
+}
+
+.detail-col {
+    margin-left: 5vw;
+    width: calc(100% - 35vw - 16vw/1.4);
+    background-color: pink;
+}
+
+.other-product {
+    float: right;
+    width: calc(8vw/1.4);
+}
+
+.product-detail-name {
+    font-size: calc(2400vw/1440);
+    font-weight: 500;
+    line-height: 1.33;
+    color: var(--dark-grey);
+}
+
+.product-detail-price {
+    font-size: calc(2400vw/1440);
+    font-weight: 300;
+    line-height: 1.33;
+    color: var(--dark-grey);
+}
+
+

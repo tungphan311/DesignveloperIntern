@@ -8,6 +8,7 @@ import Home from '../home/Home';
 import { Subjects } from '../../api/subjects';
 import { KindOfClothes } from '../../api/kind-of-clothes';
 import ProductList from '../products/ProductList';
+import ProductDetail from '../products/ProductDetail';
 
 class App extends Component {
 
@@ -18,8 +19,9 @@ class App extends Component {
         <div className="content">
           <Switch>
             <Route exact path="/" component={() => <Home subjects={this.props.subjects} history={this.props.history} />} />
-            <Route path={["/men", "/ladies", "/boys", "/girls"]} component={() => 
+            <Route path={["/men", "/ladies/dresses", "/boys", "/girls"]} component={() => 
               <ProductList subjects={this.props.subjects} kindOfClothes={this.props.kindOfClothes} history={this.props.history} />} />
+            <Route path="/:productId" component={ProductDetail} />
           </Switch> 
         </div>
         <AppFooter history={this.props.history} />

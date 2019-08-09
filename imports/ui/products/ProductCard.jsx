@@ -7,6 +7,10 @@ class ProductCard extends React.Component {
         return "$" + price;
     }
 
+    selectProduct = () => {
+        this.props.history.push('/' + this.props.product._id);
+    }
+
     render() {
         const styles = {
             avatar: {
@@ -19,7 +23,7 @@ class ProductCard extends React.Component {
             <div className="product-card">
                 <div className="avatar-wrapper">
                     <img className="avatar" src={this.props.product.images[0]} alt="avatar"/>
-                    <button className="product-card-btn animate">+ Quick shop</button>
+                    <button className="product-card-btn animate" onClick={this.selectProduct}>+ Quick shop</button>
                 </div>
                 <div className="product-name">{this.props.product.name}</div>
                 <div className="product-price">{this.customPrice(this.props.product.price)}</div>
