@@ -8,9 +8,9 @@ class NavBarItem extends Component {
 
     renderDropdown = () => {
         return this.props.item.map(child => (
-            <div key={child._id}>
+            <React.Fragment key={child._id}>
                 <button className="btn-group-item">{child.name}</button>
-            </div>
+            </React.Fragment>
         ));
     }
 

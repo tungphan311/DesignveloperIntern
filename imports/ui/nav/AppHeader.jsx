@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Meteor } from 'meteor/meteor';
 import LoginAndSignupModal from './Signup-Login-Modal';
 import NavBar from './NavBar';
@@ -75,13 +75,14 @@ export default class AppHeader extends Component {
                     <img className="Logo" src="/logo@3x.png" alt="Logo" onClick={this.logoClicked} />
                     <div className="nav-group">
                         { !this.props.currentUser && 
-                        <button className="signup-btn" onClick={this.openRegisterModal}>Register</button>
+                            <Fragment>
+                                <button className="signup-btn" onClick={this.openRegisterModal}>Register</button>
+                                <button className="login-btn" onClick={this.openLoginModal}>Login</button>
+                            </Fragment>
                         }
-                        { !this.props.currentUser && 
-                        <button className="login-btn" onClick={this.openLoginModal}>Login</button>
-                        }
+                     
                         {  this.props.currentUser && 
-                        <button onClick={this.logout}>Logout</button>
+                            <button onClick={this.logout}>Logout</button>
                         }
                     </div>
                     

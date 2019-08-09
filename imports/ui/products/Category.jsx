@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 export default class Category extends React.Component {
     categoryClick = (id) => {
@@ -34,12 +34,12 @@ export default class Category extends React.Component {
                     <hr className="category-line" />
                 </div>
                 {this.props.listCategories.map(cat => (
-                    <div key={cat._id}>
+                    <Fragment key={cat._id}>
                         <button className="category-btn" onClick={() => this.categoryClick(cat.id)}
                             style={this.props.category == cat.id ? styles.choosedBtn : styles.normalBtn}>
                             {cat.name}
                         </button>
-                    </div>
+                    </Fragment>
                 ))}
 
                 <hr className="split-line" />
