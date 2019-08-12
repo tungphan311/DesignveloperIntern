@@ -6,6 +6,7 @@ import { Colors } from '../../api/colors';
 import { ProductDetails } from '../../api/product-details';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import RatingStar from './Rating';
 
 class ProductDetail extends React.Component {
     constructor(props) {
@@ -21,12 +22,13 @@ class ProductDetail extends React.Component {
             listColors: [],
             colorId: 0,
             amount: 0,
-            reachMaxAmount: false
+            reachMaxAmount: false,
         }
     }
 
     componentDidMount = () => {
         this.setState({size: "S"});
+        this.calcRate(3.7);
     }
 
     componentDidUpdate = () => {
@@ -36,6 +38,11 @@ class ProductDetail extends React.Component {
         if (!this.state.getColors && this.props.productDetails.length > 0) {
             this.getColors();
         }
+    }
+
+    calcRate = (r) => {
+        const f = ~~r, id = 'star' + f + (r % f ? 'half' : '');
+        id && (document.getElementById(id).checked = !0);
     }
 
     renderImage = () => {
@@ -196,7 +203,10 @@ class ProductDetail extends React.Component {
                     <div className="detail-col">
                         <div className="product-detail-name">{product.name}</div>
                         <div className="product-detail-price">{this.customPrice(product.price)}</div>
-                        <div className="product-detail-title">Size</div>
+
+                        <RatingStar rating={this.state.rating} />
+
+                        <div className="product-detail-size">Size</div>
                         <ul className="list-inline">
                             <li className="list-inline-item">
                                 <button className="product-detail-size-btn" onClick={this.chooseSize} disabled={!this.state.amountOfSizeS}

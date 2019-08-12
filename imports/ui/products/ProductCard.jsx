@@ -4,7 +4,9 @@ import { Brands } from '../../api/products';
 
 class ProductCard extends React.Component {
     customPrice = (price) => {
-        return "$" + price;
+        if (price) {
+            return "$" + price.toFixed(2);
+        }
     }
 
     selectProduct = () => {

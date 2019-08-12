@@ -1,3 +1,5 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
 * {
     --dark-grey: #202124;
     --bright-orange: #ff6900;
@@ -242,12 +244,10 @@ hr.filter-btn-line {
 
 .detail-col {
     margin-left: 5vw;
-    width: calc(100% - 35vw - 16vw/1.4);
-    background-color: pink;
+    width: calc(100% - 31vw - 16vw/1.4);
 }
 
 .other-product {
-    float: right;
     width: calc(8vw/1.4);
 }
 
@@ -265,4 +265,111 @@ hr.filter-btn-line {
     color: var(--dark-grey);
 }
 
+.product-detail-title {
+    font-size: calc(1400vw/1440);
+    font-weight: 500;
+    line-height: 1.57;
+    color: var(--dark-grey);
+    margin-top: calc(2600vw/1440);
+    margin-bottom: calc(1000vw/1440);
+}
 
+.product-detail-size {
+    font-size: calc(1400vw/1440);
+    font-weight: 500;
+    line-height: 1.57;
+    color: var(--dark-grey);
+    margin-top: calc(4600vw/1440);
+    margin-bottom: calc(1000vw/1440);
+}
+
+.product-detail-size-btn {
+    width: calc(4000vw/1440);
+    height: calc(4000vw/1440);
+    font-size: calc(1400vw/1440);
+    line-height: 1.57;
+}
+
+.product-detail-color-btn {
+    width: calc(3000vw/1440);
+    height: calc(3000vw/1440);
+    border-radius: 50%;
+    margin-right: calc(2000vw/1440);
+}
+
+.product-detail-quantity-box {
+    position: relative;
+    font-size: calc(1400vw/1440);
+    font-weight: 500;
+    line-height: 1.57;
+    color: var(--dark-grey);
+    margin-top: calc(2600vw/1440);
+    margin-bottom: calc(1000vw/1440);
+}
+
+.product-detail-quantity {
+    border: solid 1px var(--white-four);
+    width: 7.5vw;
+    height: 3vw;
+    display: inline-block;
+    margin-left: calc(2100vw/1440);
+}
+
+.quantity-button {
+    border: none;
+    width: 2.5vw;
+    height: 100%;
+    padding: calc(900vw/1440);
+}
+
+.amount-number {
+    width: 2.3vw;
+    text-align: center;
+    font-size: 1vw;
+    font-weight: 500;
+    line-height: 1.57;
+    color: var(--dark-grey);
+}
+
+.more-from {
+    font-weight: 500;
+    font-size: calc(140vw/144);
+    line-height: 1.57;
+    color: var(--dark-grey);
+}
+
+.brand-name {
+    font-size: calc(140vw/144);
+    line-height: 1.57;
+    letter-spacing: -0.1px;
+    color: var(--greyish-brown);
+}
+
+/* draw star */
+#rating { 
+    border:none;
+    float:left;
+}
+#rating > input { display:none; }/*ẩn input radio - vì chúng ta đã có label là GUI*/
+#rating > label:before { 
+    margin:5px;
+    font-size:1.25em;
+    font-family:FontAwesome;
+    display:inline-block;
+    content:"\f005";
+}   /*1 ngôi sao*/
+#rating > .half:before { content:"\f089"; position:absolute; }  /*0.5 ngôi sao*/
+#rating > label { color:#ddd; float:right; }  /*float:right để lật ngược các ngôi sao lại đúng theo thứ tự trong thực tế*/
+
+/*thêm màu cho sao đã chọn và các ngôi sao phía trước*/
+#rating > input:checked ~ label { color:#FFD700; }
+
+/* Hover vào các sao phía trước ngôi sao đã chọn*/
+/* #rating:not(:disabled) > input:checked + label:hover,
+#rating:not(:disabled) > input:checked ~ label:hover,
+#rating:not(:disabled) > label:hover ~ input:checked ~ label,
+#rating:not(:disabled) > input:checked ~ label:hover ~ label { color:#FFED85; } */
+
+
+
+  

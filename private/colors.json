@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "name": "Red",
+        "value": "#ff5f6d"
+    },
+    {
+        "id": 2,
+        "name": "Yellow",
+        "value": "rgba(255, 195, 113, 0.5)"
+    },
+    {
+        "id": 3,
+        "name": "Blue",
+        "value": "rgba(95, 109, 255, 0.5)"
+    },
+    {
+        "id": 4,
+        "name": "Pale Orange",
+        "value": "rgba(255, 161, 95, 0.5)"
+    },
+    {
+        "id": 5,
+        "name": "Grey",
+        "value": "rgba(61, 61, 63, 0.5)"
+    },
+    {
+        "id": 6,
+        "name": "White",
+        "value": "rgba(237, 237, 237, 0.5)"
+    }
+]

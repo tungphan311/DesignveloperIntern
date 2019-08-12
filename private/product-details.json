@@ -1,0 +1,62 @@
+[
+    {
+        "productId": "758er6fpJeQ8ZFTbf",
+        "size": "S",
+        "colorId": 1,
+        "amountInStock": 3
+    },
+    {
+        "productId": "758er6fpJeQ8ZFTbf",
+        "size": "M",
+        "colorId": 1,
+        "amountInStock": 10
+    },
+    {
+        "productId": "758er6fpJeQ8ZFTbf",
+        "size": "S",
+        "colorId": 2,
+        "amountInStock": 4
+    },
+    {
+        "productId": "758er6fpJeQ8ZFTbf",
+        "size": "M",
+        "colorId": 2,
+        "amountInStock": 6
+    },
+    {
+        "productId": "758er6fpJeQ8ZFTbf",
+        "size": "S",
+        "colorId": 3,
+        "amountInStock": 4
+    },
+    {
+        "productId": "758er6fpJeQ8ZFTbf",
+        "size": "M",
+        "colorId": 3,
+        "amountInStock": 6
+    },
+    {
+        "productId": "758er6fpJeQ8ZFTbf",
+        "size": "S",
+        "colorId": 4,
+        "amountInStock": 4
+    },
+    {
+        "productId": "758er6fpJeQ8ZFTbf",
+        "size": "M",
+        "colorId": 4,
+        "amountInStock": 6
+    },
+    {
+        "productId": "AZsPej3ee5HuR9A73",
+        "size": "S",
+        "colorId": 5,
+        "amountInStock": 4
+    },
+    {
+        "productId": "AZsPej3ee5HuR9A73",
+        "size": "M",
+        "colorId": 5,
+        "amountInStock": 6
+    }
+]

@@ -3,6 +3,8 @@ import '../imports/api/subjects';
 import { Subjects } from '../imports/api/subjects';
 import { KindOfClothes, Categories } from '../imports/api/kind-of-clothes';
 import { Products, Brands } from '../imports/api/products';
+import { Colors } from '../imports/api/colors';
+import { ProductDetails } from '../imports/api/product-details';
 
 Meteor.startup(() => {
     // check to see if data exists in menus collection
@@ -11,6 +13,8 @@ Meteor.startup(() => {
     const numberOfCategory = Categories.find({}).count();
     const numberOfProduct = Products.find({}).count();
     const numberOfBrand = Brands.find({}).count();
+    const numberOfColor = Colors.find({}).count();
+    const numberOfProductDetail = ProductDetails.find({}).count();
  
     if (!numberOfSubject) {
         // Generate data when it's empty
@@ -69,6 +73,30 @@ Meteor.startup(() => {
         });
     }
 
+    if(!numberOfColor) {
+        var colors = JSON.parse(Assets.getText("colors.json"));
+
+        colors.map(color => {
+            const { id, name, value } = color;
+
+            Colors.insert({
+                id, name, value
+            });
+        });
+    }
+
+    if(!numberOfProductDetail) {
+        var productDetails = JSON.parse(Assets.getText("product-details.json"));
+
+        productDetails.map(detail => {
+            const { productId, size, colorId, amountInStock } = detail;
+
+            ProductDetails.insert({
+                productId, size, colorId, amountInStock
+            });
+        });
+    }
+
     Meteor.publish('subjects', function () {
         return Subjects.find({});
     });
@@ -90,5 +118,13 @@ Meteor.startup(() => {
 
     Meteor.publish('brands', function () {
         return Brands.find({});
+    });
+
+    Meteor.publish('colors', function () {
+        return Colors.find({});
+    });
+
+    Meteor.publish('productDetails', function (productId) {
+        return ProductDetails.find({ productId: productId });
     });
 });
