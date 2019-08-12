@@ -18,9 +18,9 @@ class App extends Component {
         <AppHeader currentUser={this.props.currentUser} subjects={this.props.subjects} kinds={this.props.kindOfClothes} history={this.props.history} />
         <div className="content">
           <Switch>
-            <Route exact path="/" component={() => <Home subjects={this.props.subjects} history={this.props.history} />} />
-            <Route path={["/men", "/ladies/dresses", "/boys", "/girls"]} component={() => 
-              <ProductList subjects={this.props.subjects} kindOfClothes={this.props.kindOfClothes} history={this.props.history} />} />
+            <Route exact path="/" render={(props) => <Home subjects={this.props.subjects} {...props} />} />
+            <Route path={["/men", "/ladies/dresses", "/boys", "/girls"]} render={(props) => 
+              <ProductList subjects={this.props.subjects} kindOfClothes={this.props.kindOfClothes} {...props} />} />
             <Route path="/:productId" component={ProductDetail} />
           </Switch> 
         </div>

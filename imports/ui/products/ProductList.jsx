@@ -29,15 +29,18 @@ class ProductList extends React.Component {
             sort: 1,
             showDropdown: false,
             page: 1,
+            getListProduct: false
         }
     }
 
-    componentDidMount = () => {
-        this.getListProduct();
+    componentDidUpdate = () => {
+        if (this.props.kindOfClothes.length > 0 && !this.state.getListProduct) {
+            this.getListProduct();
+        }
     }
 
     getPathName = () => {
-        const location = window.location.pathname;
+        const location = this.props.location.pathname;
 
         let lastSplash = location.lastIndexOf('/');
 
@@ -47,7 +50,7 @@ class ProductList extends React.Component {
     }
 
     customPathName = () => {
-        const location = window.location.pathname;
+        const location = this.props.location.pathname;
         let lastSplash = location.lastIndexOf('/');
 
         const kinds = location.substring(1, lastSplash);
@@ -60,8 +63,7 @@ class ProductList extends React.Component {
     }
 
     getListProduct = () => {
-        console.log(this.props);
-        const location = window.location.pathname;
+        const location = this.props.location.pathname;
         let lastSplash = location.lastIndexOf('/');
 
         const detail = location.substring(lastSplash + 1);
@@ -77,7 +79,8 @@ class ProductList extends React.Component {
                 filter: {
                     ...this.state.filter,
                     kindOfClothesId: koc.id
-                }
+                },
+                getListProduct: true
             });
         }    
     }
@@ -178,7 +181,7 @@ class ProductList extends React.Component {
 }
 
 export default withTracker((props) => {
-    const location = props.history.location.pathname;
+    const location = props.location.pathname;
     let lastSplash = location.lastIndexOf('/');
     const detail = location.substring(lastSplash + 1);
     const afterSplash = detail.charAt(0).toUpperCase() + detail.slice(1);
