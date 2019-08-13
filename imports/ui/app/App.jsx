@@ -11,17 +11,42 @@ import ProductList from '../products/ProductList';
 import ProductDetail from '../products/ProductDetail';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      cart: []
+    }
+  }
+
+  addToCart = (detailId, amount) => {
+    const product = {
+      productDetailId: detailId,
+      amount: amount
+    }
+
+    this.setState((currentState) => {
+      const carts = currentState.cart.push(product);
+
+      return {
+        carts,
+      }
+    });
+  }
 
   render() {
+    console.log(this.state.cart);
     return(
       <div className="app">
-        <AppHeader currentUser={this.props.currentUser} subjects={this.props.subjects} kinds={this.props.kindOfClothes} history={this.props.history} />
+        <AppHeader currentUser={this.props.currentUser} subjects={this.props.subjects} kinds={this.props.kindOfClothes} 
+          history={this.props.history} cart={this.state.cart} />
         <div className="content">
           <Switch>
             <Route exact path="/" render={(props) => <Home subjects={this.props.subjects} {...props} />} />
             <Route path={["/men", "/ladies/dresses", "/boys", "/girls"]} render={(props) => 
               <ProductList subjects={this.props.subjects} kindOfClothes={this.props.kindOfClothes} {...props} />} />
-            <Route path="/:productId" component={ProductDetail} />
+            <Route path="/:productId" render={(props) => 
+              <ProductDetail currentUser={this.props.currentUser} addToCart={this.addToCart} {...props} />} />
           </Switch> 
         </div>
         <AppFooter history={this.props.history} />

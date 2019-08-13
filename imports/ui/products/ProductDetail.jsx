@@ -157,6 +157,28 @@ class ProductDetail extends React.Component {
         }
     }
 
+    addToCart = () => {
+        const { colorId, amount } = this.state;
+
+        if (colorId == 0) {
+            alert("Please choose a color!!!");
+            return;
+        }
+
+        if (amount == 0) {
+            alert("Please choose an amount of product!!!");
+            return;
+        }
+
+        const addToCart = this.props.addToCart;
+        
+        const detail = this.props.productDetails.find((productDetail) => {
+            return productDetail.size == this.state.size && productDetail.colorId == this.state.colorId;
+        });
+
+        addToCart(detail._id, this.state.amount);
+    }
+
     render() {
         const img = this.props.product[0] == undefined? "": this.props.product[0].images[0];
         const product = this.props.product[0] == undefined ? {} :
@@ -249,6 +271,8 @@ class ProductDetail extends React.Component {
                                 </button>
                             </div>
                         </div>
+
+                        <button className="btn-addToCart" onClick={this.addToCart}>Add to cart</button>
                     </div>
                     <div className="other-product">
                         <div className="more-from">More from</div>

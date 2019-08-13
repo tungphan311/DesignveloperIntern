@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import LoginAndSignupModal from './Signup-Login-Modal';
 import NavBar from './NavBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faCartPlus } from '@fortawesome/free-solid-svg-icons';
 
 export default class AppHeader extends Component {
     constructor(props) {
@@ -12,6 +12,7 @@ export default class AppHeader extends Component {
         this.state = {
             showModal: false,
             kindModal: '',
+            showDropdown: false
         };
     }
 
@@ -57,11 +58,16 @@ export default class AppHeader extends Component {
             console.log('logged out');
             }
         });
+        this.setState({showDropdown: false});
     }
 
     logoClicked = () => {
         console.log('logo clicked');
         this.props.history.push('/');
+    }
+
+    showDropdown = () => {
+        this.setState({ showDropdown: !this.state.showDropdown });
     }
 
     render() {
@@ -82,8 +88,23 @@ export default class AppHeader extends Component {
                         }
                      
                         {  this.props.currentUser && 
-                            <button onClick={this.logout}>Logout</button>
+                            <div className="place-for-user">
+                                <button className="btn-logout" onClick={this.showDropdown}>
+                                    <img src="/image.png" alt="" className="user-avatar" />
+                                </button>
+
+                                { this.state.showDropdown && 
+                                    <div className="user-dropdown">
+                                        <button className="dropdown-btn">Account setting</button>
+                                        <button className="dropdown-btn" onClick={this.logout}>Log out</button>
+                                    </div>
+                                }
+                            </div>
                         }
+                        <button className="btn-cart">
+                            <FontAwesomeIcon icon={faCartPlus} />
+                        </button>
+                        <span id='lblCartCount'>{this.props.cart.length}</span>
                     </div>
                     
                     <hr className="top-line" />

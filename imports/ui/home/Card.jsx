@@ -6,7 +6,7 @@ class Card extends Component {
         // event.preventDefault();
 
         this.props.history.push(this.props.type.route);
-        window.location.reload();
+        // window.location.reload();
     }
     render() {
         const styles = {

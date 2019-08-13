@@ -370,6 +370,18 @@ hr.filter-btn-line {
 #rating:not(:disabled) > label:hover ~ input:checked ~ label,
 #rating:not(:disabled) > input:checked ~ label:hover ~ label { color:#FFED85; } */
 
-
+.btn-addToCart {
+    margin-top: calc(3000vw/1440);
+    box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.12);
+    background-color: #5f6dff;
+    padding-top: 0.9vw;
+    padding-bottom: 0.9vw;
+    margin-right: 10vw;
+    font-size: calc(1600vw/1440);
+    font-weight: bold;
+    line-height: 1.5;
+    color: white;
+    width: -webkit-fill-available;
+}
 
   

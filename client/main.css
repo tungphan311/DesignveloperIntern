@@ -79,12 +79,13 @@ input {
 }
 
 .login-btn {
-  width: 120px;
-  height: 35px;
-  border-radius: 100px;
+  width: calc(1200vw/144);
+  height: calc(350vw/144);
+  border-radius: calc(1000vw/144);
   border: solid 1px var(--pale-orange);
   color: var(--pale-orange);
   font-family: 'Montserrat', sans-serif;
+  margin-right: calc(280vw/144);
 }
 
 .signup-btn {
@@ -370,4 +371,50 @@ button:focus {
   background-color: #fbfbfb;
   border: none;
   font-family: 'Montserrat', sans-serif;
+}
+
+#lblCartCount {
+  font-size: calc(120vw/144);
+  background: var(--pale-orange);
+  color: #fff;
+  font-weight: 500;
+  padding: 0 5px;
+  vertical-align: top;
+  margin-left: -15px;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.btn-cart {
+  border: none;
+}
+
+.btn-logout {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  background-color: var(--pale-orange);
+  opacity: 0.8;
+  padding: 0px;
+}
+
+.user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.place-for-user {
+  display: inline-block;
+  margin-right: 1.875vw;
+  position: relative;
+}
+
+.user-dropdown {
+  position: absolute;
+  display: grid;
+  width: 12.5vw;
+  box-shadow: 0 14px 30px 0 rgba(0, 0, 0, 0.14);
+  z-index: 100;
+  float: right;
 }
