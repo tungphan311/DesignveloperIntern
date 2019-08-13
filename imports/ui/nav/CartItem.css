@@ -1,0 +1,42 @@
+.cart-left {
+    display: inline-block;
+    width: 25%;
+    height: calc(600vw/144);
+    margin-right: calc(200vw/144);
+}
+
+.cart-right {
+    display: inline-block;
+    width: calc(75% - 200vw/144);
+    height: calc(600vw/144);
+    float: right;
+}
+
+.cart-item {
+    padding: calc(100vw/144) calc(70vw/144);
+}
+
+.cart-item-name {
+    padding-top: calc(60vw/144);  
+    font-size: calc(120vw/144);
+    font-weight: 600;
+    line-height: 1.33;
+    color: #4d4d4d;
+}
+
+.cart-item-price {
+    font-size: calc(120vw/144);
+    line-height: 1.83;
+    color: #4d4d4d;
+    padding-top: calc(200vw/144);
+}
+
+.cart-item-detail {
+    opacity: 0.4;
+    font-size: calc(120vw/144);
+    line-height: 1.83;
+    color: #4d4d4d;
+    padding-top: calc(200vw/144);
+    display: inline-block;
+    float: right;
+}

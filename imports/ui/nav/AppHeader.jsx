@@ -4,6 +4,7 @@ import LoginAndSignupModal from './Signup-Login-Modal';
 import NavBar from './NavBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import CartItem from './CartItem';
 
 export default class AppHeader extends Component {
     constructor(props) {
@@ -12,7 +13,8 @@ export default class AppHeader extends Component {
         this.state = {
             showModal: false,
             kindModal: '',
-            showDropdown: false
+            showDropdown: false,
+            showCart: false,
         };
     }
 
@@ -38,7 +40,6 @@ export default class AppHeader extends Component {
     }
     
     changeModal = () => {
-        console.log('change modal');
         if (this.state.kindModal == 'login') {
             this.setState({
             kindModal: 'register',
@@ -53,21 +54,28 @@ export default class AppHeader extends Component {
     logout = () => {
         Meteor.logout((error) => {
             if (error) {
-            console.log(error);
-            } else {
-            console.log('logged out');
-            }
+                alert(error);
+            } 
         });
         this.setState({showDropdown: false});
     }
 
     logoClicked = () => {
-        console.log('logo clicked');
         this.props.history.push('/');
     }
 
     showDropdown = () => {
         this.setState({ showDropdown: !this.state.showDropdown });
+    }
+
+    showListCart = () => {
+        this.setState({ showCart: !this.state.showCart })
+    }
+
+    renderCart = () => {
+        return this.props.cart.map(item => (
+            <CartItem key={item.productDetailId} item={item} />
+        ));
     }
 
     render() {
@@ -101,10 +109,18 @@ export default class AppHeader extends Component {
                                 }
                             </div>
                         }
-                        <button className="btn-cart">
-                            <FontAwesomeIcon icon={faCartPlus} />
-                        </button>
-                        <span id='lblCartCount'>{this.props.cart.length}</span>
+                        <div className="place-for-cart">
+                            <button className="btn-cart" onClick={this.showListCart}>
+                                <FontAwesomeIcon icon={faCartPlus} />
+                            </button>
+                            <span id='lblCartCount'>{this.props.cart.length}</span>
+
+                            { this.state.showCart && 
+                                <div className="cart-list">
+                                    { this.renderCart() }
+                                </div>
+                            }
+                        </div>
                     </div>
                     
                     <hr className="top-line" />

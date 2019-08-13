@@ -5,6 +5,7 @@ import { KindOfClothes, Categories } from '../imports/api/kind-of-clothes';
 import { Products, Brands } from '../imports/api/products';
 import { Colors } from '../imports/api/colors';
 import { ProductDetails } from '../imports/api/product-details';
+import { publishComposite } from 'meteor/reywood:publish-composite';
 
 Meteor.startup(() => {
     // check to see if data exists in menus collection
@@ -114,6 +115,27 @@ Meteor.startup(() => {
             kindOfClothesId: filter.kindOfClothesId,
             categoryId: filter.categoryId
         }, { limit: 20 });
+    });
+
+    Meteor.publish('productWithId', function (id) {
+        return Products.find({
+            _id: id,
+        })
+    });
+
+    publishComposite('productWithBrand', function (id) {
+        return {
+            find() {
+                return Products.find({ _id: id });
+            }, 
+            children() {
+                return [{
+                    find(product) {
+                        return Products.find({ brandId: product.brandId });
+                    }
+                }]
+            }
+        }
     });
 
     Meteor.publish('brands', function () {

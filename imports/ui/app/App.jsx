@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.cart);
+    // console.log(this.state.cart);
     return(
       <div className="app">
         <AppHeader currentUser={this.props.currentUser} subjects={this.props.subjects} kinds={this.props.kindOfClothes} 

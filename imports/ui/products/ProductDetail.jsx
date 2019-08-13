@@ -213,6 +213,7 @@ class ProductDetail extends React.Component {
             }
         }
 
+        // console.log(this.props.product);
         return (
             <div>
                 <div className="product-detail">
@@ -287,12 +288,12 @@ class ProductDetail extends React.Component {
 export default withTracker((props) => {
     const productId = props.location.pathname.slice(1);
     // console.log(props);
-    Meteor.subscribe('products', {});
+    Meteor.subscribe('productWithId', productId);
     Meteor.subscribe('colors');
     Meteor.subscribe('productDetails', productId);
 
     return {
-        product: Products.find({ _id: productId }).fetch(),
+        product: Products.find({}).fetch(),
         colors: Colors.find({}).fetch(),
         productDetails: ProductDetails.find({}).fetch()
     };
