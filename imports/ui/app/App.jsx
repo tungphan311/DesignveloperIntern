@@ -9,6 +9,7 @@ import { Subjects } from '../../api/subjects';
 import { KindOfClothes } from '../../api/kind-of-clothes';
 import ProductList from '../products/ProductList';
 import ProductDetail from '../products/ProductDetail';
+import CartPage from './CartPage';
 
 class App extends Component {
   constructor(props) {
@@ -26,10 +27,10 @@ class App extends Component {
     }
 
     this.setState((currentState) => {
-      const carts = currentState.cart.push(product);
+      const newCart = [...currentState.cart, product]
 
       return {
-        carts,
+        cart: newCart,
       }
     });
   }
@@ -45,8 +46,9 @@ class App extends Component {
             <Route exact path="/" render={(props) => <Home subjects={this.props.subjects} {...props} />} />
             <Route path={["/men", "/ladies/dresses", "/boys", "/girls"]} render={(props) => 
               <ProductList subjects={this.props.subjects} kindOfClothes={this.props.kindOfClothes} {...props} />} />
-            <Route path="/:productId" render={(props) => 
+            <Route path="/product/:productId" render={(props) => 
               <ProductDetail currentUser={this.props.currentUser} addToCart={this.addToCart} {...props} />} />
+            <Route exact path="/cart" render={(props) => <CartPage cart={this.state.cart} {...props} />} />
           </Switch> 
         </div>
         <AppFooter history={this.props.history} />

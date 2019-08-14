@@ -3,6 +3,7 @@ import './CartItem.css';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Products } from '../../api/products';
 import { ProductDetails } from '../../api/product-details';
+import { Colors } from '../../api/colors';
 
 class CartItem extends Component {
     customPrice = (price) => {
@@ -11,18 +12,28 @@ class CartItem extends Component {
         }
     }
 
+    findColorName = (colorId) => {
+        const color = this.props.colors.find(color => color.id == colorId);
+
+        return color.name;
+    }
+
     render() {
-        const { item, productItem, productDetail } = this.props;
-        const product = productItem[0];
+        const { item, productItem: product, productDetail } = this.props;
+        console.log("product", this.props);
+        if (!product) return null
+
         return (
             <div className="cart-item">
                 <div className="cart-left" style={{backgroundImage: `url(${product.images[0]})`, backgroundSize: "cover"}} />
         
                 <div className="cart-right">
                     <div className="cart-item-name">{product.name}</div>
-                    <div>
+                    <div className="cart-item-info">
                         <span className="cart-item-price">{this.customPrice(product.price * item.amount)}</span>
-                        <div className="cart-item-detail">{`${productDetail.size}.${productDetail.colorId}.${this.props.item.amount}`}</div>
+                        <span className="cart-item-detail">
+                            {`${productDetail.size} . ${this.findColorName(productDetail.colorId)} . ${this.props.item.amount}pcs`}
+                        </span>
                     </div>
                 </div>   
             </div>
@@ -32,15 +43,20 @@ class CartItem extends Component {
 
 export default withTracker((props) => {
     const item = props.item;
-    // Meteor.subscribe('productWithDetailId', item.productDetailId);
+    Meteor.subscribe('productDetails');
+
+    let productItem = null
 
     const productDetail = ProductDetails.findOne({ _id:  item.productDetailId })
     if (productDetail) {
-        productItem = Products.find({ _id: productDetail.productId });
+        productItem = Products.findOne({ _id: productDetail.productId });
     }
 
+    Meteor.subscribe('colors');
+
     return {
-        productItem: Products.find({}).fetch(),
-        productDetail: ProductDetails.findOne({ _id:  item.productDetailId })
+        productItem,
+        productDetail: ProductDetails.findOne({ _id:  item.productDetailId }),
+        colors: Colors.find({}).fetch()
     }
 })(CartItem);

@@ -65,20 +65,29 @@ export default class AppHeader extends Component {
     }
 
     showDropdown = () => {
-        this.setState({ showDropdown: !this.state.showDropdown });
+        this.setState({ showDropdown: !this.state.showDropdown, showCart: false });
     }
 
     showListCart = () => {
-        this.setState({ showCart: !this.state.showCart })
+        this.setState({ showCart: !this.state.showCart, showDropdown: false })
     }
 
     renderCart = () => {
         return this.props.cart.map(item => (
-            <CartItem key={item.productDetailId} item={item} />
+            <Fragment key={item.productDetailId}>
+                <CartItem item={item} />
+                <hr className="cart-line" />
+            </Fragment>
         ));
     }
 
+    viewCart = (event) => {
+        this.props.history.push("/cart");
+        this.setState({showCart: false});
+    }
+
     render() {
+        // console.log('appheader', this.props.cart)
         return (
             <div>
                 <div className="Navbar">
@@ -117,7 +126,21 @@ export default class AppHeader extends Component {
 
                             { this.state.showCart && 
                                 <div className="cart-list">
-                                    { this.renderCart() }
+                                    { this.props.cart.length > 0 ? 
+                                        <Fragment>
+                                            { this.renderCart() }
+                                            <div>
+                                                <button className="btn-viewCart" onClick={this.viewCart}>View cart</button>
+                                            </div>
+                                        </Fragment>
+                                        :
+                                        <Fragment>
+                                            <div className="cart-noItem">
+                                                Không có sản phẩm nào
+                                            </div> 
+                                            <hr className="cart-line" />
+                                        </Fragment>
+                                    }
                                 </div>
                             }
                         </div>

@@ -94,7 +94,7 @@ class ProductDetail extends React.Component {
         let result = [];
         this.props.productDetails.map(detail => {
             if (!result.includes(detail.colorId)) {
-                result.push(detail.colorId);
+                result = [...result, detail.colorId];
             }
         });
 
@@ -177,14 +177,20 @@ class ProductDetail extends React.Component {
         });
 
         addToCart(detail._id, this.state.amount);
+        this.setState({ colorId: 0, amount: 0 })
     }
 
     render() {
-        const img = this.props.product[0] == undefined? "": this.props.product[0].images[0];
-        const product = this.props.product[0] == undefined ? {} :
+        let productSelected;
+        if (this.props.product.length > 0) {
+            productSelected = this.props.product.find(prd => prd._id == this.props.productId);
+        }
+
+        const img = productSelected == undefined ? "" : productSelected.images[0];
+        const product = productSelected == undefined ? {} :
         {
-            name: this.props.product[0].name,
-            price: this.props.product[0].price
+            name: productSelected.name,
+            price: productSelected.price
         }
 
         const styles = {
@@ -213,7 +219,7 @@ class ProductDetail extends React.Component {
             }
         }
 
-        // console.log(this.props.product);
+        // console.log(this.props.productId);
         return (
             <div>
                 <div className="product-detail">
@@ -286,13 +292,14 @@ class ProductDetail extends React.Component {
 }
 
 export default withTracker((props) => {
-    const productId = props.location.pathname.slice(1);
+    const productId = props.location.pathname.slice(9);
     // console.log(props);
-    Meteor.subscribe('productWithId', productId);
+    Meteor.subscribe('productWithBrand', productId);
     Meteor.subscribe('colors');
     Meteor.subscribe('productDetails', productId);
 
     return {
+        productId: productId,
         product: Products.find({}).fetch(),
         colors: Colors.find({}).fetch(),
         productDetails: ProductDetails.find({}).fetch()
