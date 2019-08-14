@@ -20,7 +20,6 @@ class CartItem extends Component {
 
     render() {
         const { item, productItem: product, productDetail } = this.props;
-        console.log("product", this.props);
         if (!product) return null
 
         return (

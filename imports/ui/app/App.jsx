@@ -10,6 +10,7 @@ import { KindOfClothes } from '../../api/kind-of-clothes';
 import ProductList from '../products/ProductList';
 import ProductDetail from '../products/ProductDetail';
 import CartPage from './CartPage';
+import { ProductDetails } from '../../api/product-details';
 
 class App extends Component {
   constructor(props) {
@@ -35,6 +36,72 @@ class App extends Component {
     });
   }
 
+  decreaseAmount = (id) => {
+    this.setState((curState) => {
+
+      let newCart = curState.cart.map(product => {
+        if (product.productDetailId != id) {
+          return product;
+        } else {
+          if (product.amount == 1) {
+            return product;
+          } else {
+            let newProduct = {...product};
+            newProduct.amount -= 1;
+            return newProduct;
+          }
+        }
+      });
+
+      return {
+        cart: newCart,
+      }
+    });
+  }
+
+  increaseAmount = (id) => {
+    this.setState((curState) => {
+
+      let newCart = curState.cart.map(product => {
+        if (product.productDetailId != id) {
+          return product;
+        } else {
+          Meteor.subscribe('productDetails');
+          
+          const prodDetail = this.props.productDetails.find(prd => prd._id == id);
+          const maxValue = prodDetail.amountInStock;
+
+          if (product.amount >= maxValue) {
+            return product;
+          } else {
+            let newProduct = {...product};
+            newProduct.amount += 1;
+            return newProduct;
+          }
+        }
+      });
+
+      return {
+        cart: newCart,
+      }
+    });
+  }
+
+  removeProduct = (id) => {
+    this.setState(curState => {
+      let newCart = [...curState.cart];
+
+      const product = newCart.find(p => p.productDetailId == id);
+      const index = newCart.indexOf(product);
+
+      newCart = newCart.filter(p => p != product);
+
+      return {
+        cart: newCart,
+      }
+    });
+  }
+
   render() {
     // console.log(this.state.cart);
     return(
@@ -48,7 +115,9 @@ class App extends Component {
               <ProductList subjects={this.props.subjects} kindOfClothes={this.props.kindOfClothes} {...props} />} />
             <Route path="/product/:productId" render={(props) => 
               <ProductDetail currentUser={this.props.currentUser} addToCart={this.addToCart} {...props} />} />
-            <Route exact path="/cart" render={(props) => <CartPage cart={this.state.cart} {...props} />} />
+            <Route exact path="/cart" render={(props) => 
+              <CartPage currentUser={this.props.currentUser} cart={this.state.cart} decreaseAmount={this.decreaseAmount} 
+                increaseAmount={this.increaseAmount} removeProduct={this.removeProduct} {...props} />} />
           </Switch> 
         </div>
         <AppFooter history={this.props.history} />
@@ -64,6 +133,7 @@ export default withTracker(() => {
   return {
     currentUser: Meteor.user(),
     subjects: Subjects.find({}).fetch(),
-    kindOfClothes: KindOfClothes.find({}).fetch()
+    kindOfClothes: KindOfClothes.find({}).fetch(),
+    productDetails: ProductDetails.find({}).fetch()
   };
 })(App);
