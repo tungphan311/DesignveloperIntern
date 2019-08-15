@@ -8,6 +8,7 @@ import Filter from './Filter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import ProductCard from './ProductCard';
+import qs from 'query-string';
 
 class ProductList extends React.Component {
     constructor(props) {
@@ -15,7 +16,6 @@ class ProductList extends React.Component {
 
         this.state = {
             kindOfClothes: {},
-            category: 0,
             listProducts: [],
             filter: {
                 kindOfClothesId: 0,
@@ -26,10 +26,13 @@ class ProductList extends React.Component {
                 price: 0,
                 available: '',
             },
-            sort: 1,
             showDropdown: false,
-            page: 1,
-            getListProduct: false
+            getListProduct: false,
+            query: {
+                page: 1,
+                sort: 1,
+                category: 0,
+            }
         }
     }
 
@@ -37,6 +40,19 @@ class ProductList extends React.Component {
         if (this.props.kindOfClothes.length > 0 && !this.state.getListProduct) {
             this.getListProduct();
         }
+    }
+
+    componentDidMount = () => {
+        this.setState((curState) => {
+            let newQuery = {...curState.query};
+
+            newQuery.sort = this.props.sortId;
+            newQuery.page = parseInt(this.props.page);
+
+            return {
+                query: newQuery,
+            }
+        });
     }
 
     getPathName = () => {
@@ -86,16 +102,13 @@ class ProductList extends React.Component {
     }
 
     categoryClick = (id) => {
-        this.setState({
-            ...this.state,
-            category: id,
-            filter: {
-                ...this.state.filter,
-                categoryId: id
-            }
-        });
-        
-        this.props.history.push('category', id);
+        let newQuery = {...this.state.query};
+
+        newQuery.category = id;
+
+        const searchString = qs.stringify(newQuery);
+        this.props.history.push('?' + searchString);
+        this.setState({query: newQuery});
     }
 
     chooseSize = (size) => {
@@ -108,10 +121,15 @@ class ProductList extends React.Component {
 
     changeSort = (event) => {
         const value = event.target.id;
+        let newQuery = {...this.state.query};
+        newQuery.sort = value;
+
+        const searchString = qs.stringify(newQuery);
+        this.props.history.push('?' + searchString);
 
         this.setState({
-            sort: value,
             showDropdown: false,
+            query: newQuery,
         });
     }
 
@@ -125,6 +143,28 @@ class ProductList extends React.Component {
         ));
     }
 
+    toPreviousPage = () => {
+        let newQuery = {...this.state.query};
+
+        if (newQuery.page > 1) {
+            newQuery.page -= 1;
+        }
+
+        const searchString = qs.stringify(newQuery);
+        this.props.history.push('?' + searchString);
+        this.setState({query: newQuery});
+    }
+
+    toNextPage = () => {
+        let newQuery = {...this.state.query};
+
+        newQuery.page += 1;
+
+        const searchString = qs.stringify(newQuery);
+        this.props.history.push('?' + searchString);
+        this.setState({query: newQuery});
+    }
+
     render() {
         const sort = {
             1: { value: 'Popularity'},
@@ -132,12 +172,12 @@ class ProductList extends React.Component {
             3: { value: 'Price: lowest to heightest' },
             4: { value: 'Price: heightest to lowest' }
         };
-        let selectSort = this.state.sort;
+        let selectSort = this.state.query.sort;
         return (
             <div className="product-list">
                 <label className="router">{this.customPathName()}</label>
                 <div className="left-side">
-                    <Category kindOfClothes={this.state.kindOfClothes} category={this.state.category} 
+                    <Category kindOfClothes={this.state.kindOfClothes} category={this.state.query.category} 
                         listCategories={this.props.categories} onClick={this.categoryClick} />
 
                     <Filter onSizeClick={this.chooseSize} size={this.state.filter.size} />
@@ -162,11 +202,11 @@ class ProductList extends React.Component {
 
                         <div className="paginator">
                             <button className="btn-page">
-                                <FontAwesomeIcon icon={faChevronLeft} />
+                                <FontAwesomeIcon icon={faChevronLeft} onClick={this.toPreviousPage} />
                             </button>
-                            <span>{ this.state.page + "/10"}</span>
+                            <span>{ this.state.query.page + "/10"}</span>
                             <button className="btn-page">
-                                <FontAwesomeIcon icon={faChevronRight} />
+                                <FontAwesomeIcon icon={faChevronRight} onClick={this.toNextPage} />
                             </button>
                         </div>
                     </div>
@@ -181,24 +221,79 @@ class ProductList extends React.Component {
 }
 
 export default withTracker((props) => {
-    const location = props.location.pathname;
-    let lastSplash = location.lastIndexOf('/');
-    const detail = location.substring(lastSplash + 1);
-    const afterSplash = detail.charAt(0).toUpperCase() + detail.slice(1);
+    console.log(props);
+    // const location = props.history.location.pathname;
+    // let lastSplash = location.lastIndexOf('/');
+    // const detail = location.substring(lastSplash + 1);
+    // const afterSplash = detail.charAt(0).toUpperCase() + detail.slice(1);
     const kindOfClothes = props.kindOfClothes;
+
+    const params = props.match.params;
+    const subjectName = params.subjectName;
+    const kindOfClothesName = params.kindOfClothesName;
+
     const koc = kindOfClothes.find(obj => {
-        return obj.name === afterSplash;
+        return obj.name.toLowerCase() === kindOfClothesName;
     });
+
+    const search = props.history.location.search;
+
+    const categoryIndex = search.indexOf('category');
+    let categoryId = 0;
+    if (categoryIndex > -1) {
+        categoryId = search.substring(categoryIndex+9)[0];
+    } else {
+        categoryId = 0;
+    }
+
+    const sortIndex = search.indexOf('sort');
+    let sortId = 1;
+    if (sortIndex > -1) {
+        sortId = search.substring(sortIndex+5)[0];
+    } else {
+        sortId = 1;
+    }
     
+    let sort = null;
+
+    if (sortId == 1) {
+        sort = {};
+    } else if (sortId == 2) {
+        sort = { name: 1 };
+    } else if (sortId == 3) {
+        sort = { price: 1 };
+    } else if (sortId == 4) {
+        sort = { price: -1 };
+    }
+
+    let pageIndex = search.indexOf('page');
+    let page = 1;
+    if (pageIndex > -1) {
+        page = search.substring(pageIndex+5)[0];
+    } else {
+        page = 1;
+    }
+ 
     if (koc != undefined) {
         Meteor.subscribe('categories', koc.id);
         Meteor.subscribe('products', {
             kindOfClothesId: koc.id, 
-        });        
+        }, page);        
+    }
+
+    let products = [];
+    if (categoryId == 0) {
+        products = Products.find({}, { sort: sort ,limit: 20 }).fetch();
+    }
+    else {
+         const oldProduct = Products.find({}, { sort: sort ,limit: 20 }).fetch();
+         products = oldProduct.filter(prd => prd.categoryId == categoryId);
     }
   
     return {
-      categories: Categories.find({}).fetch(),
-      products: Products.find({}, { limit: 20 }).fetch()
+        page: page,
+        sortId: sortId,
+        categories: Categories.find({}).fetch(),
+        products,
     };
   })(ProductList);

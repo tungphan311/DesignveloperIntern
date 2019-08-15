@@ -9,6 +9,7 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 class CartRow extends Component {
     customPrice = (price) => {
         if (price) {
+            this.props.getPrice(price);
             return "$" + price.toFixed(1);
         }
     }

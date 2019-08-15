@@ -28,7 +28,26 @@ class App extends Component {
     }
 
     this.setState((currentState) => {
-      const newCart = [...currentState.cart, product]
+      let newCart = [...currentState.cart];
+
+      const isExist = newCart.filter(prd => prd.productDetailId == product.productDetailId);
+
+      if (isExist.length > 0) {
+        newCart = newCart.map(prd => {
+          if (prd.productDetailId == product.productDetailId) {
+            let newProduct = {...prd};
+
+            newProduct.amount += product.amount;
+
+            return newProduct;
+          } else {
+            return prd;
+          }
+        });
+        console.log(newCart);
+      } else {
+        newCart = [...newCart, product];
+      }
 
       return {
         cart: newCart,
@@ -111,7 +130,8 @@ class App extends Component {
         <div className="content">
           <Switch>
             <Route exact path="/" render={(props) => <Home subjects={this.props.subjects} {...props} />} />
-            <Route path={["/men", "/ladies/dresses", "/boys", "/girls"]} render={(props) => 
+            {/* <Route path={["/men", "/ladies/dresses", "/boys", "/girls"]} render={(props) =>  */}
+            <Route path="/:subjectName/:kindOfClothesName" render={(props) =>
               <ProductList subjects={this.props.subjects} kindOfClothes={this.props.kindOfClothes} {...props} />} />
             <Route path="/product/:productId" render={(props) => 
               <ProductDetail currentUser={this.props.currentUser} addToCart={this.addToCart} {...props} />} />

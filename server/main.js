@@ -110,11 +110,11 @@ Meteor.startup(() => {
         return Categories.find({ kindOfClothesId: id });
     });
 
-    Meteor.publish('products', function (filter) {
+    Meteor.publish('products', function (filter, page) {
         return Products.find({ 
             kindOfClothesId: filter.kindOfClothesId,
             categoryId: filter.categoryId
-        }, { limit: 20 });
+        }, { limit: 20, skip: 20*(page - 1) });
     });
 
     Meteor.publish('productWithId', function (id) {

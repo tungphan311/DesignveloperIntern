@@ -4,14 +4,39 @@ import CartRow from './CartRow';
 
 
 export default class CartPage extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            prices: [],
+        }
+    }
+
     renderBody = () => {
         return this.props.cart.map(item => (
             <div key={item.productDetailId} id="custom-table-body">
                 <CartRow decreaseAmount={this.props.decreaseAmount} increaseAmount={this.props.increaseAmount} 
-                    key={item.productDetailId} item={item} removeProduct={this.props.removeProduct} />
+                    key={item.productDetailId} item={item} getPrice={this.getPrice} removeProduct={this.props.removeProduct} />
             </div>
         ));
     }
+
+    getPrice = (price) => {
+        this.setState(curState => {
+            let newState = [...curState.prices, price];
+
+            return {
+                prices: newState,
+            }
+        });
+    }
+
+    totalPrice = () => {
+        let total = this.state.prices.reduce( (total, item) => total += item, 0);
+
+        return "$" + total.toFixed(1);
+    }
+
     render() {
         return (
             <div>
@@ -56,12 +81,12 @@ export default class CartPage extends Component {
                                 </div>
                                 <div>
                                     <span className="checkout-detail-text">Total product: </span>
-                                    <span className="checkout-detail-text" style={{float: "right"}}>6900</span>
+                                    <span className="checkout-detail-text" style={{float: "right"}}>{this.totalPrice()}</span>
                                 </div>
                                 <hr className="checkout-detail-line" />
                                 <div>
                                     <span className="checkout-detail-subtext">Subtotal: </span>
-                                    <span className="checkout-detail-subtext" style={{float: "right"}}>6900</span>
+                                    <span className="checkout-detail-subtext" style={{float: "right"}}>{this.totalPrice()}</span>
                                 </div>
                             </div>
 
