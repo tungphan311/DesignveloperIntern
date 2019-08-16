@@ -7,7 +7,7 @@ class AdminPage extends Component {
    
     checkUser = () => {
         const user = this.props.currentUser;
-        if (user && user.emails[0].address !== 'tungpt@dgroup.co') {
+        if (user && user.emails[0].address != 'tungpt@dgroup.co') {
             Meteor.logout((error) => {
                 if (error) {
                     alert(error);
@@ -17,13 +17,14 @@ class AdminPage extends Component {
     }
     render() { 
         const user = this.props.currentUser;
+        this.checkUser();
+
         return ( 
             <div>
-               { this.checkUser() }
-
-                { !user &&
+                {/* { (!user || user.emails[0].address != 'tungpt@dgroup.co') &&
                     <Redirect to='/admin/login' />
-                }
+                } */}
+                <div>Admin Page</div>
                     
             </div>
         );

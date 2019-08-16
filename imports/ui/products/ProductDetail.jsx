@@ -7,6 +7,7 @@ import { ProductDetails } from '../../api/product-details';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import RatingStar from './Rating';
+import { Redirect } from 'react-router-dom';
 
 class ProductDetail extends React.Component {
     constructor(props) {
@@ -219,9 +220,12 @@ class ProductDetail extends React.Component {
             }
         }
 
-        // console.log(this.props.productId);
+        console.log(this.props.product);
         return (
             <div>
+                { this.props.product.length == 0 &&
+                    <Redirect to='/' />
+                }
                 <div className="product-detail">
                     <div className="first-col">
                         {this.renderImage()}
@@ -294,7 +298,7 @@ class ProductDetail extends React.Component {
 export default withTracker((props) => {
     const lastSlashPos = props.location.pathname.lastIndexOf('/');
     const productId = props.location.pathname.slice(lastSlashPos + 1);
-    // console.log(props);
+    
     Meteor.subscribe('productWithBrand', productId);
     Meteor.subscribe('colors');
     Meteor.subscribe('productDetails', productId);

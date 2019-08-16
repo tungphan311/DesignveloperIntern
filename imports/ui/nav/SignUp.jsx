@@ -36,7 +36,7 @@ class SignUpModal extends React.Component {
             return false;
         }
 
-        if (typeof name !== "undefined") {
+        if (typeof name !== undefined) {
             if (!name.match(/^[a-zA-Z]+$/)) {
                 return false;
             }
@@ -140,10 +140,9 @@ class SignUpModal extends React.Component {
 
         Accounts.createUser(options, (error) => {
             if (error) {
-                console.log(error);
+                alert(error);
             }
             else {
-                console.log('success');
                 this.props.close();
             }
         });
