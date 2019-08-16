@@ -66,16 +66,20 @@ class ProductList extends React.Component {
     }
 
     customPathName = () => {
-        const location = this.props.location.pathname;
-        let lastSplash = location.lastIndexOf('/');
+        // const location = this.props.location.pathname;
+        // let lastSplash = location.lastIndexOf('/');
 
-        const kinds = location.substring(1, lastSplash);
-        const detail = location.substring(lastSplash + 1);
+        // const kinds = location.substring(1, lastSplash);
+        // const detail = location.substring(lastSplash + 1);
 
-        const beforeSplash = kinds.charAt(0).toUpperCase() + kinds.slice(1);
-        const afterSplash = detail.charAt(0).toUpperCase() + detail.slice(1);
+        // const beforeSplash = kinds.charAt(0).toUpperCase() + kinds.slice(1);
+        // const afterSplash = detail.charAt(0).toUpperCase() + detail.slice(1);
 
-        return beforeSplash + "/" + afterSplash;
+        // return beforeSplash + "/" + afterSplash;
+
+        const { subjectName, kindOfClothesName } = this.props.match.params;
+
+        return subjectName + '/' + kindOfClothesName;
     }
 
     getListProduct = () => {
@@ -139,7 +143,8 @@ class ProductList extends React.Component {
 
     renderProductCard = () => {
         return this.props.products.map(product => (
-            <ProductCard key={product._id} product={product} history={this.props.history} />
+            <ProductCard key={product._id} product={product} history={this.props.history} 
+                subjectName={this.props.subjectName} kindOfClothesName={this.props.kindOfClothesName} />
         ));
     }
 
@@ -295,5 +300,7 @@ export default withTracker((props) => {
         sortId: sortId,
         categories: Categories.find({}).fetch(),
         products,
+        subjectName,
+        kindOfClothesName
     };
   })(ProductList);

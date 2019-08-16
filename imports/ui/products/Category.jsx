@@ -11,13 +11,15 @@ export default class Category extends React.Component {
                 fontWeight: 500,
                 color: "#ff6900",
                 lineHeight: 1.57,
-                letterSpacing: "normal"
+                letterSpacing: "normal",
+                display: "block",
             },
             normalBtn: {
                 fontWeight: "normal",
                 color: "#4d4d4d",
                 lineHeight: 1.57,
                 letterSpacing: "-0.1px",
+                display: "block",
             }
         };
 

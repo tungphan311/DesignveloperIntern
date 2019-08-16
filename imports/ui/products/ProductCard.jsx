@@ -10,7 +10,7 @@ class ProductCard extends React.Component {
     }
 
     selectProduct = () => {
-        this.props.history.push('/product/' + this.props.product._id);
+        this.props.history.push('/' + this.props.product._id);
     }
 
     render() {

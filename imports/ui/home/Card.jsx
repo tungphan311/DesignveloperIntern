@@ -5,7 +5,7 @@ class Card extends Component {
     cardChoosen = (event) => {
         // event.preventDefault();
 
-        this.props.history.push(this.props.type.route);
+        this.props.history.push('/products' + this.props.type.route);
         // window.location.reload();
     }
     render() {

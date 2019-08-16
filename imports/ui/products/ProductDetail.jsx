@@ -292,7 +292,8 @@ class ProductDetail extends React.Component {
 }
 
 export default withTracker((props) => {
-    const productId = props.location.pathname.slice(9);
+    const lastSlashPos = props.location.pathname.lastIndexOf('/');
+    const productId = props.location.pathname.slice(lastSlashPos + 1);
     // console.log(props);
     Meteor.subscribe('productWithBrand', productId);
     Meteor.subscribe('colors');

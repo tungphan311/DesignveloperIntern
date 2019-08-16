@@ -82,7 +82,7 @@ export default class AppHeader extends Component {
     }
 
     viewCart = (event) => {
-        this.props.history.push("/cart");
+        this.props.history.push("/cart/listProducts");
         this.setState({showCart: false});
     }
 

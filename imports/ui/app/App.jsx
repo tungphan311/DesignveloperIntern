@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import AppHeader from '../nav/AppHeader';
@@ -11,6 +11,9 @@ import ProductList from '../products/ProductList';
 import ProductDetail from '../products/ProductDetail';
 import CartPage from './CartPage';
 import { ProductDetails } from '../../api/product-details';
+import WrongRouter from './WrongRouter';
+import AdminPage from '../seller/AdminPage';
+import LoginPage from '../seller/login/LoginPage';
 
 class App extends Component {
   constructor(props) {
@@ -122,33 +125,51 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.state.cart);
+    const pathname = this.props.history.location.pathname;
+    let isAdmin = pathname.substring(1, 6) == 'admin' ? true: false;
     return(
-      <div className="app">
-        <AppHeader currentUser={this.props.currentUser} subjects={this.props.subjects} kinds={this.props.kindOfClothes} 
-          history={this.props.history} cart={this.state.cart} />
-        <div className="content">
-          <Switch>
-            <Route exact path="/" render={(props) => <Home subjects={this.props.subjects} {...props} />} />
-            {/* <Route path={["/men", "/ladies/dresses", "/boys", "/girls"]} render={(props) =>  */}
-            <Route path="/:subjectName/:kindOfClothesName" render={(props) =>
-              <ProductList subjects={this.props.subjects} kindOfClothes={this.props.kindOfClothes} {...props} />} />
-            <Route path="/product/:productId" render={(props) => 
-              <ProductDetail currentUser={this.props.currentUser} addToCart={this.addToCart} {...props} />} />
-            <Route exact path="/cart" render={(props) => 
-              <CartPage currentUser={this.props.currentUser} cart={this.state.cart} decreaseAmount={this.decreaseAmount} 
-                increaseAmount={this.increaseAmount} removeProduct={this.removeProduct} {...props} />} />
-          </Switch> 
-        </div>
-        <AppFooter history={this.props.history} />
-      </div>
+      <Fragment>
+        { !isAdmin && 
+          <div className="app">
+            <AppHeader currentUser={this.props.currentUser} subjects={this.props.subjects} kinds={this.props.kindOfClothes} 
+              history={this.props.history} cart={this.state.cart} />
+            <div className="content">
+              <Switch>
+                <Route exact path="/" render={(props) => <Home subjects={this.props.subjects} {...props} />} />
+                {/* <Route path={["/men", "/ladies/dresses", "/boys", "/girls"]} render={(props) =>  */}
+                <Route path="/products/:subjectName/:kindOfClothesName" render={(props) =>
+                  <ProductList subjects={this.props.subjects} kindOfClothes={this.props.kindOfClothes} {...props} />} />
+
+                <Route exact path="/:productId" render={(props) => 
+                  <ProductDetail currentUser={this.props.currentUser} addToCart={this.addToCart} {...props} />} />
+
+                <Route exact path="/cart/listProducts" render={(props) => 
+                  <CartPage currentUser={this.props.currentUser} cart={this.state.cart} decreaseAmount={this.decreaseAmount} 
+                    increaseAmount={this.increaseAmount} removeProduct={this.removeProduct} {...props} />} />
+
+                <Route path="**" component={WrongRouter} />
+              </Switch> 
+            </div>
+            <AppFooter history={this.props.history} />
+          </div>
+        }
+        { isAdmin &&
+          <div >         
+            <Switch>
+              <Route exact path="/admin" component={AdminPage} />
+              <Route exact path="/admin/login" component={LoginPage} />
+            </Switch>
+          </div>
+        }
+      </Fragment>
     );
   }
 }
 
-export default withTracker(() => {
+export default withTracker((props) => {
   Meteor.subscribe('subjects');
   Meteor.subscribe('kindOfClothes');
+  // console.log(props);
 
   return {
     currentUser: Meteor.user(),
