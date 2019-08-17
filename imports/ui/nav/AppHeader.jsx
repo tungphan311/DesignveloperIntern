@@ -120,7 +120,7 @@ export default class AppHeader extends Component {
                         }
                         <div className="place-for-cart">
                             <button className="btn-cart" onClick={this.showListCart}>
-                                <FontAwesomeIcon icon={faCartPlus} />
+                                <img src="/cart.png" alt="cart"/>
                             </button>
                             <span id='lblCartCount'>{this.props.cart.length}</span>
 

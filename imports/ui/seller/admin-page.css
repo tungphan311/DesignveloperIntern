@@ -1,0 +1,116 @@
+.admin-page-left-side {
+    width: calc(2200vw/144);
+    height: 100vh;
+    position: fixed;
+    background-color: var(--white-two);
+    box-shadow: 1px 0 0 0 var(--white-three);
+}
+
+.admin-page-right-side {
+    width: calc(100vw - 2200vw/144);
+    overflow-y: scroll;
+    background: var(--white-two);
+    min-height: 100vh;
+    float: right;
+    padding: calc(5vw/3) calc(200vw/144) calc(260vw/144) calc(200vw/144);
+}
+
+.admin-page-logo {
+    width: 60%;
+    margin: calc(20vw/9) calc(440vw/144) calc(445vw/144) calc(440vw/144);
+}
+
+.leftmenu-button {
+    width: 100%;
+    height: calc(10vw/3);
+    border: none;
+    background: transparent;
+    position: relative;
+    text-align: left;
+    padding: 0;
+    font-size: calc(140vw/144);
+    font-weight: 500;
+}
+
+.leftmenu-button-icon-selected {
+    left: calc(140vw/144);
+    top: calc(120vw/144);
+    bottom: calc(120vw/144);
+    width: calc(240vw/144);
+    position: absolute;
+}
+
+.leftmenu-button-icon-unselected {
+    left: calc(200vw/144);
+    top: calc(120vw/144);
+    bottom: calc(120vw/144);
+    width: calc(240vw/144);
+    position: absolute;
+}
+
+.adminpage-topbar {
+    height: calc(10vw/3);
+    width: 100%;
+    margin-bottom: calc(20vw/9);
+    position: relative;
+}
+
+.adminpage-title {
+    position: absolute;
+    font-size: calc(260vw/144);
+    font-weight: bold;
+    line-height: 1.29;
+    color: var(--dark-grey);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.adminpage-topbar-rightside {
+    float: right;
+}
+
+.lbCount {
+    position: absolute;
+    font-size: calc(100vw/144);
+    font-weight: bold;
+    line-height: calc(10vw/9);
+    color: white;
+    width: calc(200vw/144);
+    margin-left: calc(-280vw/144);
+    border-radius: calc(5vw/9);
+    background-color: var(--strawberry);
+    text-align: center;
+    /* margin-top: calc(50% - 50vw/144); */
+}
+
+.topbar-icon {
+    width: calc(5vw/3);
+    top: 50%;
+    position: absolute;
+    /* transform: translateY(-50%); */
+    margin-left: calc(-400vw/144);
+}
+
+#adminpage-user {
+    position: absolute;
+    top: 50%;
+    border: none;
+    background-color: transparent;
+    transform: translateY(-50%);
+    right: calc(1330vw/144);
+    padding: 0;
+    font-size: calc(140vw/144);
+    font-weight: bold;
+    line-height: 1.71;
+    color: var(--dark-grey);
+}
+
+.adminpage-avatar {
+    position: absolute;
+    border-radius: 50%;
+    width: calc(10vw/3);
+    padding: 0px;
+    right: calc(3000vw/144);
+    box-shadow: 0 5px 20px 0 rgba(61, 61, 63, 0.2);
+    border: solid 2px var(--white);
+}
