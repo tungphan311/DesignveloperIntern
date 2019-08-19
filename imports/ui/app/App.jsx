@@ -12,8 +12,7 @@ import ProductDetail from '../products/ProductDetail';
 import CartPage from './CartPage';
 import { ProductDetails } from '../../api/product-details';
 import WrongRouter from './WrongRouter';
-import AdminPage from '../seller/AdminPage';
-import LoginPage from '../seller/login/LoginPage';
+import AdminPage from '../seller/home/AdminPage';
 
 class App extends Component {
   constructor(props) {
@@ -157,7 +156,7 @@ class App extends Component {
           <div >         
             <Switch>
               <Route path="/admin" component={AdminPage} />
-              <Route exact path="/admin/login" component={LoginPage} />
+              {/* <Route exact path="/admin/login" component={LoginPage} /> */}
             </Switch>
           </div>
         }

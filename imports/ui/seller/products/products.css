@@ -196,6 +196,7 @@
     padding-top: calc(5vw/6);
     padding-bottom: calc(5vw/6);
     position: relative;
+    vertical-align: middle;
 }
 
 .adminpage-table-body-cell-leftside {
@@ -231,6 +232,7 @@
     line-height: 1;
     color: var(--charcoal-grey);
     margin-right: calc(170vw/144);
+    padding: 0;
 }
 
 .product-row-button-icon {
@@ -240,4 +242,103 @@
 
 .adminpage-table-row:nth-child(even) {
     background-color: var(--white-two);
+}
+
+.product-page-sort-btn-wrapper {
+    display: inline-block;
+    position: relative;
+    height: 100%;
+}
+
+.sort-btn-dropdown {
+    position: absolute;
+    display: grid;
+    width: calc(1720vw/144);
+    box-shadow: 0 14px 30px 0 rgba(0, 0, 0, 0.14);
+    z-index: 100;
+    left: calc(200vw/144);
+}
+
+#adminpage-product-right-side {
+    float: right;
+    height: 100%;
+}
+
+#btn-select-limit {
+    height: 100%;
+    width: calc(10vw/3);
+    border-radius: calc(20vw/144);
+    border: solid 1px var(--white-three);
+    background-color: var(--white); 
+    font-size: calc(140vw/144);
+    font-weight: 500;
+    color: var(--charcoal-grey);
+    text-align: left;
+    text-indent: 0.625vw;  
+    padding: 0;
+    position: relative;
+}
+
+.btn-select-limit-icon {
+    right: calc(100vw/144);
+    position: absolute;
+}
+
+.select-limit-dropdown {
+    position: absolute;
+    display: grid;
+    width: calc(10vw/3);
+    box-shadow: 0 14px 30px 0 rgba(0, 0, 0, 0.14);
+    z-index: 100;
+    bottom: calc(300vw/144);
+}
+
+.pagination {
+    display: inline-flex;
+    margin: 0 0 0 10px;
+}
+
+.pagination>li {
+    display: flex
+}
+
+.pagination>li>a, .pagination>li>span {
+    padding: calc(40vw/144) calc(120vw/144);
+    color: var(--charcoal-grey);
+    font-size: calc(140vw/144);
+    font-weight: 500;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, 
+.pagination>.active>a:hover, .pagination>.active>span, 
+.pagination>.active>span:focus, .pagination>.active>span:hover {
+    background-color: #ffa15f;
+    border-color: #ffa15f
+}
+
+#select-action-dropdown {
+    position: absolute;
+    display: grid;
+    width: 100%;
+    box-shadow: 0 14px 30px 0 rgba(0, 0, 0, 0.14);
+    z-index: 100;
+    top: 95%;
+}
+
+.action-btn {
+    border: none;
+    text-align: left;
+    text-indent: 40%;
+    background-color: #fbfbfb;
+    font-size: calc(140vw/144);
+    font-weight: 500;
+    line-height: 1.43;
+    color: var(--charcoal-grey);
+    height: calc(460vw/144);
+}
+
+.action-btn-icon {
+    width: calc(240vw/144);
+    position: absolute;
+    left: calc(160vw/144);
 }

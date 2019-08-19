@@ -4,12 +4,14 @@ import { Meteor } from 'meteor/meteor';
 import { Redirect } from 'react-router-dom';
 import './admin-page.css';
 import LeftMenu from './LeftMenu';
-import Orders from './Orders';
-import AdminProducts from './Products';
+import Orders from '../Orders';
+import AdminProducts from '../products/Products';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { Router, Route, Switch } from 'react-router-dom';
 import SecondWrongRouter from './SecondWrongRouter';
+import LoginPage from '../login/LoginPage';
+import AddProduct from '../products/AddProduct';
 
 class AdminPage extends Component {
     constructor(props) {
@@ -51,7 +53,10 @@ class AdminPage extends Component {
         } else if (id == 2) {
             this.props.history.push('/admin/products');
         }
-        
+    }
+
+    changeMenuSelect = (id) => {
+        this.setState({selected_menu: id});
     }
 
     render() { 
@@ -64,6 +69,9 @@ class AdminPage extends Component {
                 {/* { (!user || user.emails[0].address != 'tungpt@dgroup.co') &&
                     <Redirect to='/admin/login' />
                 } */}
+                <Switch>
+                    <Route exact path="/admin/login" component={LoginPage} />
+                </Switch>
                 <div className="admin-page-left-side">
                     <img src="/logo@3x.png" alt="logo" className="admin-page-logo"/>
 
@@ -97,8 +105,13 @@ class AdminPage extends Component {
                         <Switch>
                             <Route exact path="/admin/orders" render={(props) => 
                                 <Orders changeMenu={this.changeMenu} {...props} />} />
+
                             <Route exact path="/admin/products" render={(props) => 
                                 <AdminProducts changeMenu={this.changeMenu} {...props} />} />
+
+                            <Route exact path="/admin/products/add" render={(props) => 
+                                <AddProduct changeMenu={this.changeMenuSelect} {...props} /> } />
+                                
                             <Route path={'/admin' + '*'} component={SecondWrongRouter} />
                         </Switch>
                     </div>

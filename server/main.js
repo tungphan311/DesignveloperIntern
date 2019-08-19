@@ -2,7 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import '../imports/api/subjects';
 import { Subjects } from '../imports/api/subjects';
 import { KindOfClothes, Categories } from '../imports/api/kind-of-clothes';
-import { Products, Brands } from '../imports/api/products';
+import { Products } from '../imports/api/products';
+import { Brands } from '../imports/api/brands';
 import { Colors } from '../imports/api/colors';
 import { ProductDetails } from '../imports/api/product-details';
 import { publishComposite } from 'meteor/reywood:publish-composite';
@@ -56,8 +57,9 @@ Meteor.startup(() => {
 
         products.map(product => {
             const { id, name, price, images, brandId, categoryId, kindOfClothesId } = product;
+            const createAt = new Date();
             Products.insert({
-                id, name, price, images, brandId, categoryId, kindOfClothesId
+                id, name, price, images, brandId, categoryId, kindOfClothesId, createAt
             });
         });
     }

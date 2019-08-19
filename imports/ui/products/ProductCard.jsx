@@ -1,6 +1,6 @@
 import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Brands } from '../../api/products';
+import { Brands } from '../../api/brands';
 
 class ProductCard extends React.Component {
     customPrice = (price) => {
