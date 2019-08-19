@@ -156,7 +156,7 @@ class App extends Component {
         { isAdmin &&
           <div >         
             <Switch>
-              <Route exact path="/admin" component={AdminPage} />
+              <Route path="/admin" component={AdminPage} />
               <Route exact path="/admin/login" component={LoginPage} />
             </Switch>
           </div>

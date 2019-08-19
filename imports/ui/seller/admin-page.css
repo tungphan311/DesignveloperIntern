@@ -114,3 +114,8 @@
     box-shadow: 0 5px 20px 0 rgba(61, 61, 63, 0.2);
     border: solid 2px var(--white);
 }
+
+.adminpage-content {
+    width: 100%;
+    min-height: 100vh;
+}

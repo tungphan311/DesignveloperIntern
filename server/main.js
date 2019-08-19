@@ -149,4 +149,8 @@ Meteor.startup(() => {
     Meteor.publish('productDetails', function (productId) {
         return ProductDetails.find({ productId: productId });
     });
+
+    Meteor.publish('productList', function () {
+        return Products.find({});
+    });
 });

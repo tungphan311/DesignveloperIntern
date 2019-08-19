@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 
 class Orders extends Component {
     state = {  }
+
+    componentDidMount = () => {
+        this.props.changeMenu(1);
+    }
+
     render() { 
-        // console.log('oreders')
         return ( 
             <div>Orders Page</div>
         );

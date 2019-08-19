@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import { Redirect } from 'react-router-dom';
 import './admin-page.css';
 import LeftMenu from './LeftMenu';
 import Orders from './Orders';
-import Products from './Products';
+import AdminProducts from './Products';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { Router, Route, Switch } from 'react-router-dom';
+import SecondWrongRouter from './SecondWrongRouter';
 
 class AdminPage extends Component {
     constructor(props) {
@@ -27,7 +29,7 @@ class AdminPage extends Component {
     }
 
     componentDidMount = () => {
-        this.setState({ selected_menu: this.props.selected });
+        // this.setState({ selected_menu: this.props.selected });
     }
    
     checkUser = () => {
@@ -45,34 +47,20 @@ class AdminPage extends Component {
         this.setState({selected_menu: id});
 
         if (id == 1) {
-            this.props.history.push('?orders');
+            this.props.history.push('/admin/orders');
         } else if (id == 2) {
-            this.props.history.push('?products');
+            this.props.history.push('/admin/products');
         }
         
     }
 
-    renderContent = () => {
-
-        if (this.props.location.search === "?orders") {
-            // this.setState({selected_menu: 1});
-            return <Orders />
-        }
-
-        if (this.props.location.search === "?products") {
-            // this.setState({selected_menu: 2});
-            return <Products />
-        }
-    }
-
     render() { 
         const user = this.props.currentUser;
-        // console.log(user);
         const { menus, selected_menu } = this.state;
         this.checkUser();
 
         return ( 
-            <div>
+            <Fragment>
                 {/* { (!user || user.emails[0].address != 'tungpt@dgroup.co') &&
                     <Redirect to='/admin/login' />
                 } */}
@@ -87,9 +75,6 @@ class AdminPage extends Component {
                         <span className="adminpage-title">{menus[selected_menu].name}</span>
                     
                         <span className="adminpage-topbar-rightside">
-                            {/* <span id="adminpage-avatar">
-                                <img src="/image.png" alt="admin-avatar" className="user-avatar" />
-                            </span> */}
                             <img src="/image.png" alt="admin-avatar" className="adminpage-avatar" />
 
                             <button id="adminpage-user">
@@ -107,28 +92,41 @@ class AdminPage extends Component {
                             </span>
                         </span>
                     </div>  
-                    { this.renderContent() }
+ 
+                    <div className="adminpage-content">
+                        <Switch>
+                            <Route exact path="/admin/orders" render={(props) => 
+                                <Orders changeMenu={this.changeMenu} {...props} />} />
+                            <Route exact path="/admin/products" render={(props) => 
+                                <AdminProducts changeMenu={this.changeMenu} {...props} />} />
+                            <Route path={'/admin' + '*'} component={SecondWrongRouter} />
+                        </Switch>
+                    </div>
                 </div>   
-            </div>
+            </Fragment>
         );
     }
 }
  
 export default withTracker((props) => {
-    const search = props.location.search;
-    if (search == "") {
-       props.history.push('?orders');
+    const pathname = props.history.location.pathname;
+
+    if (pathname == "/admin") {
+        props.history.push("/admin/orders");
     }
 
-    let selected = 1;
-    if (search == '?orders') {
-        selected = 1;
-    } else if (search == '?products') {
-        selected = 2;
-    }
+    // let selected = 1;
+    // let lastSplash = pathname.lastIndexOf('/');
+    // let select = pathname.substring(lastSplash + 1);
+    // if (select == "orders") {
+    //     selected = 1;
+    // } else if (select == "products") {
+    //     selected == 2;
+    // } 
+
+    // console.log(selected);
 
     return {
         currentUser: Meteor.user(),
-        selected
     }
 })(AdminPage);
