@@ -109,7 +109,13 @@ Meteor.startup(() => {
     });
 
     Meteor.publish('categories', function (id) {
-        return Categories.find({ kindOfClothesId: id });
+        let categories = null;
+        if (id) {
+            categories = Categories.find({ kindOfClothesId: id });
+        } else {
+            categories = Categories.find({});
+        }
+        return categories;
     });
 
     Meteor.publish('products', function (filter, page) {

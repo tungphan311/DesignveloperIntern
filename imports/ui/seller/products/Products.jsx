@@ -8,6 +8,7 @@ import { Products } from '../../../api/products';
 import ProductRow from './ProductRow';
 import qs from 'query-string';
 import Pagination from "react-js-pagination";
+
 class AdminProducts extends Component {
     state = { 
         showDropdown: false,

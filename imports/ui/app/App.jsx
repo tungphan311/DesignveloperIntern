@@ -124,6 +124,7 @@ class App extends Component {
   }
 
   render() {
+    // console.log(this.props.currentUser);
     const pathname = this.props.history.location.pathname;
     let isAdmin = pathname.substring(1, 6) == 'admin' ? true: false;
     return(

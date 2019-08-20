@@ -52,6 +52,7 @@ export default class AppHeader extends Component {
     }
     
     logout = () => {
+        console.log('logout');
         Meteor.logout((error) => {
             if (error) {
                 alert(error);

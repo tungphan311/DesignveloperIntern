@@ -112,7 +112,7 @@ class AdminPage extends Component {
                             <Route exact path="/admin/products/add" render={(props) => 
                                 <AddProduct changeMenu={this.changeMenuSelect} {...props} /> } />
                                 
-                            <Route path={'/admin' + '*'} component={SecondWrongRouter} />
+                            {/* <Route path={'/admin' + '*'} component={SecondWrongRouter} /> */}
                         </Switch>
                     </div>
                 </div>   
