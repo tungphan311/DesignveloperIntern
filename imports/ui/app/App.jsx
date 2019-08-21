@@ -46,7 +46,6 @@ class App extends Component {
             return prd;
           }
         });
-        console.log(newCart);
       } else {
         newCart = [...newCart, product];
       }
@@ -86,9 +85,8 @@ class App extends Component {
       let newCart = curState.cart.map(product => {
         if (product.productDetailId != id) {
           return product;
-        } else {
-          Meteor.subscribe('productDetails');
-          
+        } else {       
+
           const prodDetail = this.props.productDetails.find(prd => prd._id == id);
           const maxValue = prodDetail.amountInStock;
 
@@ -115,10 +113,8 @@ class App extends Component {
       const product = newCart.find(p => p.productDetailId == id);
       const index = newCart.indexOf(product);
 
-      newCart = newCart.filter(p => p != product);
-
       return {
-        cart: newCart,
+        cart: newCart.filter(p => p != product),
       }
     });
   }
@@ -169,6 +165,7 @@ class App extends Component {
 export default withTracker((props) => {
   Meteor.subscribe('subjects');
   Meteor.subscribe('kindOfClothes');
+  Meteor.subscribe('productDetails');
   // console.log(props);
 
   return {

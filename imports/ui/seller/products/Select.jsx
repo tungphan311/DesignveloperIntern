@@ -17,11 +17,11 @@ class Select extends Component {
     componentDidUpdate = () => {
         const { values } = this.state;
 
-        const ids = values.map(value => {
-            return this.findId(value);
-        });
+        // const ids = values.map(value => {
+        //     return this.findId(value);
+        // });
 
-        this.props.addProperty(ids);
+        // this.props.addProperty(ids);
     }
 
     renderValues = () => {
@@ -137,6 +137,9 @@ class Select extends Component {
 
         this.setState(curState => {
             if (!multiple) {
+                const id = this.findId(value);
+                const ids = [id];
+                this.props.addProperty(ids);
                 return {
                     values: [value],
                     isOpen: false,
@@ -151,6 +154,12 @@ class Select extends Component {
             } else {
                 values.splice(index, 1);
             }
+
+            const ids = values.map(value => {
+                return this.findId(value);
+            });
+    
+            this.props.addProperty(ids);
 
             return {
                 values: values,

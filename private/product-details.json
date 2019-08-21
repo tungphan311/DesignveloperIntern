@@ -1,62 +1,52 @@
 [
     {
-        "productId": "758er6fpJeQ8ZFTbf",
+        "productId": "yodNGc7NiuJpLwD65",
         "size": "S",
-        "colorId": 1,
-        "amountInStock": 3
+        "colorId": "qqQ6XKpJZXF2HeqeL"
     },
     {
-        "productId": "758er6fpJeQ8ZFTbf",
+        "productId": "yodNGc7NiuJpLwD65",
         "size": "M",
-        "colorId": 1,
-        "amountInStock": 10
+        "colorId": "qqQ6XKpJZXF2HeqeL"
     },
     {
-        "productId": "758er6fpJeQ8ZFTbf",
+        "productId": "yodNGc7NiuJpLwD65",
         "size": "S",
-        "colorId": 2,
-        "amountInStock": 4
+        "colorId": "MKPYhxDCmdyMhn8Wn"
     },
     {
-        "productId": "758er6fpJeQ8ZFTbf",
+        "productId": "yodNGc7NiuJpLwD65",
         "size": "M",
-        "colorId": 2,
-        "amountInStock": 6
+        "colorId": "MKPYhxDCmdyMhn8Wn"
     },
     {
-        "productId": "758er6fpJeQ8ZFTbf",
+        "productId": "yodNGc7NiuJpLwD65",
         "size": "S",
-        "colorId": 3,
-        "amountInStock": 4
+        "colorId": "Hu8Zt6d5ZFGqE9P3r"
     },
     {
-        "productId": "758er6fpJeQ8ZFTbf",
+        "productId": "yodNGc7NiuJpLwD65",
         "size": "M",
-        "colorId": 3,
-        "amountInStock": 6
+        "colorId": "Hu8Zt6d5ZFGqE9P3r"
     },
     {
-        "productId": "758er6fpJeQ8ZFTbf",
+        "productId": "yodNGc7NiuJpLwD65",
         "size": "S",
-        "colorId": 4,
-        "amountInStock": 4
+        "colorId": "t6iXDj2tLyCR5rjBu"
     },
     {
-        "productId": "758er6fpJeQ8ZFTbf",
+        "productId": "yodNGc7NiuJpLwD65",
         "size": "M",
-        "colorId": 4,
-        "amountInStock": 6
+        "colorId": "t6iXDj2tLyCR5rjBu"
     },
     {
-        "productId": "AZsPej3ee5HuR9A73",
+        "productId": "g3DWc6fgxbMQbASum",
         "size": "S",
-        "colorId": 5,
-        "amountInStock": 4
+        "colorId": "SQbKjKeKT8WxMZcnS"
     },
     {
-        "productId": "AZsPej3ee5HuR9A73",
+        "productId": "g3DWc6fgxbMQbASum",
         "size": "M",
-        "colorId": 5,
-        "amountInStock": 6
+        "colorId": "SQbKjKeKT8WxMZcnS"
     }
 ]

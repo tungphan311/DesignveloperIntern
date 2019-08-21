@@ -13,7 +13,7 @@ class CartItem extends Component {
     }
 
     findColorName = (colorId) => {
-        const color = this.props.colors.find(color => color.id == colorId);
+        const color = this.props.colors.find(color => color._id == colorId) || {};
 
         return color.name;
     }
@@ -43,10 +43,13 @@ class CartItem extends Component {
 export default withTracker((props) => {
     const item = props.item;
     Meteor.subscribe('productDetails');
+    
+    console.log(item);
 
     let productItem = null
 
-    const productDetail = ProductDetails.findOne({ _id:  item.productDetailId })
+    const productDetail = ProductDetails.findOne({ _id:  item.productDetailId });
+    console.log(productDetail);
     if (productDetail) {
         productItem = Products.findOne({ _id: productDetail.productId });
     }

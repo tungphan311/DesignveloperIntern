@@ -21,7 +21,7 @@ class ProductDetail extends React.Component {
             getSize: false,
             getColors: false,
             listColors: [],
-            colorId: 0,
+            colorId: '',
             amount: 0,
             reachMaxAmount: false,
         }
@@ -110,19 +110,22 @@ class ProductDetail extends React.Component {
         if (this.state.colorId != id) {
             this.setState({colorId: id});
         } else {
-            this.setState({colorId: 0});
+            this.setState({colorId: ''});
         }
     } 
 
     renderColors = () => {
+        // console.log(this.props.colors);
         if (this.state.listColors.length > 0) {
-            return this.state.listColors.map(color => {
-                const { _id, id, name, value } = this.props.colors[color - 1];
+            return this.state.listColors.map(colorId => {
+                const color = this.props.colors.find(col => col._id === colorId);
+                if (!color) return null;
+                const { _id, value } = color;
                 return (
-                    <button key={_id} id={id} className="product-detail-color-btn" onClick={this.selectColor}
+                    <button key={_id} id={_id} className="product-detail-color-btn" onClick={this.selectColor}
                         style={{
                             backgroundColor: `${value}`,
-                            opacity: `${this.state.colorId == id ? 1 : 0.3 }`
+                            opacity: `${this.state.colorId == _id ? 1 : 0.3 }`
                     }}></button>
                 );
             })
@@ -142,7 +145,7 @@ class ProductDetail extends React.Component {
     }
 
     increaseAmount = () => {
-        if (this.state.colorId == 0) {
+        if (this.state.colorId == '') {
             return false;
         }
         const detail = this.props.productDetails.find((productDetail) => {
@@ -161,7 +164,7 @@ class ProductDetail extends React.Component {
     addToCart = () => {
         const { colorId, amount } = this.state;
 
-        if (colorId == 0) {
+        if (colorId == '') {
             alert("Please choose a color!!!");
             return;
         }
@@ -178,7 +181,7 @@ class ProductDetail extends React.Component {
         });
 
         addToCart(detail._id, this.state.amount);
-        this.setState({ colorId: 0, amount: 0 })
+        this.setState({ colorId: '', amount: 0 })
     }
 
     render() {
@@ -219,8 +222,6 @@ class ProductDetail extends React.Component {
                 opacity: "0.3"
             }
         }
-
-        console.log(this.props.product);
         return (
             <div>
                 { this.props.product.length == 0 &&
@@ -306,7 +307,7 @@ export default withTracker((props) => {
     return {
         productId: productId,
         product: Products.find({}).fetch(),
-        colors: Colors.find({}).fetch(),
+        colors: Colors.find({}).fetch() || [],
         productDetails: ProductDetails.find({}).fetch()
     };
 })(ProductDetail);

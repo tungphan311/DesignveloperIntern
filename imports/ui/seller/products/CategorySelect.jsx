@@ -15,6 +15,8 @@ class CategorySelect extends Component {
         });
 
         if (!options) return null;
+
+        // console.log(this.props.categories);
         return ( 
             <Select 
                 placeholder="Select categories"

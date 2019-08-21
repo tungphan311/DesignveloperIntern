@@ -1,10 +1,10 @@
 [
-    { "id": 1, "name": "Rompers/Jumpsuits", "kindOfClothesId": 9 },
-    { "id": 2, "name": "Casual dresses", "kindOfClothesId": 9 },
-    { "id": 3, "name": "Going out dresses", "kindOfClothesId": 9 },
-    { "id": 4, "name": "Party/Occasion dresses", "kindOfClothesId": 9 },
-    { "id": 5, "name": "Mini dresses", "kindOfClothesId": 9 },
-    { "id": 6, "name": "Maxi/Midi dresses", "kindOfClothesId": 9 },
-    { "id": 7, "name": "Sets", "kindOfClothesId": 9 },
-    { "id": 8, "name": "Casual T-Shirts", "kindOfClothesId": 1 }
+    { "name": "Rompers/Jumpsuits", "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd" },
+    { "name": "Casual dresses", "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd" },
+    { "name": "Going out dresses", "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd" },
+    { "name": "Party/Occasion dresses", "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd" },
+    { "name": "Mini dresses", "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd" },
+    { "name": "Maxi/Midi dresses", "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd" },
+    { "name": "Sets", "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd" },
+    { "name": "Casual T-Shirts", "kindOfClothesId": "iKwwdMDX9KnyKoRX8" }
 ]

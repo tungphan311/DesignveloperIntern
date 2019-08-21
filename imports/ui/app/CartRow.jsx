@@ -15,7 +15,7 @@ class CartRow extends Component {
     }
 
     findColorValue = (colorId) => {
-        const color = this.props.colors.find(color => color.id == colorId);
+        const color = this.props.colors.find(color => color._id == colorId);
 
         return color.value;
     }
@@ -35,16 +35,17 @@ class CartRow extends Component {
     }
 
     render() {
-        const { item, productItem: product, productDetail } = this.props;
-        if (!product) return null;
+        const { item, productItem, productDetail } = this.props;
+        console.log(productItem);
+        if (!productItem) return null;
 
         return (
             <Fragment>
                 <div className="table-body-cell">
-                    <div className="cartpage-product-info-left" style={{backgroundImage: `url(${product.images[0]})`, backgroundSize: "cover"}} />
+                    <div className="cartpage-product-info-left" style={{backgroundImage: `url(${productItem.images[0]})`, backgroundSize: "cover"}} />
             
                     <div className="cartpage-product-info-right">
-                        <div className="cartpage-productname">{product.name}</div>
+                        <div className="cartpage-productname">{productItem.name}</div>
                         
                         <div className="cartpage-buttonwrapper">
                             <button className="cartpage-product-button change-btn">Change</button>
@@ -72,7 +73,7 @@ class CartRow extends Component {
                     </div>
                 </div>
                 <div className="table-body-cell" style={{textAlign: "right"}}>
-                    <div>{this.customPrice(product.price * item.amount)}</div>
+                    <div>{this.customPrice(productItem.price * item.amount)}</div>
                 </div>
             </Fragment>
         );
@@ -83,9 +84,12 @@ export default withTracker((props) => {
     const item = props.item;
     Meteor.subscribe('productDetails');
 
+    // console.log(item);
+
     let productItem = null
 
-    const productDetail = ProductDetails.findOne({ _id:  item.productDetailId })
+    const productDetail = ProductDetails.findOne({ _id:  item.productDetailId });
+    console.log(productDetail);
     if (productDetail) {
         productItem = Products.findOne({ _id: productDetail.productId });
     }
@@ -94,7 +98,7 @@ export default withTracker((props) => {
 
     return {
         productItem,
-        productDetail: ProductDetails.findOne({ _id:  item.productDetailId }),
+        productDetail,
         colors: Colors.find({}).fetch()
     }
 })(CartRow);

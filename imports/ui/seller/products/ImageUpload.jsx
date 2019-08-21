@@ -50,6 +50,7 @@ class ImageUpload extends Component {
                 token.splice(-2, 0, 'w_150,c_scale');
 
                 this.setState({image: token.join('/'), loading: false});
+                this.props.add(token.join('/'));
                 // document.getElementById('image-loaded').src = token.join('/');
             } 
         }

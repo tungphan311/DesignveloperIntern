@@ -19,7 +19,7 @@ class ProductList extends React.Component {
             listProducts: [],
             filter: {
                 kindOfClothesId: 0,
-                categoryId: 0,
+                categoryId: '',
                 size: {},
                 color: {},
                 brand: {},
@@ -31,7 +31,7 @@ class ProductList extends React.Component {
             query: {
                 page: 1,
                 sort: 1,
-                category: 0,
+                category: '',
             }
         }
     }
@@ -48,6 +48,7 @@ class ProductList extends React.Component {
 
             newQuery.sort = this.props.sortId;
             newQuery.page = parseInt(this.props.page);
+            newQuery.category = this.props.category;
 
             return {
                 query: newQuery,
@@ -226,11 +227,6 @@ class ProductList extends React.Component {
 }
 
 export default withTracker((props) => {
-    console.log(props);
-    // const location = props.history.location.pathname;
-    // let lastSplash = location.lastIndexOf('/');
-    // const detail = location.substring(lastSplash + 1);
-    // const afterSplash = detail.charAt(0).toUpperCase() + detail.slice(1);
     const kindOfClothes = props.kindOfClothes;
 
     const params = props.match.params;
@@ -244,11 +240,18 @@ export default withTracker((props) => {
     const search = props.history.location.search;
 
     const categoryIndex = search.indexOf('category');
-    let categoryId = 0;
+    let categoryId = '';
     if (categoryIndex > -1) {
-        categoryId = search.substring(categoryIndex+9)[0];
+        let andPos = categoryIndex;
+        for (var i = categoryIndex; i<search.length; i++) {
+            if (search[i] == '&') {
+                andPos = i;
+                break;
+            }
+        }
+        categoryId = search.substring(categoryIndex+9, andPos);
     } else {
-        categoryId = 0;
+        categoryId = '';
     }
 
     const sortIndex = search.indexOf('sort');
@@ -291,13 +294,14 @@ export default withTracker((props) => {
         products = Products.find({}, { sort: sort ,limit: 20 }).fetch();
     }
     else {
-         const oldProduct = Products.find({}, { sort: sort ,limit: 20 }).fetch();
-         products = oldProduct.filter(prd => prd.categoryId == categoryId);
+        const oldProduct = Products.find({}, { sort: sort ,limit: 20 }).fetch();
+        products = oldProduct.filter(prd => prd.categoryId == categoryId);
     }
   
     return {
         page: page,
         sortId: sortId,
+        category: categoryId,
         categories: Categories.find({}).fetch(),
         products,
         subjectName,

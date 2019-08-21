@@ -17,15 +17,17 @@ Meteor.startup(() => {
     const numberOfBrand = Brands.find({}).count();
     const numberOfColor = Colors.find({}).count();
     const numberOfProductDetail = ProductDetails.find({}).count();
+
+    console.log(numberOfColor);
  
     if (!numberOfSubject) {
         // Generate data when it's empty
         var subjects = JSON.parse(Assets.getText("subjects.json"));
 
         subjects.map(menu => {
-            const { id, name, route, img } = menu;
+            const { name, route, img } = menu;
             Subjects.insert({
-                id, name, route, img
+                name, route, img
             });
         });
     }
@@ -34,9 +36,9 @@ Meteor.startup(() => {
         var kindOfClothes = JSON.parse(Assets.getText("kind-of-clothes.json"));
 
         kindOfClothes.map(kind => {
-            const { id, name, subjectId } = kind;
+            const { name, subjectId } = kind;
             KindOfClothes.insert({
-                id, name, subjectId
+                name, subjectId
             });
         });
     }
@@ -45,9 +47,9 @@ Meteor.startup(() => {
         var categories = JSON.parse(Assets.getText("categories.json"));
 
         categories.map(cat => {
-            const { id, name, kindOfClothesId } = cat;
+            const { name, kindOfClothesId } = cat;
             Categories.insert({
-                id, name, kindOfClothesId
+                name, kindOfClothesId
             });
         });
     }
@@ -56,10 +58,10 @@ Meteor.startup(() => {
         var products = JSON.parse(Assets.getText("products.json"));
 
         products.map(product => {
-            const { id, name, price, images, brandId, categoryId, kindOfClothesId } = product;
+            const { name, price, images, brandId, categoryId, kindOfClothesId, quantity, description } = product;
             const createAt = new Date();
             Products.insert({
-                id, name, price, images, brandId, categoryId, kindOfClothesId, createAt
+                name, price, images, brandId, categoryId, kindOfClothesId, quantity, description, createAt
             });
         });
     }
@@ -68,10 +70,10 @@ Meteor.startup(() => {
         var brands = JSON.parse(Assets.getText("brands.json"));
 
         brands.map(brand => {
-            const { id, name } = brand;
+            const { name } = brand;
 
             Brands.insert({
-                id, name
+                name
             });
         });
     }
@@ -80,10 +82,10 @@ Meteor.startup(() => {
         var colors = JSON.parse(Assets.getText("colors.json"));
 
         colors.map(color => {
-            const { id, name, value } = color;
+            const { name, value } = color;
 
             Colors.insert({
-                id, name, value
+                name, value
             });
         });
     }
@@ -92,10 +94,10 @@ Meteor.startup(() => {
         var productDetails = JSON.parse(Assets.getText("product-details.json"));
 
         productDetails.map(detail => {
-            const { productId, size, colorId, amountInStock } = detail;
+            const { productId, size, colorId } = detail;
 
             ProductDetails.insert({
-                productId, size, colorId, amountInStock
+                productId, size, colorId
             });
         });
     }
@@ -151,12 +153,36 @@ Meteor.startup(() => {
     });
 
     Meteor.publish('colors', function () {
-        return Colors.find({});
+        const colors = Colors.find({});
+        return colors;
     });
 
-    Meteor.publish('productDetails', function (productId) {
-        return ProductDetails.find({ productId: productId });
-    });
+    // Meteor.publish('productDetails', function (productId) {
+    //     if (productId) {
+    //         return ProductDetails.find({ productId: productId });
+    //     } else {
+    //         return ProductDetails.find({});
+    //     }
+    // });
+
+    publishComposite('productDetails', function (productId) {
+        return {
+            find() {
+                if (productId) {
+                    return ProductDetails.find({ productId: productId });
+                } else {
+                    return ProductDetails.find({});
+                }
+            },
+            children() {
+                return [{
+                    find(productDetail) {
+                        return Products.find({ _id: productDetail.productId });
+                    }
+                }]
+            }
+        }
+    })
 
     Meteor.publish('productList', function () {
         return Products.find({});

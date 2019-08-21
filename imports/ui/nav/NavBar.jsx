@@ -19,7 +19,7 @@ class NavBar extends Component {
     renderNavbar = () => {
         return this.props.subjects.map((item) => (
             <li key={item._id} className="list-inline-item">
-                <button id={item.id} className="menu-item" onClick={this.showDropdown}>
+                <button id={item._id} className="menu-item" onClick={this.showDropdown}>
                     {item.name}
                     <FontAwesomeIcon icon={faChevronDown} className="right-icon" />
                 </button>
@@ -28,8 +28,6 @@ class NavBar extends Component {
     }
 
     showDropdown = (event) => {
-        // event.preventDefault();
-
         const subjectId = event.target.id;
 
         const lists = this.props.kinds.filter((kind) => kind.subjectId == subjectId );
