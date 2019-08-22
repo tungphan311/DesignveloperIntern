@@ -7,7 +7,8 @@ import { Brands } from '../imports/api/brands';
 import { Colors } from '../imports/api/colors';
 import { ProductDetails } from '../imports/api/product-details';
 import { publishComposite } from 'meteor/reywood:publish-composite';
-
+import { Orders } from '../imports/api/orders';
+ 
 Meteor.startup(() => {
     // check to see if data exists in menus collection
     const numberOfSubject = Subjects.find({}).count();  
@@ -187,4 +188,8 @@ Meteor.startup(() => {
     Meteor.publish('productList', function () {
         return Products.find({});
     });
+
+    Meteor.publish('orders', function () {
+        return Orders.find({});
+    })
 });

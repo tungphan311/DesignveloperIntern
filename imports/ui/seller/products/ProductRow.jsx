@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Categories, KindOfClothes } from '../../../api/kind-of-clothes';
+import { Subjects } from '../../../api/subjects';
 
 class ProductRow extends Component {
     state = { 
@@ -28,7 +31,14 @@ class ProductRow extends Component {
         this.props.showAction(0);
     }
     render() { 
-        const {product} = this.props
+        const { product, category, kindOfClothes, subjects } = this.props;
+
+        if (!category || !subjects || !kindOfClothes) {
+            return null;
+        }
+
+        const subject = subjects.find(sub => sub._id == kindOfClothes.subjectId);
+
         return ( 
             <div className="adminpage-table-row">
                 <div className="adminpage-table-body-cell">
@@ -38,7 +48,7 @@ class ProductRow extends Component {
 
                     <div style={{marginLeft: "calc(700vw/144)"}}>
                         <div className="product-row-name">{product.name}</div>
-                        <div className="product-row-detail">{product.categoryId} </div>
+                        <div className="product-row-detail">{`${subject.name}, ${category.name}`}</div>
                     </div>
                 </div>
                 <div className="adminpage-table-body-cell">
@@ -74,4 +84,19 @@ class ProductRow extends Component {
     }
 }
  
-export default ProductRow;
+export default withTracker((props) => {
+    const { product } = props;
+
+    Meteor.subscribe('subjects');
+    Meteor.subscribe('kindOfClothes');
+    Meteor.subscribe('categories');
+
+    const category = Categories.findOne({ _id: product.categoryId });
+    const kindOfClothes = KindOfClothes.findOne({ _id: product.kindOfClothesId });
+
+    return {
+        category,
+        kindOfClothes,
+        subjects: Subjects.find({}).fetch(),
+    }
+})(ProductRow);

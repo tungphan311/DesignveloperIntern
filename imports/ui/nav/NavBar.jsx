@@ -12,14 +12,59 @@ class NavBar extends Component {
         this.state = {
             show: false,
             lists: [],
-            choosedSubject: 0,
+            choosedSubject: '',
         }
     }
+
+    componentDidMount = () => {
+        document.body.addEventListener('click', this.eventHandler);
+    }
+
+    componentWillMount = () => {
+        document.body.removeEventListener('click', this.eventHandler);
+    }
     
+    eventHandler = (e) => {
+        const name = e.target.name;
+        const subjectId = event.target.id;
+        const { show, choosedSubject } = this.state;
+
+        const lists = this.props.kinds.filter((kind) => kind.subjectId == subjectId );
+
+        if (name === 'navbar') {
+            if (!show) {
+                this.setState({
+                    show: true,
+                    choosedSubject: subjectId,
+                    lists: lists,
+                });
+            } else {
+                if (subjectId === choosedSubject) {
+                    this.setState({
+                        show: false,
+                        choosedSubject: '',
+                        lists: [],
+                    });
+                } else {
+                    this.setState({
+                        show: true,
+                        choosedSubject: subjectId,
+                        lists: lists,
+                    });
+                }
+            }
+        }
+
+        const btnWrapper = ['btnNavbar', 'navbar']
+        if (show && !btnWrapper.includes(name)) {
+            this.setState({ show: false, choosedSubject: '', lists: [] });
+        }
+    }
+
     renderNavbar = () => {
         return this.props.subjects.map((item) => (
-            <li key={item._id} className="list-inline-item">
-                <button id={item._id} className="menu-item" onClick={this.showDropdown}>
+            <li key={item._id} className="list-inline-item" >
+                <button id={item._id} className="menu-item" name="navbar" onClick={this.showDropdown}> 
                     {item.name}
                     <FontAwesomeIcon icon={faChevronDown} className="right-icon" />
                 </button>
@@ -27,32 +72,41 @@ class NavBar extends Component {
         )); 
     }
 
-    showDropdown = (event) => {
-        const subjectId = event.target.id;
+    // showDropdown = (event) => {
+    //     const { choosedSubject } = this.state;
+    //     const subjectId = event.target.id;
 
-        const lists = this.props.kinds.filter((kind) => kind.subjectId == subjectId );
+    //     const lists = this.props.kinds.filter((kind) => kind.subjectId == subjectId );
         
-        if (!this.state.show) {
-            this.setState({
-                show: true,
-                choosedSubject: subjectId,
-                lists: lists,
-            });
-        } else {
-            if (subjectId == this.state.choosedSubject) {
-                this.setState({
-                    show: false,
-                    choosedSubject: 0,
-                    lists: [],
-                });
-            } else {
-                this.setState({
-                    show: true,
-                    choosedSubject: subjectId,
-                    lists: lists,
-                })
-            }
-        }  
+    //     if (!this.state.show) {
+    //         this.setState({
+    //             show: true,
+    //             choosedSubject: subjectId,
+    //             lists: lists,
+    //         });
+    //     } else {
+    //         if (subjectId == choosedSubject) {
+    //             this.setState({
+    //                 show: false,
+    //                 choosedSubject: '',
+    //                 lists: [],
+    //             });
+    //         } else {
+    //             this.setState({
+    //                 show: true,
+    //                 choosedSubject: subjectId,
+    //                 lists: lists,
+    //             })
+    //         }
+    //     }  
+    // }
+
+    showItemDropdown = () => {
+        this.setState({
+            show: false,
+            choosedSubject: '',
+            lists: [],
+        });
     }
 
     render() {
@@ -61,7 +115,7 @@ class NavBar extends Component {
                 <ul className="list-inline text-center">
                     {this.renderNavbar()}
                 </ul>
-                <NavBarItem show={this.state.show} item={this.state.lists} />
+                <NavBarItem show={this.state.show} item={this.state.lists} showDropdown={this.showItemDropdown} />
             </div>
         );
     }  

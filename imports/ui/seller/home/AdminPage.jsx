@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { Redirect } from 'react-router-dom';
 import './admin-page.css';
 import LeftMenu from './LeftMenu';
-import Orders from '../Orders';
+import OrderPage from '../orders/Orders';
 import AdminProducts from '../products/Products';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
@@ -104,7 +104,7 @@ class AdminPage extends Component {
                     <div className="adminpage-content">
                         <Switch>
                             <Route exact path="/admin/orders" render={(props) => 
-                                <Orders changeMenu={this.changeMenu} {...props} />} />
+                                <OrderPage changeMenu={this.changeMenu} {...props} />} />
 
                             <Route exact path="/admin/products" render={(props) => 
                                 <AdminProducts changeMenu={this.changeMenu} {...props} />} />

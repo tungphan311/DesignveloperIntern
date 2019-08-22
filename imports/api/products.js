@@ -2,6 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema'
+import { ProductDetails } from './product-details';
 
 export const Products = new Mongo.Collection('products');
 
@@ -33,18 +34,33 @@ ProductSchema = new SimpleSchema({
     createAt: { type: Date }
 });
 
+// ProductDetailsSchema = new SimpleSchema({
+//     productId: { 
+//         type: String, 
+//         regEx: SimpleSchema.RegEx.Id 
+//     },
+//     size: { 
+//         type: String,  
+//         allowedValues: ['S', 'M', 'L']
+//     },
+//     colorId: {
+//         type: String,
+//         regEx: SimpleSchema.RegEx.Id 
+//     },
+// });
+
 Meteor.methods({
     'products.remove'(users, productId) {
         check(productId, String);
 
         if (!users || users.emails[0].address !== 'tungpt@dgroup.co') {
-            throw new Error("You don't have permissions to do this action!!!");
+            throw new Meteor.Error('account-error' ,"You don't have permissions to do this action!!!");
         }
 
         Products.remove(productId);
     },
 
-    'products.insert'(users, product) {
+    'products.insert'(users, product, sizes, colors) {
         check(product, ProductSchema);
 
         if (!users || users.emails[0].address !== 'tungpt@dgroup.co') {
@@ -54,11 +70,27 @@ Meteor.methods({
         // const { name, price, images, brandId, categoryId, quantity, description, createAt } = product;
         const { id, name, price, images, brandId, categoryId, kindOfClothesId } = product;
         
-        return Products.insert({
+        Products.insert({
             id, name, price, images, brandId, categoryId, kindOfClothesId
-        }, (error) => {
+        }, (error, response) => {
             if (error) {
                 throw new Meteor.Error('add-error' ,error);
+            }
+
+            if (response) {
+                sizes.map(size => {
+                    colors.map(color => {
+
+                        ProductDetails.insert({
+                            productId: response, size, colorId: color,
+                        }, (error) => {
+                            if (error) {
+                                Products.remove(response);
+                                throw new Meteor.Error('add-detail-error', error);
+                            }
+                        })
+                    })
+                })
             }
         });
 

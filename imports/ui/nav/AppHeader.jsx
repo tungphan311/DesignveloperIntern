@@ -15,7 +15,54 @@ export default class AppHeader extends Component {
             kindModal: '',
             showDropdown: false,
             showCart: false,
+            showNavbar: false,
         };
+    }
+
+    componentDidMount = () => {
+        document.body.addEventListener('click', this.clickEventHandler);
+    }
+
+    componentWillMount = () => {
+        document.body.removeEventListener('click', this.clickEventHandler);
+    }
+
+    componentDidUpdate = () => {
+        if (this.state.showCart) {
+            document.getElementById('cartList').focus();
+        }
+    }
+
+    clickEventHandler = (e) => {
+        console.log(e.target.id);
+        const id = e.target.id;
+
+        const { showCart, showDropdown } = this.state;
+
+        if (id === 'cartBtn') {
+            this.setState(curState => {
+                return {
+                    showCart: !curState.showCart,
+                }
+            });
+        } 
+        
+        if (showCart && id !== 'btnViewCart') {
+            this.setState({ showCart: false });
+        } 
+
+        if (id === 'userAvatar') {
+            this.setState(curState => {
+                return {
+                    showDropdown: !curState.showDropdown,
+                }
+            });
+        }
+
+        const btnGroup = ['accountSetting', 'logoutBtn'];
+        if (showDropdown && !btnGroup.includes(id)) {
+            this.setState({ showDropdown: false })
+        }
     }
 
     openRegisterModal = () => {
@@ -52,7 +99,6 @@ export default class AppHeader extends Component {
     }
     
     logout = () => {
-        console.log('logout');
         Meteor.logout((error) => {
             if (error) {
                 alert(error);
@@ -65,13 +111,13 @@ export default class AppHeader extends Component {
         this.props.history.push('/');
     }
 
-    showDropdown = () => {
-        this.setState({ showDropdown: !this.state.showDropdown, showCart: false });
-    }
+    // showDropdown = () => {
+    //     this.setState({ showDropdown: !this.state.showDropdown });
+    // }
 
-    showListCart = () => {
-        this.setState({ showCart: !this.state.showCart, showDropdown: false })
-    }
+    // showListCart = () => {
+    //     this.setState({ showCart: !this.state.showCart, showDropdown: false });
+    // }
 
     renderCart = () => {
         return this.props.cart.map(item => (
@@ -82,9 +128,13 @@ export default class AppHeader extends Component {
         ));
     }
 
-    viewCart = () => {
+    viewCart = (e) => {
         this.props.history.push("/cart/listProducts");
-        this.setState({showCart: false});
+        this.setState({ showCart: false });
+    }
+
+    userAvaBlur = () => {
+        this.setState({showDropdown: false});
     }
 
     render() {
@@ -107,31 +157,31 @@ export default class AppHeader extends Component {
                      
                         {  this.props.currentUser && 
                             <div className="place-for-user">
-                                <button className="btn-logout" onClick={this.showDropdown}>
-                                    <img src="/image.png" alt="" className="user-avatar" />
+                                <button className="btn-logout">
+                                    <img src="/image.png" alt="" id="userAvatar" className="user-avatar" />
                                 </button>
 
                                 { this.state.showDropdown && 
                                     <div className="user-dropdown">
-                                        <button className="dropdown-btn">Account setting</button>
-                                        <button className="dropdown-btn" onClick={this.logout}>Log out</button>
+                                        <button className="dropdown-btn" id='accountSetting'>Account setting</button>
+                                        <button className="dropdown-btn" id='logoutBtn' onClick={this.logout}>Log out</button>
                                     </div>
                                 }
                             </div>
                         }
                         <div className="place-for-cart">
-                            <button className="btn-cart" onClick={this.showListCart}>
-                                <img src="/cart.png" alt="cart"/>
+                            <button className="btn-cart">
+                                <img src="/cart.png" alt="cart" id="cartBtn" />
                             </button>
                             <span id='lblCartCount'>{this.props.cart.length}</span>
 
                             { this.state.showCart && 
-                                <div className="cart-list">
+                                <div className="cart-list" id="cartList">
                                     { this.props.cart.length > 0 ? 
                                         <Fragment>
                                             { this.renderCart() }
                                             <div>
-                                                <button className="btn-viewCart" onClick={this.viewCart}>View cart</button>
+                                                <button className="btn-viewCart" id="btnViewCart" onClick={this.viewCart}>View cart</button>
                                             </div>
                                         </Fragment>
                                         :
@@ -149,7 +199,7 @@ export default class AppHeader extends Component {
                     
                     <hr className="top-line" />
 
-                    <NavBar subjects={this.props.subjects} kinds={this.props.kinds} />
+                    <NavBar subjects={this.props.subjects} kinds={this.props.kinds} show={this.state.showNavbar} />
                 </div>
 
                 <LoginAndSignupModal show={this.state.showModal} kind={this.state.kindModal} close={this.closeModal} 

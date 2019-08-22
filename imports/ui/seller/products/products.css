@@ -85,7 +85,7 @@
     color: var(--greyish);
 }
 
-#search-product-btn {
+.search-product-btn {
     padding: 0;
     width: calc(5vw/3);
     position: absolute;
@@ -108,13 +108,13 @@
     padding: 0px calc(5vw/3) calc(320vw/144) calc(5vw/3);
 }
 
-#adminpage-custom-table {
+.adminpage-custom-table {
     width: 100%;
     display: table;
     margin-bottom: calc(40vw/9);
 }
 
-#adminpage-table-header {
+.adminpage-table-header {
     display: table-header-group;
     background-color: white;
 }
@@ -171,16 +171,16 @@
     margin-right: calc(-5vw/3);
 }
 
-#adminpage-table-body {
+.adminpage-table-body {
     display: table-row-group;
 }
 
-#adminpage-product-list-footer {
+.adminpage-product-list-footer {
     width: 100%;
     height: calc(20vw/9);
 }
 
-#adminpage-product-list-footer-label {
+.adminpage-product-list-footer-label {
     font-size: calc(140vw/144);
     font-weight: 500;
     color: var(--charcoal-grey);

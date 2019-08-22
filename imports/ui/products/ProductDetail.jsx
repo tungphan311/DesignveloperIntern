@@ -48,9 +48,11 @@ class ProductDetail extends React.Component {
 
     renderImage = () => {
         const product = this.props.product[0];
+        // console.log(this.props.product);
         
         if (product != undefined) {
             let images = product.images;
+            // console.log(images);
 
             images = images.slice(1);
             
@@ -93,7 +95,9 @@ class ProductDetail extends React.Component {
 
     getColors = () => {      
         let result = [];
-        this.props.productDetails.map(detail => {
+        const { productDetails } = this.props;
+        // console.log(productDetails);
+        productDetails.map(detail => {
             if (!result.includes(detail.colorId)) {
                 result = [...result, detail.colorId];
             }
@@ -299,15 +303,17 @@ class ProductDetail extends React.Component {
 export default withTracker((props) => {
     const lastSlashPos = props.location.pathname.lastIndexOf('/');
     const productId = props.location.pathname.slice(lastSlashPos + 1);
+    // console.log(productId);
     
-    Meteor.subscribe('productWithBrand', productId);
+    // Meteor.subscribe('productWithBrand', productId);
+    // Meteor.subscribe('productWithId', productId);
     Meteor.subscribe('colors');
     Meteor.subscribe('productDetails', productId);
 
     return {
         productId: productId,
-        product: Products.find({}).fetch(),
+        product: Products.find({ _id: productId }).fetch(),
         colors: Colors.find({}).fetch() || [],
-        productDetails: ProductDetails.find({}).fetch()
+        productDetails: ProductDetails.find({ productId: productId }).fetch()
     };
 })(ProductDetail);

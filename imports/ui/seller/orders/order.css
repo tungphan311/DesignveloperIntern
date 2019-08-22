@@ -1,0 +1,93 @@
+input[type="date"] {
+    height: 100%;
+    margin-left: calc(200vw/144);
+}
+
+#datetime-today-btn {
+    height: 100%;
+    width: calc(800vw/144);
+    background-color: white;
+    border-radius: calc(20vw/144);
+    border: solid 1px var(--white-three);
+    font-weight: 500;
+    font-size: calc(140vw/144);
+    color: var(--charcoal-grey);
+    margin-left: calc(100vw/144);
+}
+
+#order-page-filter-row {
+    width: 100%;
+    height: calc(10vw/3);
+    margin-bottom: calc(20vw/9);
+}
+
+#datetime-yesterday-btn {
+    height: 100%;
+    width: calc(1100vw/144);
+    background-color: white;
+    border-radius: calc(20vw/144);
+    border: solid 1px var(--white-three);
+    font-weight: 500;
+    font-size: calc(140vw/144);
+    color: var(--charcoal-grey);
+    margin-left: calc(100vw/144);
+}
+
+#order-page-filter-row-right {
+    float: right;
+    height: 100%; 
+    position: relative;
+}
+
+#order-filter-row-export-btn {
+    height: 100%;
+    width: calc(70vw/9);
+    background-color: white;
+    border-radius: calc(20vw/144);
+    border: solid 1px var(--white-three);
+    position: relative;
+    text-align: left;
+    text-indent: calc(10vw/3);
+    color: var(--pale-orange);
+    font-size: calc(140vw/144);
+    font-weight: 600;
+    padding: 0;
+}
+
+#order-list-place {
+    width: 100%;
+    background-color: white;
+    border-radius: calc(20vw/144);
+    box-shadow: 0 10px 24px 0 rgba(0, 0, 0, 0.08);
+    padding: 0px calc(5vw/3) calc(320vw/144) calc(5vw/3);
+}
+
+.adminpage-table-header-cell#orderId {
+    width: 13%;
+}
+
+.adminpage-table-header-cell#orderDate {
+    width: 20%;
+}
+
+.adminpage-table-header-cell#orderDetail {
+    width: 30%;
+}
+
+.adminpage-table-header-cell#orderTotal {
+    width: 13%;
+}
+
+.adminpage-table-header-cell#orderStatus {
+    width: 13%;
+}
+
+.adminpage-table-body-cell#orderIdCell {
+    font-size: calc(100vw/144);
+    font-weight: 500;
+    color: var(--charcoal-grey);
+}
+
+.adminpage-table-body-cell#orderDateCell {
+    
+}

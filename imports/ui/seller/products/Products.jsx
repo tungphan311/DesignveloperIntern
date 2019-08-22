@@ -148,7 +148,7 @@ class AdminProducts extends Component {
                     </div>
 
                     <span id="product-page-filter-row-right">
-                        <FontAwesomeIcon icon={faSearch} id="search-product-btn" />
+                        <FontAwesomeIcon icon={faSearch} className="search-product-btn" />
                         <input type="text" placeholder="Search product" id="search-product" />
 
                         <button id="filter-row-add-product-btn" onClick={this.addProduct}>
@@ -163,8 +163,8 @@ class AdminProducts extends Component {
                 </div>
             
                 <div id="product-list-place">
-                    <div id="adminpage-custom-table">
-                        <div id="adminpage-table-header">
+                    <div className="adminpage-custom-table">
+                        <div className="adminpage-table-header">
                             <div className="adminpage-table-header-cell" id="adminpage-product">
                                 PRODUCTS
                                 <hr className="custom-table-devide-line" />
@@ -187,13 +187,13 @@ class AdminProducts extends Component {
                             </div>
                         </div>
                         
-                        <div id="adminpage-table-body">
+                        <div className="adminpage-table-body">
                             { this.renderProductRow() }
                         </div>
                     </div>
 
-                    <div id="adminpage-product-list-footer">
-                        <span id="adminpage-product-list-footer-label">
+                    <div className="adminpage-product-list-footer">
+                        <span className="adminpage-product-list-footer-label">
                             {`Show ${(page - 1)*limit + 1} to ${page*limit} of ${this.props.productLength} entries`}
                         </span>
 

@@ -21,12 +21,12 @@ class CartRow extends Component {
     }
 
     decreaseAmount = (event) => {
-        console.log("Card: ", event.target.id);
+        // console.log("Card: ", event.target.id);
         this.props.decreaseAmount(event.target.id);
     }
 
     increaseAmount = (event) => {
-        console.log("Card: ", event.target);
+        // console.log("Card: ", event.target);
         this.props.increaseAmount(event.target.id);
     }
 
@@ -36,7 +36,7 @@ class CartRow extends Component {
 
     render() {
         const { item, productItem, productDetail } = this.props;
-        console.log(productItem);
+        // console.log(productItem);
         if (!productItem) return null;
 
         return (
@@ -89,7 +89,7 @@ export default withTracker((props) => {
     let productItem = null
 
     const productDetail = ProductDetails.findOne({ _id:  item.productDetailId });
-    console.log(productDetail);
+    // console.log(productDetail);
     if (productDetail) {
         productItem = Products.findOne({ _id: productDetail.productId });
     }

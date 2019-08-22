@@ -353,6 +353,10 @@ li:last-child.forgot-pass{
   transform: translate(-50%);
 }
 
+.dropdown:focus {
+  outline: 0;
+}
+
 button:focus {
   outline: none;
 }
@@ -392,6 +396,7 @@ button:focus {
   padding: 0;
   padding-top: 5px;
   padding-right: 8px;
+  z-index: 10;
 }
 
 .btn-logout {
@@ -435,6 +440,10 @@ button:focus {
   margin-top: calc(210vw/144);
   background-color: #fbfbfb;
 }
+
+/* .cart-list:focus {
+  outline: 0;
+} */
 
 .place-for-cart {
   display: inline-block;

@@ -44,12 +44,12 @@ export default withTracker((props) => {
     const item = props.item;
     Meteor.subscribe('productDetails');
     
-    console.log(item);
+    // console.log(item);
 
     let productItem = null
 
     const productDetail = ProductDetails.findOne({ _id:  item.productDetailId });
-    console.log(productDetail);
+    // console.log(productDetail);
     if (productDetail) {
         productItem = Products.findOne({ _id: productDetail.productId });
     }

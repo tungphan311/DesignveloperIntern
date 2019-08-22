@@ -91,23 +91,42 @@ class AddProduct extends Component {
             description, createAt: new Date() 
         };
 
-        Meteor.call('products.insert', currentUser, product, (error, response) => {
+        Meteor.call('products.insert', currentUser, product, sizes, colors, (error, response) => {
             if (error) {
                 if (error.error === 400) {
-                    window.alert('errorMessage', 'Please give right info!!');
+                    window.alert('Please give right info!!');
                 } else if (error.error === 'account-error') {
                     window.alert(error.reason);
                 } else if (error.error === 'add-error') {
                     window.alert(error.reason);
                 }         
             } else {
-                const productId = response;    
+                this.props.history.push('/admin/products');
             }
         });
     }
+    
+    valid = () => {
+        const { images, name, categories, brand, price, sizes, colors, quantity } = this.state;
+
+        return images.length > 0 && name && categories && brand && price && sizes.length > 0 && colors.length > 0 && quantity;
+    }
+
+    backtoProductPage = () => {
+        this.props.history.push('/admin/products');
+    }
 
     render() { 
-        console.log(this.state);
+        const disabledButton = {
+            backgroundColor: "#d4d3d3"
+        };
+
+        const activedButton = { 
+            backgroundColor: "#ffa15f"
+        };
+
+        console.log(this.valid());
+        
         return ( 
             <div id="add-product-page">
                 <div className="add-product-page-label" id="photo-label">PHOTOS</div>
@@ -149,8 +168,11 @@ class AddProduct extends Component {
                     name="description" rows={4} className="product-textarea" />
 
                 <div id="product-button-wrapper">
-                    <button id="add-product-cancel-btn">Cancel</button>
-                    <button id="add-product-complete-btn" onClick={this.addProduct}>Complete</button>
+                    <button id="add-product-cancel-btn" onClick={this.backtoProductPage}>Cancel</button>
+                    <button id="add-product-complete-btn" disabled={!this.valid()} onClick={this.addProduct}
+                        style={ this.valid() ? activedButton : disabledButton }>
+                        Complete
+                    </button>
                 </div>
             </div>
         );

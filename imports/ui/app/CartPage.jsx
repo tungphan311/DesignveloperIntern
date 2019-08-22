@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import './CartPage.css';
 import CartRow from './CartRow';
-
+import { Meteor } from 'meteor/meteor';
+import Orders from '../../api/orders';
 
 export default class CartPage extends Component {
     constructor(props) {
@@ -35,6 +36,42 @@ export default class CartPage extends Component {
         let total = this.state.prices.reduce( (total, item) => total += item, 0);
 
         return "$" + total.toFixed(1);
+    }
+
+    total = () => {
+        return this.state.prices.reduce( (total, item) => total += item, 0);
+    }
+
+    createOrder = () => {
+        // Meteor.call('orders.insert', Meteor.user(), {}, (error) => {
+        //     if (error) {
+        //         console.log(error);
+        //         if (error.error === 'no-user') {
+        //             window.alert(error.message);
+        //         }
+        //     }
+        // });
+
+        const { currentUser, cart } = this.props;
+
+        if (!currentUser) {
+            window.alert('You have to login first!!!');
+            return;
+        }
+
+        console.log(cart);
+
+        const createAt = new Date();
+        const order = { createAt, detail: cart, total: this.total() };
+
+        Meteor.call("ordersInsert", order, (error) => {
+            if (error) {
+                window.alert(error);
+            } else {
+                window.alert('create order successful');
+                this.props.history.push('/');
+            }
+        });
     }
 
     render() {
@@ -91,7 +128,7 @@ export default class CartPage extends Component {
                             </div>
 
                             <div className="checkout-submit">
-                                <button className="checkout-submit-btn">Check out</button>
+                                <button className="checkout-submit-btn" onClick={this.createOrder}>Check out</button>
                             </div>
                         </div>
                     </Fragment>
