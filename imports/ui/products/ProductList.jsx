@@ -32,6 +32,7 @@ class ProductList extends React.Component {
                 page: 1,
                 sort: 1,
                 category: '',
+                size: '',
             }
         }
     }
@@ -43,12 +44,17 @@ class ProductList extends React.Component {
     }
 
     componentDidMount = () => {
+        const { sortId, page, category, size } = this.props;
         this.setState((curState) => {
             let newQuery = {...curState.query};
 
-            newQuery.sort = this.props.sortId;
-            newQuery.page = parseInt(this.props.page);
-            newQuery.category = this.props.category;
+            newQuery.sort = sortId;
+            newQuery.page = page;
+            newQuery.category = category;
+            newQuery.size = size;
+
+            const searchString = qs.stringify(newQuery);
+            this.props.history.push('?' + searchString);
 
             return {
                 query: newQuery,
@@ -117,9 +123,16 @@ class ProductList extends React.Component {
     }
 
     chooseSize = (size) => {
-        this.setState({
-            filter: {
-                size: size,
+        this.setState(curState => {
+            let newQuery = {...curState.query};
+
+            newQuery.size = size;
+
+            const searchString = qs.stringify(newQuery);
+            this.props.history.push('?' + searchString);
+
+            return {
+                query: newQuery,
             }
         });
     }
@@ -171,6 +184,12 @@ class ProductList extends React.Component {
         this.setState({query: newQuery});
     }
 
+    customRound = (x) => {
+        const q = parseInt(x / 20);
+        
+        return x > 20 * q ? q + 1 : q;
+    }
+
     render() {
         const sort = {
             1: { value: 'Popularity'},
@@ -179,6 +198,12 @@ class ProductList extends React.Component {
             4: { value: 'Price: heightest to lowest' }
         };
         let selectSort = this.state.query.sort;
+        
+        const { size } = this.state.query;
+
+        const { productLength } = this.props;
+
+        console.log(size);
         return (
             <div className="product-list">
                 <label className="router">{this.customPathName()}</label>
@@ -186,7 +211,7 @@ class ProductList extends React.Component {
                     <Category kindOfClothes={this.state.kindOfClothes} category={this.state.query.category} 
                         listCategories={this.props.categories} onClick={this.categoryClick} />
 
-                    <Filter onSizeClick={this.chooseSize} size={this.state.filter.size} />
+                    <Filter onSizeClick={this.chooseSize} size={size} />
                 </div>     
                 
                 <div className="right-side">
@@ -210,7 +235,7 @@ class ProductList extends React.Component {
                             <button className="btn-page">
                                 <FontAwesomeIcon icon={faChevronLeft} onClick={this.toPreviousPage} />
                             </button>
-                            <span>{ this.state.query.page + "/10"}</span>
+                            <span>{ this.state.query.page + "/" + this.customRound(productLength) }</span>
                             <button className="btn-page">
                                 <FontAwesomeIcon icon={faChevronRight} onClick={this.toNextPage} />
                             </button>
@@ -226,6 +251,31 @@ class ProductList extends React.Component {
     }
 }
 
+findId = (search, name) => {
+    const index = search.indexOf(name);
+
+    let id = 0;
+    if (index > -1) {
+        let andPos = index;
+        for (var i = index; i< search.length; i++) {
+            if (search[i] == '&') {
+                andPos = i;
+                break;
+            }
+            if (i == search.length - 1 && search != '&') {
+                andPos = i +1;
+                break;
+            }
+        }
+        let start = index + name.length + 1;
+        id = search.substring(start, andPos);
+    } else { 
+        id = 0;
+    }
+
+    return id;
+}
+
 export default withTracker((props) => {
     const kindOfClothes = props.kindOfClothes;
 
@@ -233,69 +283,42 @@ export default withTracker((props) => {
     const subjectName = params.subjectName;
     const kindOfClothesName = params.kindOfClothesName;
 
+    // console.log(props.match.params);
+
     const koc = kindOfClothes.find(obj => {
-        return obj.name.toLowerCase() === kindOfClothesName;
+        return obj.name.toLowerCase() === kindOfClothesName.toLowerCase();
     });
 
     const search = props.history.location.search;
 
-    const categoryIndex = search.indexOf('category');
-    let categoryId = '';
-    if (categoryIndex > -1) {
-        let andPos = categoryIndex;
-        for (var i = categoryIndex; i<search.length; i++) {
-            if (search[i] == '&') {
-                andPos = i;
-                break;
-            }
-        }
-        categoryId = search.substring(categoryIndex+9, andPos);
-    } else {
-        categoryId = '';
-    }
+    let categoryId = findId(search, 'category');
 
-    const sortIndex = search.indexOf('sort');
-    let sortId = 1;
-    if (sortIndex > -1) {
-        sortId = search.substring(sortIndex+5)[0];
-    } else {
-        sortId = 1;
-    }
+    let sortId = parseInt(findId(search, 'sort'));
     
-    let sort = null;
+    let sort = sortId == 1 ? {} : (sortId == 2 ? { name: 1 } : (sortId == 3) ? { price: 1 } : { price: -1 });
 
-    if (sortId == 1) {
-        sort = {};
-    } else if (sortId == 2) {
-        sort = { name: 1 };
-    } else if (sortId == 3) {
-        sort = { price: 1 };
-    } else if (sortId == 4) {
-        sort = { price: -1 };
-    }
+    let page = parseInt(findId(search, 'page'));
 
-    let pageIndex = search.indexOf('page');
-    let page = 1;
-    if (pageIndex > -1) {
-        page = search.substring(pageIndex+5)[0];
-    } else {
-        page = 1;
-    }
+    let size = findId(search, 'size');
+
+    const limit = 20;
+    let skip = (page - 1) * limit;
  
-    if (koc != undefined) {
-        Meteor.subscribe('categories', koc.id);
-        Meteor.subscribe('products', {
-            kindOfClothesId: koc.id, 
-        }, page);        
-    }
-
     let products = [];
-    if (categoryId == 0) {
-        products = Products.find({}, { sort: sort ,limit: 20 }).fetch();
-    }
-    else {
-        const oldProduct = Products.find({}, { sort: sort ,limit: 20 }).fetch();
-        products = oldProduct.filter(prd => prd.categoryId == categoryId);
+    let productLength = 0;
+
+    if (koc) {
+        Meteor.subscribe('categories', koc._id);
+        Meteor.subscribe('productList');      
+        
+        if (categoryId == 0) {
+            products = Products.find({ kindOfClothesId: koc._id }, { sort: sort ,limit: limit, skip: skip }).fetch();
+            productLength = Products.find({ kindOfClothesId: koc._id }).count();
+        }
+        else {
+            products = Products.find({ categoryId: categoryId }, { sort: sort ,limit: limit, skip: skip }).fetch();
+            productLength = Products.find({ categoryId: categoryId }).count();
+        }
     }
   
     return {
@@ -305,6 +328,7 @@ export default withTracker((props) => {
         categories: Categories.find({}).fetch(),
         products,
         subjectName,
-        kindOfClothesName
+        kindOfClothesName,
+        productLength, size
     };
   })(ProductList);

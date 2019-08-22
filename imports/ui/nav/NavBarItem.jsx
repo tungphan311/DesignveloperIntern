@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
+import { Subjects } from '../../api/subjects';
 
 class NavBarItem extends Component {
     constructor(props) {
@@ -19,9 +22,20 @@ class NavBarItem extends Component {
     renderDropdown = () => {
         return this.props.item.map(child => (
             <React.Fragment key={child._id}>
-                <button className="btn-group-item" name="btnNavbar">{child.name}</button>
+                <button id={child.name} className="btn-group-item" name="btnNavbar" onClick={this.toProductList}>
+                    {child.name}
+                </button>
             </React.Fragment>
         ));
+    }
+
+    toProductList = (e) => {
+        let kind = e.target.id;
+        // kind = kind.toLowerCase();
+        const { subject, history } = this.props;
+        
+        history.push('/products/' + subject.name + '/' + kind);
+        window.location.reload();
     }
 
     render() {
@@ -37,4 +51,12 @@ class NavBarItem extends Component {
     }
 }
 
-export default NavBarItem;
+export default withTracker((props) => {
+    Meteor.subscribe('subjects');
+
+    const { subjectId } = props;
+
+    return {
+        subject: Subjects.findOne({ _id: subjectId }),
+    }
+})(NavBarItem);

@@ -110,12 +110,14 @@ class NavBar extends Component {
     }
 
     render() {
+        const { show, lists, choosedSubject } = this.state;
+        const { history } = this.props;
         return (
             <div className="menu">
                 <ul className="list-inline text-center">
                     {this.renderNavbar()}
                 </ul>
-                <NavBarItem show={this.state.show} item={this.state.lists} showDropdown={this.showItemDropdown} />
+                <NavBarItem show={show} item={lists} showDropdown={this.showItemDropdown} history={history} subjectId={choosedSubject} />
             </div>
         );
     }  

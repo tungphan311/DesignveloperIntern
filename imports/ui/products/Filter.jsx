@@ -14,6 +14,14 @@ export default class Filter extends React.Component {
         }
     }
 
+    componentWillReceiveProps = () => {
+        const { size } = this.props;
+
+        if (size) {
+            this.setState({ size: size });
+        }
+    }
+
     btnSizeClick = (event) => {
         this.setState({sizeClick: !this.state.sizeClick});
     }
@@ -23,9 +31,16 @@ export default class Filter extends React.Component {
     }
 
     chooseSize = (event) => {
-        const size = event.target.id;
-        this.props.onSizeClick(size);
-        this.setState({size: size});
+        let select = event.target.id;
+
+        const { size } = this.state;
+
+        if (select === size) {
+            select = '';
+        }
+
+        this.props.onSizeClick(select);
+        this.setState({size: select});
     }
 
     render() {
@@ -46,7 +61,10 @@ export default class Filter extends React.Component {
                 transform: "rotate(180deg)",
             }
         };
-        let iconStyle = this.state.sizeClick ? styles.iconTransform : '';
+
+        const { sizeClick, size, colorClick, color } = this.state;
+        let iconStyle = sizeClick ? styles.iconTransform : '';
+
         return (
             <div>
                 <label className="filter-label">Filter</label>
@@ -61,11 +79,11 @@ export default class Filter extends React.Component {
                         <div className="size-group">
                             <hr className="filter-btn-line" />
                             <button id="S" onClick={this.chooseSize} className="size-btn"
-                                style={ this.state.size === "S" ? styles.selectBtn : styles.unselectBtn }>S</button>
+                                style={ size === "S" ? styles.selectBtn : styles.unselectBtn }>S</button>
                             <button id="M" onClick={this.chooseSize} className="size-btn"
-                                style={ this.state.size === "M" ? styles.selectBtn : styles.unselectBtn }>M</button>
+                                style={ size === "M" ? styles.selectBtn : styles.unselectBtn }>M</button>
                             <button id="L" onClick={this.chooseSize} className="size-btn"
-                                style={ this.state.size === "L" ? styles.selectBtn : styles.unselectBtn }>L</button>
+                                style={ size === "L" ? styles.selectBtn : styles.unselectBtn }>L</button>
                         </div>
                     }
 

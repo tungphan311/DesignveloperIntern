@@ -13,6 +13,7 @@ import CartPage from './CartPage';
 import { ProductDetails } from '../../api/product-details';
 import WrongRouter from './WrongRouter';
 import AdminPage from '../seller/home/AdminPage';
+import { Products } from '../../api/products';
 
 class App extends Component {
   constructor(props) {
@@ -125,7 +126,7 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.props.currentUser);
+    console.log(this.props.products);
     const pathname = this.props.history.location.pathname;
     let isAdmin = pathname.substring(1, 6) == 'admin' ? true: false;
     return(
@@ -171,12 +172,15 @@ export default withTracker((props) => {
   Meteor.subscribe('subjects');
   Meteor.subscribe('kindOfClothes');
   Meteor.subscribe('productDetails');
+
+  Meteor.subscribe('products', 'S', 'a');
   // console.log(props);
 
   return {
     currentUser: Meteor.user(),
     subjects: Subjects.find({}).fetch(),
     kindOfClothes: KindOfClothes.find({}).fetch(),
-    productDetails: ProductDetails.find({}).fetch()
+    productDetails: ProductDetails.find({}).fetch(),
+    products: Products.find({}).count(),
   };
 })(App);

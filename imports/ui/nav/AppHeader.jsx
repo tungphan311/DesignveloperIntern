@@ -34,7 +34,6 @@ export default class AppHeader extends Component {
     }
 
     clickEventHandler = (e) => {
-        console.log(e.target.id);
         const id = e.target.id;
 
         const { showCart, showDropdown } = this.state;
@@ -199,7 +198,7 @@ export default class AppHeader extends Component {
                     
                     <hr className="top-line" />
 
-                    <NavBar subjects={this.props.subjects} kinds={this.props.kinds} show={this.state.showNavbar} />
+                    <NavBar subjects={this.props.subjects} kinds={this.props.kinds} show={this.state.showNavbar} history={this.props.history} />
                 </div>
 
                 <LoginAndSignupModal show={this.state.showModal} kind={this.state.kindModal} close={this.closeModal} 

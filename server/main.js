@@ -121,11 +121,38 @@ Meteor.startup(() => {
         return categories;
     });
 
-    Meteor.publish('products', function (filter, page) {
-        return Products.find({ 
-            kindOfClothesId: filter.kindOfClothesId,
-            categoryId: filter.categoryId
-        }, { limit: 20, skip: 20*(page - 1) });
+    Meteor.publish('products', function (size, color) {
+        let products = Products.find({}).fetch();
+        let productDetails = [];
+        let productIds = [];
+
+        if (!size && !color) {
+            return Products.find({});
+        }
+
+        if (size) {
+            products.map(product => {
+                productDetails = ProductDetails.find({ productId: product._id }).fetch();
+
+                const index = productDetails.findIndex(detail => {
+                    return detail.size === size;
+                });
+
+                if (index > -1) {
+                    productIds = [...productIds, product._id];
+                }
+            });
+
+            if (color) {
+                products.filter((product) => {
+                    return productIds.includes(product._id);
+                });
+
+                console.log(productIds);
+            }
+        }
+        
+        return Products.find({ _id: { $in: productIds } });
     });
 
     Meteor.publish('productWithId', function (id) {
