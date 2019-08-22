@@ -151,6 +151,7 @@
 
 .adminpage-table-header-cell#adminpage-profit {
     width: 15%;
+    text-align: center;
 }
 
 .adminpage-table-header-cell#adminpage-action {
@@ -259,7 +260,7 @@
     left: calc(200vw/144);
 }
 
-#adminpage-product-right-side {
+.adminpage-product-right-side {
     float: right;
     height: 100%;
 }
@@ -316,7 +317,7 @@
     border-color: #ffa15f
 }
 
-#select-action-dropdown {
+.select-action-dropdown {
     position: absolute;
     display: grid;
     width: 100%;

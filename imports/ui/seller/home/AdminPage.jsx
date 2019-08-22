@@ -66,9 +66,9 @@ class AdminPage extends Component {
 
         return ( 
             <Fragment>
-                {/* { (!user || user.emails[0].address != 'tungpt@dgroup.co') &&
+                { (!user || user.emails[0].address != 'tungpt@dgroup.co') &&
                     <Redirect to='/admin/login' />
-                } */}
+                }
                 <Switch>
                     <Route exact path="/admin/login" component={LoginPage} />
                 </Switch>

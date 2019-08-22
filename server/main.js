@@ -183,6 +183,10 @@ Meteor.startup(() => {
                 }]
             }
         }
+    });
+
+    Meteor.publish('details', function () {
+        return ProductDetails.find({});
     })
 
     Meteor.publish('productList', function () {

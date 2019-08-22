@@ -10,6 +10,7 @@ export default class CartPage extends Component {
 
         this.state = {
             prices: [],
+            getTotal: false,
         }
     }
 
@@ -23,16 +24,20 @@ export default class CartPage extends Component {
     }
 
     getPrice = (price) => {
-        this.setState(curState => {
-            let newState = [...curState.prices, price];
-
-            return {
-                prices: newState,
-            }
-        });
+        if (!this.state.getTotal) {
+            this.setState(curState => {
+                let newState = [...curState.prices, price];
+    
+                return {
+                    prices: newState,
+                    getTotal: true,
+                }
+            });
+        }
     }
 
     totalPrice = () => {
+        console.log(this.state.prices);
         let total = this.state.prices.reduce( (total, item) => total += item, 0);
 
         return "$" + total.toFixed(1);
@@ -60,15 +65,12 @@ export default class CartPage extends Component {
         }
 
         console.log(cart);
-
-        const createAt = new Date();
-        const order = { createAt, detail: cart, total: this.total() };
-
-        Meteor.call("ordersInsert", order, (error) => {
+        Meteor.call('orders.insert', cart, this.total(), (error) => {
             if (error) {
                 window.alert(error);
             } else {
                 window.alert('create order successful');
+                this.props.emptyCart();
                 this.props.history.push('/');
             }
         });

@@ -32,6 +32,9 @@ class AdminProducts extends Component {
             newQuery.limit = this.props.limit;
             newQuery.page = this.props.page;
 
+            const searchString = qs.stringify(newQuery);
+            this.props.history.push('?' + searchString);
+
             return {
                 query: newQuery,
             }
@@ -108,6 +111,8 @@ class AdminProducts extends Component {
 
     render() { 
         let { sort, page, limit } = this.state.query;
+        const { productLength } = this.props;
+
         const sorts = {
             1: { value: 'Date added' },
             2: { value: 'A - Z' },
@@ -126,6 +131,8 @@ class AdminProducts extends Component {
                 height: `calc(${height*10}vw/144`,
             }
         }
+
+        let max = page*limit > productLength ? productLength :  page*limit;
         
         return ( 
             <Fragment>
@@ -194,10 +201,10 @@ class AdminProducts extends Component {
 
                     <div className="adminpage-product-list-footer">
                         <span className="adminpage-product-list-footer-label">
-                            {`Show ${(page - 1)*limit + 1} to ${page*limit} of ${this.props.productLength} entries`}
+                            {`Show ${(page - 1)*limit + 1} to ${max} of ${productLength} entries`}
                         </span>
 
-                        <span id="adminpage-product-right-side">
+                        <span className="adminpage-product-right-side">
                             <div className="product-page-sort-btn-wrapper">
                                 <button id="btn-select-limit" onClick={this.showLimitDropdown}>
                                     {limit}
@@ -233,7 +240,7 @@ export default withTracker((props) => {
     const sortIndex = search.indexOf('sort');
     let sortId = 0;
     if (sortIndex > -1) {
-        sortId = search.substring(sortIndex+5)[0];
+        sortId = parseInt(search.substring(sortIndex+5)[0]);
     } else {
         sortId = 1;
     }

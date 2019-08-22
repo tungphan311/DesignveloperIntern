@@ -94,5 +94,10 @@ Meteor.methods({
             }
         });
 
+    },
+
+    'products.update'(productId, amount) {
+        Products.update({ _id: productId }, { $inc: { quantity: amount } });
+        // Products.update({ _id: productId }, { $set: { quantity: amount } });
     }
 })

@@ -5,6 +5,8 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Categories, KindOfClothes } from '../../../api/kind-of-clothes';
 import { Subjects } from '../../../api/subjects';
+import { ProductDetails } from '../../../api/product-details';
+import { Orders } from '../../../api/orders';
 
 class ProductRow extends Component {
     state = { 
@@ -30,6 +32,42 @@ class ProductRow extends Component {
 
         this.props.showAction(0);
     }
+
+    findOrder = (product) => {
+        const { productDetails, orders } = this.props;
+        let sold = 0;
+
+        productDetails.map(detail => {
+            // console.log('detail: ', detail);
+            orders.map(order => {
+                // console.log('order detail: ', order.detail);
+                const exist = order.detail.find(dt => dt.productDetailId === detail._id);
+
+                if (exist) {
+                    sold += exist.amount;
+                }
+            });
+        });
+        
+        return sold;
+    }
+
+    sold = (product) => {
+        const amountInStock = product.quantity;
+        
+        const sold = this.findOrder(product);
+
+        return sold + '/' + (sold+amountInStock);
+    }
+
+    profit = (product) => {
+        const sold = this.findOrder(product);
+
+        const profit = sold * product.price;
+
+        return profit.toFixed(2);
+    }
+
     render() { 
         const { product, category, kindOfClothes, subjects } = this.props;
 
@@ -52,13 +90,13 @@ class ProductRow extends Component {
                     </div>
                 </div>
                 <div className="adminpage-table-body-cell">
-                    
+                    { this.sold(product) }
                 </div>
                 <div className="adminpage-table-body-cell">
                     {this.dateFormat(product.createAt)}
                 </div>
-                <div className="adminpage-table-body-cell">
-
+                <div className="adminpage-table-body-cell" style={{textAlign: "center"}}>
+                    { this.profit(product) }
                 </div>
                 <div className="adminpage-table-body-cell" style={{textAlign: "right", position: "relative"}}> 
                     <button id={product._id} className="product-row-button" onClick={this.showAction}>
@@ -67,12 +105,12 @@ class ProductRow extends Component {
                     </button>
 
                     { this.props.show == product._id && 
-                        <div id="select-action-dropdown">
-                            <button className="action-btn" onClick={this.changeLimit}>
+                        <div className="select-action-dropdown">
+                            <button className="action-btn">
                                 <img src="/edit.png" alt="edit" className="action-btn-icon" />
                                 Edit
                             </button>
-                            <button id={product._id} className="action-btn" onClick={this.changeLimit} onClick={this.removeProduct}>
+                            <button id={product._id} className="action-btn" onClick={this.removeProduct}>
                                 <img src="/remove.png" alt="edit" className="action-btn-icon" />
                                 Remove
                             </button>
@@ -86,10 +124,13 @@ class ProductRow extends Component {
  
 export default withTracker((props) => {
     const { product } = props;
+    // console.log(product);
 
     Meteor.subscribe('subjects');
     Meteor.subscribe('kindOfClothes');
     Meteor.subscribe('categories');
+    Meteor.subscribe('details');
+    Meteor.subscribe('orders');
 
     const category = Categories.findOne({ _id: product.categoryId });
     const kindOfClothes = KindOfClothes.findOne({ _id: product.kindOfClothesId });
@@ -98,5 +139,7 @@ export default withTracker((props) => {
         category,
         kindOfClothes,
         subjects: Subjects.find({}).fetch(),
+        productDetails: ProductDetails.find({ productId: product._id }).fetch(),
+        orders: Orders.find({ status: 'completed' }).fetch(),
     }
 })(ProductRow);

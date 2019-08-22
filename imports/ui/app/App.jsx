@@ -119,6 +119,11 @@ class App extends Component {
     });
   }
 
+  emptyCart = () => {
+    console.log('empty cart');
+    this.setState({ cart: [] });
+  }
+
   render() {
     // console.log(this.props.currentUser);
     const pathname = this.props.history.location.pathname;
@@ -141,7 +146,7 @@ class App extends Component {
 
                 <Route exact path="/cart/listProducts" render={(props) => 
                   <CartPage currentUser={this.props.currentUser} cart={this.state.cart} decreaseAmount={this.decreaseAmount} 
-                    increaseAmount={this.increaseAmount} removeProduct={this.removeProduct} {...props} />} />
+                    increaseAmount={this.increaseAmount} removeProduct={this.removeProduct} {...props} emptyCart={this.emptyCart} />} />
 
                 <Route path="**" component={WrongRouter} />
               </Switch> 
