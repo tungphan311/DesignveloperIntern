@@ -175,10 +175,13 @@ class ProductList extends React.Component {
         this.setState({query: newQuery});
     }
 
-    toNextPage = () => {
+    toNextPage = (e) => {
         let newQuery = {...this.state.query};
+        const max = e.target.id;
 
-        newQuery.page += 1;
+        if (newQuery.page < max) {
+            newQuery.page += 1;
+        }
 
         const searchString = qs.stringify(newQuery);
         this.props.history.push('?' + searchString);
@@ -223,6 +226,8 @@ class ProductList extends React.Component {
 
         const { products, productLength } = this.props;
 
+        const maxPage = this.customRound(productLength);
+
         return (
             <div className="product-list">
                 <label className="router">{this.customPathName()}</label>
@@ -251,12 +256,12 @@ class ProductList extends React.Component {
                         }
 
                         <div className="paginator">
-                            <button className="btn-page">
+                            <button className="btn-page">   
                                 <FontAwesomeIcon icon={faChevronLeft} onClick={this.toPreviousPage} />
                             </button>
-                            <span>{ this.state.query.page + "/" + this.customRound(productLength) }</span>
+                            <span>{ this.state.query.page + "/" + maxPage }</span>
                             <button className="btn-page">
-                                <FontAwesomeIcon icon={faChevronRight} onClick={this.toNextPage} />
+                                <FontAwesomeIcon id={maxPage} icon={faChevronRight} onClick={this.toNextPage} />
                             </button>
                         </div>
                     </div>
@@ -353,7 +358,7 @@ export default withTracker((props) => {
         // productLength = Products.find(filter).count();
         
         if (categoryId == 0) {
-            products = Products.find({ kindOfClothesId: koc._id }, ).fetch();
+            products = Products.find({ kindOfClothesId: koc._id }, { sort: sort ,limit: limit, skip: skip }).fetch();
             productLength = Products.find({ kindOfClothesId: koc._id }).count();
         }
         else {
