@@ -8,8 +8,11 @@ import { Colors } from '../imports/api/colors';
 import { ProductDetails } from '../imports/api/product-details';
 import { publishComposite } from 'meteor/reywood:publish-composite';
 import { Orders } from '../imports/api/orders';
+
  
 Meteor.startup(() => {
+    // process.env.MAIL_URL = 'smtps://thanhtunga1lqd@gmail.com:Tung66709398@smtp.gmail.com:465/';
+
     // check to see if data exists in menus collection
     const numberOfSubject = Subjects.find({}).count();  
     const numberOfKind = KindOfClothes.find({}).count();
@@ -132,24 +135,46 @@ Meteor.startup(() => {
 
         if (size) {
             products.map(product => {
-                productDetails = ProductDetails.find({ productId: product._id }).fetch();
+                productDetails = ProductDetails.find({ productId: product._id, size: size }).count();
 
-                const index = productDetails.findIndex(detail => {
-                    return detail.size === size;
-                });
-
-                if (index > -1) {
-                    productIds = [...productIds, product._id];
+                if (productDetails > 0) {
+                    if (!productIds.includes(product._id)) {
+                        productIds = [...productIds, product._id];
+                    }
                 }
             });
 
             if (color) {
-                products.filter((product) => {
-                    return productIds.includes(product._id);
+                products = [];
+                productIds.map((productId) => {
+                    const product = Products.findOne({ _id: productId });
+
+                    products = [...products, product];
                 });
 
-                console.log(productIds);
-            }
+                products.map(product => {
+                    productDetails = ProductDetails.find({ productId: product._id, colorId: color }).count();
+                    productIds = [];
+
+                    if (productDetails > 0) {
+                        if (!productIds.includes(product._id)) {
+                            productIds = [...productIds, product._id];
+                        }
+                    }
+                });
+            } 
+        }
+
+        if (color) {
+            products.map(product => {
+                productDetails = ProductDetails.find({ productId: product._id, colorId: color }).count();
+
+                if (productDetails > 0) {
+                    if (!productIds.includes(product._id)) {
+                        productIds = [...productIds, product._id];
+                    }
+                }
+            })
         }
         
         return Products.find({ _id: { $in: productIds } });

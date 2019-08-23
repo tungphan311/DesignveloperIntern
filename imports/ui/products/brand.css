@@ -1,0 +1,17 @@
+.brand-row {
+    width: 100%;
+    height: calc(350vw/144);
+    background-color: #fafafa;
+    margin: calc(20vw/144) 0px;
+    position: relative;
+    line-height: calc(350vw/144);
+    text-indent: calc(100vw/144);
+    font-size: calc(140vw/144);
+}
+
+.brand-checkbox {
+    position: absolute;
+    top: calc(50vw/144);
+    right: calc(100vw/144);
+    margin: 0 !important;
+}

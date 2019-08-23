@@ -1,7 +1,11 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema'
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { Email } from 'meteor/email';
+
+const nodemailer = require('nodemailer');
+const xoauth2 = require('xoauth2');
 
 export const Orders = new Mongo.Collection('orders');
 
@@ -21,13 +25,11 @@ Orders.attachSchema(OrderSchema);
 if (Meteor.isServer) {
     Meteor.methods({
         'orders.insert'(cart, total) {
-    
-            console.log(cart)
             const status = 'pending';
     
             const createAt = new Date();
             // const detail = [...cart];
-            Orders.insert({
+            return Orders.insert({
                 createAt, detail: cart, total, status
             }, error => {
                 if (error) {
@@ -41,6 +43,44 @@ if (Meteor.isServer) {
                 if (error) {
                     throw new Meteor.Error('update-failed', 'Update status failed!!');
                 }
+            });
+        },
+
+        sendEmail(to, from, subject, html) {
+            check([to, from, subject], [String]);
+
+            this.unblock();
+
+            let transporter = nodemailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: 465,
+                secure: true,
+                auth: {
+                    user: "tungpt@dgroup.co",
+                    pass: "tung3101",
+                }
+            });
+        
+            transporter.verify(function(error, success) {
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log("Server is ready to take our messages");
+                }
+            });
+
+            const mailData = {
+                from, to, subject, html
+            }
+
+            // Email.send(to, from, subject, text);
+            transporter.sendMail(mailData, function(error, info) {
+                if (error) {
+                    console.log(error);
+                    return;
+                }
+                console.log('Message sent');
+                transporter.close();
             });
         }
     })

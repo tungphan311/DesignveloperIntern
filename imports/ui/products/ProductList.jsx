@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import ProductCard from './ProductCard';
 import qs from 'query-string';
+import { Brands } from '../../api/brands';
 
 class ProductList extends React.Component {
     constructor(props) {
@@ -17,22 +18,22 @@ class ProductList extends React.Component {
         this.state = {
             kindOfClothes: {},
             listProducts: [],
-            filter: {
-                kindOfClothesId: 0,
-                categoryId: '',
-                size: {},
-                color: {},
-                brand: {},
-                price: 0,
-                available: '',
-            },
+            // filter: {
+            //     kindOfClothesId: 0,
+            //     categoryId: '',
+            //     size: {},
+            //     color: {},
+            //     brand: {},
+            //     price: 0,
+            //     available: '',
+            // },
             showDropdown: false,
             getListProduct: false,
             query: {
                 page: 1,
                 sort: 1,
                 category: '',
-                size: '',
+                brands: [],
             }
         }
     }
@@ -103,10 +104,10 @@ class ProductList extends React.Component {
         if(koc) {
             this.setState({
                 kindOfClothes: koc,
-                filter: {
-                    ...this.state.filter,
-                    kindOfClothesId: koc.id
-                },
+                // filter: {
+                //     ...this.state.filter,
+                //     kindOfClothesId: koc.id
+                // },
                 getListProduct: true
             });
         }    
@@ -190,6 +191,25 @@ class ProductList extends React.Component {
         return x > 20 * q ? q + 1 : q;
     }
 
+    selectBrands = (id) => {
+        let newQuery = {...this.state.query};
+
+        if (!newQuery.brands.includes(id)) {
+            newQuery.brands = [...newQuery.brands, id];
+        } else {
+            newQuery.brands = newQuery.brands.filter( brand => brand !== id );
+        }
+
+        const searchString = qs.stringify(newQuery);
+        this.props.history.push('?' + searchString);
+
+        this.setState(curState => {
+            return {
+                query: newQuery,
+            }
+        });
+    }
+
     render() {
         const sort = {
             1: { value: 'Popularity'},
@@ -199,11 +219,10 @@ class ProductList extends React.Component {
         };
         let selectSort = this.state.query.sort;
         
-        const { size } = this.state.query;
+        const { size, brands } = this.state.query;
 
-        const { productLength } = this.props;
+        const { products, productLength } = this.props;
 
-        console.log(size);
         return (
             <div className="product-list">
                 <label className="router">{this.customPathName()}</label>
@@ -211,7 +230,7 @@ class ProductList extends React.Component {
                     <Category kindOfClothes={this.state.kindOfClothes} category={this.state.query.category} 
                         listCategories={this.props.categories} onClick={this.categoryClick} />
 
-                    <Filter onSizeClick={this.chooseSize} size={size} />
+                    <Filter onSizeClick={this.chooseSize} size={size} selectBrands={this.selectBrands} brands={brands} />
                 </div>     
                 
                 <div className="right-side">
@@ -251,7 +270,7 @@ class ProductList extends React.Component {
     }
 }
 
-findId = (search, name) => {
+findId = (search, name, init) => {
     const index = search.indexOf(name);
 
     let id = 0;
@@ -270,7 +289,7 @@ findId = (search, name) => {
         let start = index + name.length + 1;
         id = search.substring(start, andPos);
     } else { 
-        id = 0;
+        id = init;
     }
 
     return id;
@@ -283,36 +302,58 @@ export default withTracker((props) => {
     const subjectName = params.subjectName;
     const kindOfClothesName = params.kindOfClothesName;
 
-    // console.log(props.match.params);
-
     const koc = kindOfClothes.find(obj => {
         return obj.name.toLowerCase() === kindOfClothesName.toLowerCase();
     });
 
     const search = props.history.location.search;
 
-    let categoryId = findId(search, 'category');
+    let categoryId = findId(search, 'category', 0);
 
-    let sortId = parseInt(findId(search, 'sort'));
+    let sortId = parseInt(findId(search, 'sort', 1));
     
     let sort = sortId == 1 ? {} : (sortId == 2 ? { name: 1 } : (sortId == 3) ? { price: 1 } : { price: -1 });
 
-    let page = parseInt(findId(search, 'page'));
+    let page = parseInt(findId(search, 'page', 1));
 
-    let size = findId(search, 'size');
+    let size = findId(search, 'size', 0);
+
+    let brandId = findId(search, 'brands', 0);
 
     const limit = 20;
     let skip = (page - 1) * limit;
+    let color = '';
+
+    let filter = {};
  
     let products = [];
     let productLength = 0;
 
+    Meteor.subscribe('brands');
+
     if (koc) {
         Meteor.subscribe('categories', koc._id);
-        Meteor.subscribe('productList');      
+        Meteor.subscribe('productList');  
+
+        // if (!categoryId) {
+        //     if (!brandId) {
+        //         filter = { kindOfClothesId: koc._id };
+        //     } else {
+        //         filter = { kindOfClothesId: koc._id, brandId: brandId };
+        //     }
+        // } else {
+        //     if (!brandId) {
+        //         filter = { categoryId: categoryId };
+        //     } else {
+        //         filter = { categoryId: categoryId, brandId: brandId }
+        //     }
+        // }
+
+        // products = Products.find( filter, { sort: sort ,limit: limit, skip: skip }).fetch();
+        // productLength = Products.find(filter).count();
         
         if (categoryId == 0) {
-            products = Products.find({ kindOfClothesId: koc._id }, { sort: sort ,limit: limit, skip: skip }).fetch();
+            products = Products.find({ kindOfClothesId: koc._id }, ).fetch();
             productLength = Products.find({ kindOfClothesId: koc._id }).count();
         }
         else {
@@ -329,6 +370,7 @@ export default withTracker((props) => {
         products,
         subjectName,
         kindOfClothesName,
-        productLength, size
+        productLength, size,
+        brandList: Brands.find({}).fetch()
     };
   })(ProductList);

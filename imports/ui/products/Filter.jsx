@@ -1,16 +1,19 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faBold } from '@fortawesome/free-solid-svg-icons';
+import BrandList from './BrandList';
 
 export default class Filter extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
         this.state = {
             sizeClick: false,
             size: '',
             colorClick: false,
             color: '',
+            brand: [],
+            brandClick: false,
         }
     }
 
@@ -28,6 +31,14 @@ export default class Filter extends React.Component {
 
     btnColorClick = (event) => {
         this.setState({colorClick: !this.state.colorClick});
+    }
+
+    addBrand = (id) => {
+        this.props.selectBrands(id);
+    }
+
+    selectBrand = () => {
+        this.setState({ brandClick: !this.state.brandClick });
     }
 
     chooseSize = (event) => {
@@ -62,7 +73,8 @@ export default class Filter extends React.Component {
             }
         };
 
-        const { sizeClick, size, colorClick, color } = this.state;
+        const { sizeClick, size, colorClick, color, brand, brandClick } = this.state;
+        const { brands } = this.props;
         let iconStyle = sizeClick ? styles.iconTransform : '';
 
         return (
@@ -98,6 +110,8 @@ export default class Filter extends React.Component {
 
                     <hr className="filter-line" />
                 </div>
+
+                <BrandList show={this.selectBrand} click={brandClick} brandSelected={brands} addBrand={this.addBrand} />
             </div>
         );
     }

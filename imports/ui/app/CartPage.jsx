@@ -48,15 +48,6 @@ export default class CartPage extends Component {
     }
 
     createOrder = () => {
-        // Meteor.call('orders.insert', Meteor.user(), {}, (error) => {
-        //     if (error) {
-        //         console.log(error);
-        //         if (error.error === 'no-user') {
-        //             window.alert(error.message);
-        //         }
-        //     }
-        // });
-
         const { currentUser, cart } = this.props;
 
         if (!currentUser) {
@@ -64,12 +55,28 @@ export default class CartPage extends Component {
             return;
         }
 
-        console.log(cart);
-        Meteor.call('orders.insert', cart, this.total(), (error) => {
+        Meteor.call('orders.insert', cart, this.total(), (error, resopnse) => {
             if (error) {
                 window.alert(error);
             } else {
+                const orderId = resopnse;
                 window.alert('create order successful');
+                const emailBody = (
+                    <div>
+                        <label><b>Thanks for your orders.</b></label>
+                        <p>Aware is happy to inform that your order has been received and in processing. Aware will notify you as soon as the order is deliveried</p>
+                        <div>
+                            <label>Order's detail</label>
+                            { cart.map(item => (
+                                <div>
+                                    {`${item.productDetailId} ( x${item.amount} )`}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                );
+                const html = "<div>This is a test email</div>";
+                Meteor.call('sendEmail', currentUser.emails[0].address, 'tungpt@dgroup.co', `Order confirmation #${orderId}`, html);
                 this.props.emptyCart();
                 this.props.history.push('/');
             }

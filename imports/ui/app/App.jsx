@@ -126,7 +126,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.products);
     const pathname = this.props.history.location.pathname;
     let isAdmin = pathname.substring(1, 6) == 'admin' ? true: false;
     return(
@@ -173,7 +172,6 @@ export default withTracker((props) => {
   Meteor.subscribe('kindOfClothes');
   Meteor.subscribe('productDetails');
 
-  Meteor.subscribe('products', 'S', 'a');
   // console.log(props);
 
   return {
