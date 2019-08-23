@@ -64,6 +64,8 @@ class AdminPage extends Component {
         const { menus, selected_menu } = this.state;
         this.checkUser();
 
+        console.log(user);
+
         return ( 
             <Fragment>
                 { (!user || user.emails[0].address != 'tungpt@dgroup.co') &&

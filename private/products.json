@@ -1,5 +1,6 @@
 [
     {
+        "id": "test1",
         "name": "Collete Stretch Linen Minidress",
         "price": 69.00,
         "images": [
@@ -9,13 +10,14 @@
             "/print-jacquard-midi-dress-3.png",
             "/print-jacquard-midi-dress-4.png"
         ],
-        "brandId": "X54wPwRcRX3f8sauu",
-        "categoryId": "BMHcFNDjxJ2GAcjh3",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "zara",
+        "categoryId": "romperJumpsuit",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test2",
         "name": "Button-Down Denim Mini Dress",
         "price": 69.00,
         "images": [
@@ -25,13 +27,14 @@
             "/print-jacquard-midi-dress-3.png",
             "/print-jacquard-midi-dress-5.png"
         ],
-        "brandId": "taX3oWrPkuN6ZM5Eb",
-        "categoryId": "zfEiYzRtiEDLiSbRR",
-        "kindOfClothesId": "X54wPwRcRX3f8sauu",
+        "brandId": "hm",
+        "categoryId": "casualDress",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test3",
         "name": "Plunge V-neck Denim Mini Dress",
         "price": 89.00,
         "images": [
@@ -41,13 +44,14 @@
             "/print-jacquard-midi-dress-1.png",
             "/print-jacquard-midi-dress-2.png"
         ],
-        "brandId": "X54wPwRcRX3f8sauu",
-        "categoryId": "BMHcFNDjxJ2GAcjh3",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "zara",
+        "categoryId": "romperJumpsuit",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test4",
         "name": "Surplice Gingham Jumpsuit",
         "price": 49.00,
         "images": [
@@ -57,13 +61,14 @@
             "/print-jacquard-midi-dress-3.png",
             "/print-jacquard-midi-dress-4.png"
         ],
-        "brandId": "4yF5ZtJFA2qwyQQCY",
-        "categoryId": "du275Q9mZtrxwSeZj",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "pullbear",
+        "categoryId": "goingOutDress",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test5",
         "name": "Hermosa Ladder Lace Midi Dress",
         "price": 29.00,
         "images": [
@@ -74,13 +79,14 @@
             "/print-jacquard-midi-dress-4.png",
             "/print-jacquard-midi-dress-5.png"
         ],
-        "brandId": "2QqA3jvaCge9SbuKs",
-        "categoryId": "TMeJLtaAF8uYCyRnr",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "channel",
+        "categoryId": "maxiDress",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test6",
         "name": "Arabella Textured Maxi Skirt",
         "price": 109.00,
         "images": [
@@ -90,13 +96,14 @@
             "/print-jacquard-midi-dress-3.png",
             "/print-jacquard-midi-dress-4.png"
         ],
-        "brandId": "taX3oWrPkuN6ZM5Eb",
-        "categoryId": "TMeJLtaAF8uYCyRnr",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "hm",
+        "categoryId": "maxiDress",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test7",
         "name": "Pippa Halter Mini Dress",
         "price": 60.00,
         "images": [
@@ -106,13 +113,14 @@
             "/print-jacquard-midi-dress-3.png",
             "/print-jacquard-midi-dress-5.png"
         ],
-        "brandId": "7KxkQs2d3qkvLtCjj",
-        "categoryId": "BMHcFNDjxJ2GAcjh3",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "dior",
+        "categoryId": "romperJumpsuit",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test8",
         "name": "Lace-Trim Surplice Mini Dress",
         "price": 59.00,
         "images": [
@@ -122,13 +130,14 @@
             "/print-jacquard-midi-dress-1.png",
             "/print-jacquard-midi-dress-2.png"
         ],
-        "brandId": "4yF5ZtJFA2qwyQQCY",
-        "categoryId": "BMHcFNDjxJ2GAcjh3",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "pullbear",
+        "categoryId": "romperJumpsuit",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test9",
         "name": "Betsey Linen Halter Midi Dress",
         "price": 49.00,
         "images": [
@@ -138,13 +147,14 @@
             "/print-jacquard-midi-dress-3.png",
             "/print-jacquard-midi-dress-4.png"
         ],
-        "brandId": "2QqA3jvaCge9SbuKs",
-        "categoryId": "wuAXeXfaq4YGoeqFq",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "channel",
+        "categoryId": "partyDress",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test10",
         "name": "Collete Stretch Linen Minidress",
         "price": 50.00,
         "images": [
@@ -155,13 +165,14 @@
             "/print-jacquard-midi-dress-4.png",
             "/print-jacquard-midi-dress-5.png"
         ],
-        "brandId": "2QqA3jvaCge9SbuKs",
-        "categoryId": "NhHmS9qjZeAghgv4y",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "channel",
+        "categoryId": "dressSet",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test11",
         "name": "Hattie High-Neck Linen Jumpsuit",
         "price": 44.50,
         "images": [
@@ -171,13 +182,14 @@
             "/print-jacquard-midi-dress-3.png",
             "/print-jacquard-midi-dress-4.png"
         ],
-        "brandId": "taX3oWrPkuN6ZM5Eb",
-        "categoryId": "du275Q9mZtrxwSeZj",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "hm",
+        "categoryId": "goingOutDress",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test12",
         "name": "Collete Stretch Linen Minidress",
         "price": 99.00,
         "images": [
@@ -187,13 +199,14 @@
             "/print-jacquard-midi-dress-3.png",
             "/print-jacquard-midi-dress-5.png"
         ],
-        "brandId": "2QqA3jvaCge9SbuKs",
-        "categoryId": "BMHcFNDjxJ2GAcjh3",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "channel",
+        "categoryId": "romperJumpsuit",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test13",
         "name": "Amber Button-Down Linen Midi Dress",
         "price": 59.00,
         "images": [
@@ -203,13 +216,14 @@
             "/print-jacquard-midi-dress-3.png",
             "/print-jacquard-midi-dress-2.png"
         ],
-        "brandId": "X54wPwRcRX3f8sauu",
-        "categoryId": "D6mzYhKim48DTJzJt",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "zara",
+        "categoryId": "miniDress",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test15",
         "name": "Collete Stretch Linen Minidress",
         "price": 49.00,
         "images": [
@@ -219,13 +233,14 @@
             "/print-jacquard-midi-dress-5.png",
             "/print-jacquard-midi-dress-4.png"
         ],
-        "brandId": "taX3oWrPkuN6ZM5Eb",
-        "categoryId": "wuAXeXfaq4YGoeqFq",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "hm",
+        "categoryId": "partyDress",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test16",
         "name": "Catalina Printed Halter Dress",
         "price": 29.00,
         "images": [
@@ -235,13 +250,14 @@
             "/print-jacquard-midi-dress-3.png",
             "/print-jacquard-midi-dress-5.png"
         ],
-        "brandId": "2QqA3jvaCge9SbuKs",
-        "categoryId": "TMeJLtaAF8uYCyRnr",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "channel",
+        "categoryId": "maxiDress",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test17",
         "name": "Collete Stretch Linen Minidress",
         "price": 39.00,
         "images": [
@@ -251,13 +267,14 @@
             "/print-jacquard-midi-dress-3.png",
             "/print-jacquard-midi-dress-4.png"
         ],
-        "brandId": "taX3oWrPkuN6ZM5Eb",
-        "categoryId": "TMeJLtaAF8uYCyRnr",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "hm",
+        "categoryId": "maxiDress",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test18",
         "name": "Collete Stretch Linen Minidress",
         "price": 60.00,
         "images": [
@@ -267,13 +284,14 @@
             "/print-jacquard-midi-dress-3.png",
             "/print-jacquard-midi-dress-5.png"
         ],
-        "brandId": "7KxkQs2d3qkvLtCjj",
-        "categoryId": "BMHcFNDjxJ2GAcjh3",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "dior",
+        "categoryId": "romperJumpsuit",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test19",
         "name": "Collete Stretch Linen Minidress",
         "price": 59.00,
         "images": [
@@ -283,13 +301,14 @@
             "/print-jacquard-midi-dress-1.png",
             "/print-jacquard-midi-dress-2.png"
         ],
-        "brandId": "4yF5ZtJFA2qwyQQCY",
-        "categoryId": "BMHcFNDjxJ2GAcjh3",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "pullbear",
+        "categoryId": "romperJumpsuit",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test20",
         "name": "Moonstruck Surplice Romper",
         "price": 49.00,
         "images": [
@@ -299,13 +318,14 @@
             "/print-jacquard-midi-dress-3.png",
             "/print-jacquard-midi-dress-4.png"
         ],
-        "brandId": "2QqA3jvaCge9SbuKs",
-        "categoryId": "wuAXeXfaq4YGoeqFq",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "channel",
+        "categoryId": "partyDress",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test21",
         "name": "Collete Stretch Linen Minidress",
         "price": 50.00,
         "images": [
@@ -316,13 +336,14 @@
             "/print-jacquard-midi-dress-4.png",
             "/print-jacquard-midi-dress-5.png"
         ],
-        "brandId": "7KxkQs2d3qkvLtCjj",
-        "categoryId": "wuAXeXfaq4YGoeqFq",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "dior",
+        "categoryId": "partyDress",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test22",
         "name": "Collete Stretch Minidress",
         "price": 60.00,
         "images": [
@@ -333,13 +354,14 @@
             "/print-jacquard-midi-dress-4.png",
             "/print-jacquard-midi-dress-5.png"
         ],
-        "brandId": "X54wPwRcRX3f8sauu",
-        "categoryId": "du275Q9mZtrxwSeZj",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "zara",
+        "categoryId": "goingOutDress",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test23",
         "name": "Lace Midi Dress",
         "price": 30.00,
         "images": [
@@ -350,13 +372,14 @@
             "/print-jacquard-midi-dress-4.png",
             "/print-jacquard-midi-dress-5.png"
         ],
-        "brandId": "4yF5ZtJFA2qwyQQCY",
-        "categoryId": "du275Q9mZtrxwSeZj",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "pullbear",
+        "categoryId": "goingOutDress",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test24",
         "name": "Linen Minidress",
         "price": 70.00,
         "images": [
@@ -367,13 +390,14 @@
             "/print-jacquard-midi-dress-4.png",
             "/print-jacquard-midi-dress-5.png"
         ],
-        "brandId": "taX3oWrPkuN6ZM5Eb",
-        "categoryId": "D6mzYhKim48DTJzJt",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "hm",
+        "categoryId": "miniDress",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test25",
         "name": "Collete Stretch Linen Minidress",
         "price": 50.00,
         "images": [
@@ -384,13 +408,14 @@
             "/print-jacquard-midi-dress-4.png",
             "/print-jacquard-midi-dress-5.png"
         ],
-        "brandId": "X54wPwRcRX3f8sauu",
-        "categoryId": "wuAXeXfaq4YGoeqFq",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "zara",
+        "categoryId": "partyDress",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     },
     {
+        "id": "test26",
         "name": "Button-Down Denim Mini Dress",
         "price": 69.00,
         "images": [
@@ -400,9 +425,9 @@
             "/print-jacquard-midi-dress-3.png",
             "/print-jacquard-midi-dress-5.png"
         ],
-        "brandId": "taX3oWrPkuN6ZM5Eb",
-        "categoryId": "BMHcFNDjxJ2GAcjh3",
-        "kindOfClothesId": "SgLJ2RuYQ9bi4PqAd",
+        "brandId": "hm",
+        "categoryId": "romperJumpsuit",
+        "kindOfClothesId": "ladiesDress",
         "quantity": 200,
         "description": ""
     }

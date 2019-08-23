@@ -17,6 +17,10 @@ OrderSchema = new SimpleSchema({
     status: {
         type: String,
         allowedValues: ['pending', 'completed', 'canceled']
+    },
+    username: { 
+        type: String,
+        regEx: SimpleSchema.RegEx.Email,
     }
 });
 
@@ -24,13 +28,13 @@ Orders.attachSchema(OrderSchema);
 
 if (Meteor.isServer) {
     Meteor.methods({
-        'orders.insert'(cart, total) {
+        'orders.insert'(cart, total, username) {
             const status = 'pending';
     
             const createAt = new Date();
             // const detail = [...cart];
             return Orders.insert({
-                createAt, detail: cart, total, status
+                createAt, detail: cart, total, status, username
             }, error => {
                 if (error) {
                     throw new Meteor.Error('insert-failed', 'Create order failed!!');
@@ -68,6 +72,8 @@ if (Meteor.isServer) {
                   console.log("Server is ready to take our messages");
                 }
             });
+            
+            console.log(html);
 
             const mailData = {
                 from, to, subject, html

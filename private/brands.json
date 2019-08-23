@@ -1,17 +1,22 @@
 [
     { 
+        "_id": "zara",
         "name": "Zara"
     },
     { 
+        "_id": "hm",
         "name": "H&M"
     },
     { 
+        "_id": "pullbear",
         "name": "Pull&Bear"
     },
     { 
+        "_id": "dior",
         "name": "Dior"
     },
     { 
+        "_id": "channel",
         "name": "Channel"
     }
 ]

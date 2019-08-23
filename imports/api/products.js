@@ -16,15 +16,15 @@ ProductSchema = new SimpleSchema({
     },
     brandId: { 
         type: String, 
-        regEx: SimpleSchema.RegEx.Id 
+        // regEx: SimpleSchema.RegEx.Id 
     },
     categoryId: { 
         type: String, 
-        regEx: SimpleSchema.RegEx.Id 
+        // regEx: SimpleSchema.RegEx.Id 
     },
     kindOfClothesId: { 
         type: String,
-        regEx: SimpleSchema.RegEx.Id 
+        // regEx: SimpleSchema.RegEx.Id 
     },
     quantity: { type: Number, min: 0 },
     description: { 
@@ -33,21 +33,6 @@ ProductSchema = new SimpleSchema({
     },
     createAt: { type: Date }
 });
-
-// ProductDetailsSchema = new SimpleSchema({
-//     productId: { 
-//         type: String, 
-//         regEx: SimpleSchema.RegEx.Id 
-//     },
-//     size: { 
-//         type: String,  
-//         allowedValues: ['S', 'M', 'L']
-//     },
-//     colorId: {
-//         type: String,
-//         regEx: SimpleSchema.RegEx.Id 
-//     },
-// });
 
 Meteor.methods({
     'products.remove'(users, productId) {
@@ -67,11 +52,11 @@ Meteor.methods({
             throw new Meteor.Error('account-error', "You don't have permissions to do this action!!!");
         }
 
-        // const { name, price, images, brandId, categoryId, quantity, description, createAt } = product;
-        const { id, name, price, images, brandId, categoryId, kindOfClothesId } = product;
+        const { name, price, images, brandId, categoryId, kindOfClothesId, quantity, description, createAt } = product;
+        // const { id, name, price, images, brandId, categoryId, kindOfClothesId } = product;
         
         Products.insert({
-            id, name, price, images, brandId, categoryId, kindOfClothesId
+            name, price, images, brandId, categoryId, kindOfClothesId, quantity, description, createAt
         }, (error, response) => {
             if (error) {
                 throw new Meteor.Error('add-error' ,error);

@@ -1,6 +1,6 @@
 [
-    { "name": "Men", "route": "/men", "img": "/men.png" },
-    { "name": "Ladies", "route": "/ladies/dresses", "img": "/ladies.png" },
-    { "name": "Girls", "route": "/girls", "img": "/girls.png" },
-    { "name": "Boys", "route": "/boys", "img": "/boys.png" }
+    { "_id": "KDcGfW9bMm4WhJnT8", "name": "Men", "route": "/men/pants", "img": "/men.png" },
+    { "_id": "q3FH3atHKX2wxSWuZ", "name": "Ladies", "route": "/ladies/dresses", "img": "/ladies.png" },
+    { "_id": "J6TujWmvTkHPSyYRM", "name": "Girls", "route": "/girls/shoes", "img": "/girls.png" },
+    { "_id": "GCKtYK6CFPX5bEkRp", "name": "Boys", "route": "/boys/shorts", "img": "/boys.png" }
 ]

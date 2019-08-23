@@ -251,7 +251,7 @@ export default withTracker((props) => {
     } else if (sortId == 3) {
         sort = { name: -1 };
     } else {
-        sort = { createAt: 1 };
+        sort = { createAt: -1 };
     }
 
     let limitString = null;

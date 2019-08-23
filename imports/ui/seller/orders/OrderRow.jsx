@@ -68,11 +68,12 @@ class OrderRow extends Component {
 
                     const amount = item.amount * (-1);
 
-                    // console.log('detail: ', detail);
-                    // console.log('product: ', product);
                     Meteor.call('products.update', product._id, amount);
-                    // Meteor.call('products.update', "yodNGc7NiuJpLwD65", 200);
-                })
+                });
+
+                if (status === 'canceled') {
+                    // Meteor.call('sendEmail', )
+                }
             }
         });
     }

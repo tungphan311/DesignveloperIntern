@@ -55,7 +55,7 @@ export default class CartPage extends Component {
             return;
         }
 
-        Meteor.call('orders.insert', cart, this.total(), (error, resopnse) => {
+        Meteor.call('orders.insert', cart, this.total(), currentUser.emails[0].address, (error, resopnse) => {
             if (error) {
                 window.alert(error);
             } else {
@@ -64,7 +64,7 @@ export default class CartPage extends Component {
                 const emailBody = (
                     <div>
                         <label><b>Thanks for your orders.</b></label>
-                        <p>Aware is happy to inform that your order has been received and in processing. Aware will notify you as soon as the order is deliveried</p>
+                        <p>Aware is happy to inform that your order has been received and in processing</p>
                         <div>
                             <label>Order's detail</label>
                             { cart.map(item => (
@@ -72,10 +72,13 @@ export default class CartPage extends Component {
                                     {`${item.productDetailId} ( x${item.amount} )`}
                                 </div>
                             ))}
+
+                            <label>{this.totalPrice()}</label>
                         </div>
                     </div>
                 );
-                const html = "<div>This is a test email</div>";
+                const total = this.totalPrice();
+                const html = `<div><label><b>Thanks for your orders.</b></label><p>Aware is happy to inform that your order has been received and in processing</p><div>Total price: ${total}</div></div>`;
                 Meteor.call('sendEmail', currentUser.emails[0].address, 'tungpt@dgroup.co', `Order confirmation #${orderId}`, html);
                 this.props.emptyCart();
                 this.props.history.push('/');

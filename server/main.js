@@ -29,9 +29,9 @@ Meteor.startup(() => {
         var subjects = JSON.parse(Assets.getText("subjects.json"));
 
         subjects.map(menu => {
-            const { name, route, img } = menu;
+            const { _id, name, route, img } = menu;
             Subjects.insert({
-                name, route, img
+                _id, name, route, img
             });
         });
     }
@@ -40,9 +40,9 @@ Meteor.startup(() => {
         var kindOfClothes = JSON.parse(Assets.getText("kind-of-clothes.json"));
 
         kindOfClothes.map(kind => {
-            const { name, subjectId } = kind;
+            const { _id, name, subjectId } = kind;
             KindOfClothes.insert({
-                name, subjectId
+                _id, name, subjectId
             });
         });
     }
@@ -51,9 +51,9 @@ Meteor.startup(() => {
         var categories = JSON.parse(Assets.getText("categories.json"));
 
         categories.map(cat => {
-            const { name, kindOfClothesId } = cat;
+            const { _id, name, kindOfClothesId } = cat;
             Categories.insert({
-                name, kindOfClothesId
+                _id, name, kindOfClothesId
             });
         });
     }
@@ -62,10 +62,10 @@ Meteor.startup(() => {
         var products = JSON.parse(Assets.getText("products.json"));
 
         products.map(product => {
-            const { name, price, images, brandId, categoryId, kindOfClothesId, quantity, description } = product;
+            const { id, name, price, images, brandId, categoryId, kindOfClothesId, quantity, description } = product;
             const createAt = new Date();
             Products.insert({
-                name, price, images, brandId, categoryId, kindOfClothesId, quantity, description, createAt
+                _id: id, name, price, images, brandId, categoryId, kindOfClothesId, quantity, description, createAt
             });
         });
     }
@@ -74,10 +74,10 @@ Meteor.startup(() => {
         var brands = JSON.parse(Assets.getText("brands.json"));
 
         brands.map(brand => {
-            const { name } = brand;
+            const { _id, name } = brand;
 
             Brands.insert({
-                name
+                _id, name
             });
         });
     }
@@ -86,10 +86,10 @@ Meteor.startup(() => {
         var colors = JSON.parse(Assets.getText("colors.json"));
 
         colors.map(color => {
-            const { name, value } = color;
+            const { _id, name, value } = color;
 
             Colors.insert({
-                name, value
+                _id, name, value
             });
         });
     }

@@ -57,7 +57,7 @@ class ProductRow extends Component {
         
         const sold = this.findOrder(product);
 
-        return sold + '/' + (sold+amountInStock);
+        return sold + '/' + parseInt(sold+amountInStock);
     }
 
     profit = (product) => {

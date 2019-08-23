@@ -1,25 +1,31 @@
 [
     {
+        "_id": "red",
         "name": "Red",
         "value": "#ff5f6d"
     },
     {
+        "_id": "yellow",
         "name": "Yellow",
         "value": "rgba(255, 195, 113, 0.5)"
     },
     {
+        "_id": "blue",
         "name": "Blue",
         "value": "rgba(95, 109, 255, 0.5)"
     },
     {
+        "_id": "paleorange",
         "name": "Pale Orange",
         "value": "rgba(255, 161, 95, 0.5)"
     },
     {
+        "_id": "grey",
         "name": "Grey",
         "value": "rgba(61, 61, 63, 0.5)"
     },
     {
+        "_id": "white",
         "name": "White",
         "value": "rgba(237, 237, 237, 0.5)"
     }
